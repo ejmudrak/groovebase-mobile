@@ -1,4 +1,5 @@
 export const shadows = {
+  0: {},
   100: {
     boxShadow: '0px 4px 4px 0px rgba(162, 189, 203, 0.16)',
   },

@@ -1,5 +1,5 @@
 import { View, StyleSheet } from 'react-native';
-import Text from 'components/Text';
+import Text from '@src/components/Text';
 
 export default function LoginPage() {
   return (
