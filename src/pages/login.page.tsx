@@ -1,11 +1,10 @@
-import { StatusBar } from 'expo-status-bar';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+import Text from 'components/Text';
 
 export default function LoginPage() {
   return (
     <View style={styles.container}>
-      <Text>Log In</Text>
-      <StatusBar style='auto' />
+      <Text variant='h4'>Log In</Text>
     </View>
   );
 }
