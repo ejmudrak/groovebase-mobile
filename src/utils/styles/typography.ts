@@ -87,3 +87,5 @@ export const typography = StyleSheet.create({
   ...bodyRegularVariants,
   ...bodyBoldVariants,
 });
+
+export type TextVariants = keyof typeof typography;

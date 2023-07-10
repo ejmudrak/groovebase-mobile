@@ -1,5 +1,6 @@
 import { StyleSheet, View } from 'react-native';
 import { shadows } from '@src/utils/styles/shadows';
+import { colors } from '@src/utils/styles/colors';
 
 export interface CardProps {
   children?: React.ReactNode;
@@ -9,17 +10,21 @@ export interface CardProps {
 
 export default function Card({ children, elevation = 0, style }: CardProps) {
   return (
-    <View style={[styles.card, shadows[elevation], style]}>{children}</View>
+    <View style={[styles.container, shadows[elevation], style]}>
+      {children}
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  card: {
+  container: {
     display: 'flex',
     width: 'auto',
     height: 'auto',
     justifyContent: 'center',
     alignItems: 'center',
     flexShrink: 0,
+    backgroundColor: colors.white[500],
+    borderRadius: 24,
   },
 });

@@ -35,17 +35,13 @@ export default function App() {
 
   return (
     <NavigationContainer onReady={onLayoutRootView}>
-      <Stack.Navigator initialRouteName='Collection'>
+      <Stack.Navigator initialRouteName='Login'>
         <Stack.Screen
           name='Collection'
           component={CollectionPage}
           options={{ title: 'Collection' }}
         />
-        <Stack.Screen
-          name='Login'
-          component={LoginPage}
-          options={{ title: 'Log In' }}
-        />
+        <Stack.Screen name='Login' component={LoginPage} />
       </Stack.Navigator>
     </NavigationContainer>
   );
