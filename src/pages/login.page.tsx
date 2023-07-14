@@ -3,7 +3,7 @@ import Text from '@src/components/Text';
 import Card from '@src/components/Card/Card';
 import { colors } from '@src/utils/styles/colors';
 import Page from '@src/components/Page';
-import LoginForm from '@src/features/login/LoginForm';
+import LoginForm from '@src/features/users/login/LoginForm/LoginForm';
 
 export default function LoginPage() {
   return (

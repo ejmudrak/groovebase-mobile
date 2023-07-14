@@ -10,11 +10,26 @@ import {
 } from '@expo-google-fonts/barlow';
 import { useCallback } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import {
+  QueryClient,
+  QueryClientProvider,
+  focusManager,
+} from '@tanstack/react-query';
+import { AppStateStatus, Platform } from 'react-native';
+import { useAppState } from '@src/utils/hooks/useAppState';
+import { useOnlineManager } from '@src/utils/hooks/useOnlineManager';
 
 const Stack = createNativeStackNavigator();
 
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
+
+function onAppStateChange(status: AppStateStatus) {
+  // React Query already supports in web browser refetch on window focus by default
+  if (Platform.OS !== 'web') {
+    focusManager.setFocused(status === 'active');
+  }
+}
 
 export default function App() {
   let [fontsLoaded] = useFonts({
@@ -22,6 +37,10 @@ export default function App() {
     Barlow_600SemiBold,
     Barlow_400Regular,
   });
+
+  // react query refetch hooks
+  useOnlineManager();
+  useAppState(onAppStateChange);
 
   const onLayoutRootView = useCallback(async () => {
     if (fontsLoaded) {
@@ -33,16 +52,22 @@ export default function App() {
     return null;
   }
 
+  const queryClient = new QueryClient({
+    defaultOptions: { queries: { retry: 2 } },
+  });
+
   return (
-    <NavigationContainer onReady={onLayoutRootView}>
-      <Stack.Navigator initialRouteName='Login'>
-        <Stack.Screen
-          name='Collection'
-          component={CollectionPage}
-          options={{ title: 'Collection' }}
-        />
-        <Stack.Screen name='Login' component={LoginPage} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <QueryClientProvider client={queryClient}>
+      <NavigationContainer onReady={onLayoutRootView}>
+        <Stack.Navigator initialRouteName='Login'>
+          <Stack.Screen
+            name='Collection'
+            component={CollectionPage}
+            options={{ title: 'Collection' }}
+          />
+          <Stack.Screen name='Login' component={LoginPage} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </QueryClientProvider>
   );
 }

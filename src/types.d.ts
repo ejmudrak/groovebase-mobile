@@ -53,3 +53,13 @@ export interface InfiniteQueryResult<ServiceType> {
   pages: FindResult<ServiceType>[];
   pageParams: number[];
 }
+
+export interface User {
+  id: number;
+  email: string;
+  password?: string;
+  googleId?: string;
+  profilePicture?: string;
+  facebookId?: string;
+  discogsId?: number;
+}
