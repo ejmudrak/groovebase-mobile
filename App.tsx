@@ -60,12 +60,13 @@ export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <NavigationContainer onReady={onLayoutRootView}>
-        <Stack.Navigator initialRouteName='Login'>
-          <Stack.Screen
-            name='Collection'
-            component={CollectionPage}
-            options={{ title: 'Collection' }}
-          />
+        <Stack.Navigator
+          initialRouteName='Login'
+          screenOptions={{
+            headerShown: false,
+          }}
+        >
+          <Stack.Screen name='Collection' component={CollectionPage} />
           <Stack.Screen name='Login' component={LoginPage} />
         </Stack.Navigator>
       </NavigationContainer>
