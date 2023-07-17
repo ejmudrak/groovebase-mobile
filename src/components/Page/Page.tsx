@@ -1,14 +1,17 @@
 import { colors } from '@src/utils/styles/colors';
 import { StyleSheet, View, SafeAreaView } from 'react-native';
+import NavigationBar from '@src/components/NavigationBar';
 
 interface PageProps {
+  authenticated?: boolean;
   children: any;
 }
 
-export default function Page({ children }: PageProps) {
+export default function Page({ authenticated, children }: PageProps) {
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>{children}</View>
+      {authenticated && <NavigationBar />}
     </SafeAreaView>
   );
 }

@@ -78,3 +78,7 @@ export interface Record extends FeathersRecord {
   discogsMasterId?: number;
   genres: string[];
 }
+
+interface SvgProps {
+  stroke: string;
+}
