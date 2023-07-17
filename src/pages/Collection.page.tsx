@@ -1,20 +1,11 @@
+import Page from '@src/components/Page/Page';
 import RecordList from '@src/features/records/RecordList';
 import { View, StyleSheet } from 'react-native';
 
 export default function CollectionPage() {
   return (
-    <View style={styles.container}>
+    <Page>
       <RecordList />
-    </View>
+    </Page>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    display: 'flex',
-    backgroundColor: '#fff',
-    alignItems: 'flex-start',
-    justifyContent: 'flex-start',
-    paddingX: 16,
-  },
-});

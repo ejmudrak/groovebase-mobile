@@ -18,8 +18,9 @@ import {
 import { AppStateStatus, Platform } from 'react-native';
 import { useAppState } from '@src/utils/hooks/useAppState';
 import { useOnlineManager } from '@src/utils/hooks/useOnlineManager';
+import { StackParamsList } from '@src/types';
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<StackParamsList>();
 
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();

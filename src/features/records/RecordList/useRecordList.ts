@@ -1,4 +1,15 @@
-export default function useRecordList() {
+import { Record } from '@src/types';
+
+type RecordParts = Pick<
+  Record,
+  'id' | 'artist' | 'title' | 'year' | 'smallImageUrl'
+>;
+
+export default function useRecordList(): {
+  data: {
+    items: RecordParts[];
+  };
+} {
   const recordsResponse: any[] = [
     {
       id: 1100678,
@@ -114,13 +125,25 @@ export default function useRecordList() {
     },
   ];
 
-  const records = recordsResponse.map(
-    ({ basic_information: { artists = [], title = '', year = '' } = {} }) => ({
+  const items: RecordParts[] = recordsResponse.map(
+    ({
+      id,
+      basic_information: {
+        artists = [],
+        title = '',
+        year = '',
+        thumb = '',
+        cover_image = '',
+      } = {},
+    }) => ({
+      id,
       artist: artists[0]?.name,
       title,
       year,
+      smallImageUrl: thumb,
+      largeImageUrl: cover_image,
     }),
   );
 
-  return { records };
+  return { data: { items } };
 }

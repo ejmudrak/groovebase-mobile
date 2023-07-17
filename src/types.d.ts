@@ -63,3 +63,18 @@ export interface User {
   facebookId?: string;
   discogsId?: number;
 }
+
+export type StackParamsList = {
+  Login: undefined;
+  Collection: undefined;
+};
+
+export interface Record extends FeathersRecord {
+  artist: string;
+  title: string;
+  year: number;
+  smallImageUrl: string;
+  largeImageUrl: string;
+  discogsMasterId?: number;
+  genres: string[];
+}
