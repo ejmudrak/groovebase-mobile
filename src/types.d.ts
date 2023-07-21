@@ -80,5 +80,5 @@ export interface Record extends FeathersRecord {
 }
 
 interface SvgProps {
-  stroke: string;
+  color?: string;
 }

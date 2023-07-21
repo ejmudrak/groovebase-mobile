@@ -3,11 +3,15 @@ import { View, StyleSheet } from 'react-native';
 import NavigationBarItem from './NavigationBarItem';
 import CollectionIcon from '../Icons/CollectionIcon';
 import BinIcon from '../Icons/BinIcon';
+import { ActionButton } from '../ActionButton';
 
 export default function NavigationBar() {
   return (
     <View style={styles.container}>
       <NavigationBarItem label='Collection' IconComponent={CollectionIcon} />
+
+      <ActionButton />
+
       <NavigationBarItem label='Bins' IconComponent={BinIcon} />
     </View>
   );
@@ -22,7 +26,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingVertical: 16,
-    paddingHorizontal: 32,
+    paddingHorizontal: 72,
     boxShadow: '0px -2px 24px 0px rgba(0, 0, 0, 0.08)',
   },
 });

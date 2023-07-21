@@ -1,6 +1,8 @@
 import { View, StyleSheet } from 'react-native';
 
-export default function Template() {
+export interface TemplateProps {}
+
+export default function Template({}: TemplateProps) {
   return <View style={styles.container}></View>;
 }
 

@@ -18,7 +18,7 @@ export default function NavigationBarItem({
 
   return (
     <Pressable style={styles.container}>
-      <IconComponent stroke={isActive ? colors.blue[500] : colors.blue[200]} />
+      <IconComponent color={isActive ? colors.blue[500] : colors.blue[200]} />
       <Text
         variant={isActive ? 'body4Bold' : 'body4'}
         color={isActive ? colors.blue[500] : colors.blue[200]}
