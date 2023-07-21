@@ -10,7 +10,7 @@ WebBrowser.maybeCompleteAuthSession();
 
 export default function useLoginForm() {
   const { mutate: authenticate, isSuccess: isAuthenticated } = useGoogleLogin();
-  const navigation = useNavigation();
+  const { navigate } = useNavigation();
 
   // The promptAsync function starts the Google signin flow
   const [_, response, promptAsync] = Google.useAuthRequest({
@@ -36,7 +36,7 @@ export default function useLoginForm() {
       }
     } else {
       // We have user data, so let's move on to the main app!
-      navigation.navigate('Collection' as never);
+      navigate('AddRecord' as never);
     }
   };
 

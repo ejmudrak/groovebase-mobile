@@ -1,11 +1,11 @@
 import { FlatList, StyleSheet } from 'react-native';
 import RecordCard from '../RecordCard';
-import useRecordList from './useRecordList';
+import useRecordsList from './useRecordsList';
 
-export default function RecordList() {
+export default function RecordsList() {
   const {
     data: { items = [] },
-  } = useRecordList();
+  } = useRecordsList();
 
   return (
     <FlatList
@@ -20,7 +20,7 @@ export default function RecordList() {
       )}
       keyExtractor={(item) => item.id.toString()}
       style={styles.container}
-    ></FlatList>
+    />
   );
 }
 

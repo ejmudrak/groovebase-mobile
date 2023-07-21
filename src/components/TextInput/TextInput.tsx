@@ -12,10 +12,11 @@ import { Platform } from 'react-native';
 
 export interface TextInputProps extends RNTextInputProps {
   label?: string;
+  hideOutline?: boolean;
 }
 
 export default function TextInput(props: TextInputProps) {
-  const { label, style, ...rest } = props;
+  const { hideOutline, label, style, ...rest } = props;
 
   const [isFocused, setIsFocused] = useState(false);
 
@@ -26,6 +27,7 @@ export default function TextInput(props: TextInputProps) {
         style={[
           styles.input,
           isFocused &&
+            !hideOutline &&
             Platform.select({
               web: { outlineColor: colors.blue[500] },
               ios: { borderColor: colors.blue[500] },
@@ -57,6 +59,7 @@ const styles = StyleSheet.create({
     borderColor: colors.gray[100],
     padding: 12,
     width: '100%',
+    height: 48,
     ...typography.body3,
   },
 });

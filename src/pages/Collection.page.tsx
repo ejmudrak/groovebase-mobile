@@ -1,6 +1,6 @@
 import Header from '@src/components/Header';
 import Page from '@src/components/Page/Page';
-import RecordList from '@src/features/records/RecordList';
+import RecordList from '@src/features/records/RecordsList';
 
 export default function CollectionPage() {
   return (

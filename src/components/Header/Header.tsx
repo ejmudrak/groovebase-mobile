@@ -1,23 +1,55 @@
 import { View, StyleSheet } from 'react-native';
 import Text from '@src/components/Text';
+import IconButton from '@src/components/IconButton';
+import BackIcon from '@src/components/Icons/BackIcon';
+import { useNavigation } from '@react-navigation/native';
+import { shadows } from '@src/utils/styles/shadows';
+import { colors } from '@src/utils/styles/colors';
 
 export interface HeaderProps {
   title: string;
+  displayBackButton?: boolean;
+  style?: any;
 }
 
-export default function Header({ title }: HeaderProps) {
+export default function Header({
+  displayBackButton,
+  title,
+  style,
+}: HeaderProps) {
+  const { goBack } = useNavigation();
+
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, style]}>
+      {displayBackButton && (
+        <IconButton onPress={goBack} style={styles.backButton}>
+          <BackIcon />
+        </IconButton>
+      )}
       <Text variant='h3'>{title}</Text>
+
+      <View style={{ opacity: 0 }}>
+        <IconButton>
+          <View />
+        </IconButton>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    display: 'flex',
-    justifyContent: 'space-between',
     width: '100%',
     marginBottom: 24,
+
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+
+  backButton: {
+    backgroundColor: colors.white[500],
+    ...shadows[100],
   },
 });

@@ -5,7 +5,7 @@ type RecordParts = Pick<
   'id' | 'artist' | 'title' | 'year' | 'smallImageUrl'
 >;
 
-export default function useRecordList(): {
+export default function useRecordsList(): {
   data: {
     items: RecordParts[];
   };

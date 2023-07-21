@@ -8,11 +8,19 @@ import { ActionButton } from '../ActionButton';
 export default function NavigationBar() {
   return (
     <View style={styles.container}>
-      <NavigationBarItem label='Collection' IconComponent={CollectionIcon} />
+      <NavigationBarItem
+        label='Collection'
+        IconComponent={CollectionIcon}
+        page='Collection'
+      />
 
       <ActionButton />
 
-      <NavigationBarItem label='Bins' IconComponent={BinIcon} />
+      <NavigationBarItem
+        label='Bins'
+        IconComponent={BinIcon}
+        page='Collection'
+      />
     </View>
   );
 }

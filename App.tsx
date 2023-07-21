@@ -1,6 +1,7 @@
 import * as SplashScreen from 'expo-splash-screen';
 import CollectionPage from '@src/pages/Collection.page';
 import LoginPage from '@src/pages/Login.page';
+import AddRecordPage from '@src/pages/AddRecord.page';
 import { NavigationContainer } from '@react-navigation/native';
 import {
   useFonts,
@@ -66,8 +67,9 @@ export default function App() {
             headerShown: false,
           }}
         >
-          <Stack.Screen name='Collection' component={CollectionPage} />
           <Stack.Screen name='Login' component={LoginPage} />
+          <Stack.Screen name='Collection' component={CollectionPage} />
+          <Stack.Screen name='AddRecord' component={AddRecordPage} />
         </Stack.Navigator>
       </NavigationContainer>
     </QueryClientProvider>

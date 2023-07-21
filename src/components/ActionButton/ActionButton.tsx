@@ -4,14 +4,17 @@ import CloseIcon from '../Icons/CloseIcon';
 import CollectionIcon from '../Icons/CollectionIcon';
 import Text from '@src/components/Text';
 import useActionButton from './useActionButton';
-import { IconButton } from '@src/components/IconButton';
+import IconButton from '@src/components/IconButton';
 import { View, StyleSheet, Modal } from 'react-native';
 import { colors } from '@src/utils/styles/colors';
+import { useNavigation } from '@react-navigation/native';
 
 export interface ActionButtonProps {}
 
 export default function ActionButton({}: ActionButtonProps) {
-  const { isActionsModalOpen, openModal, closeModal } = useActionButton();
+  const navigation = useNavigation();
+  const { isActionsModalOpen, openModal, closeModal, handleNavigate } =
+    useActionButton();
 
   return (
     <>
@@ -36,6 +39,7 @@ export default function ActionButton({}: ActionButtonProps) {
             <ActionItem
               icon={<CollectionIcon color={colors.blue[500]} />}
               label='Add record to collection'
+              onPress={() => handleNavigate('AddRecord')}
             />
           </View>
 

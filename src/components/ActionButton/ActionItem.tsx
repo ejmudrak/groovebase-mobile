@@ -1,5 +1,5 @@
 import { Pressable, PressableProps, StyleSheet } from 'react-native';
-import { IconButton } from '@src/components/IconButton';
+import IconButton from '@src/components/IconButton';
 import Text from '@src/components/Text';
 import { colors } from '@src/utils/styles/colors';
 
