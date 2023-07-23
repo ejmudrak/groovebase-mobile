@@ -71,8 +71,10 @@ export type StackParamsList = {
 };
 
 export interface Record extends FeathersRecord {
-  artist: string;
-  title: string;
+  artist: {
+    name: string;
+  };
+  name: string;
   year: number;
   smallImageUrl: string;
   largeImageUrl: string;

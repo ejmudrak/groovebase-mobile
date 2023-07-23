@@ -7,7 +7,6 @@ import { StyleSheet } from 'react-native';
 
 export default function AddRecord() {
   const { searchValue, setSearchValue, records } = useSearchInput();
-  console.log('records: ', records);
 
   return (
     <Page authenticated>

@@ -6,24 +6,24 @@ import { Record } from '@src/types';
 
 type RecordCardProps = Pick<
   Record,
-  'artist' | 'title' | 'year' | 'smallImageUrl'
+  'artist' | 'name' | 'year' | 'smallImageUrl'
 >;
 
 export default function RecordCard({
   artist,
-  title,
+  name,
   year,
   smallImageUrl,
 }: RecordCardProps) {
   return (
-    <Card elevation={100} style={styles.container} key={artist}>
+    <Card elevation={100} style={styles.container}>
       <Image source={{ uri: smallImageUrl }} style={styles.image} />
 
       <View style={styles.labelContainer}>
         <Text variant='body4' color={colors.black[400]}>
-          {artist}
+          {artist.name}
         </Text>
-        <Text variant='body2Bold'>{title}</Text>
+        <Text variant='body2Bold'>{name}</Text>
         <Text variant='body4' color={colors.black[400]}>
           {year}
         </Text>

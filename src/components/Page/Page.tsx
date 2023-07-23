@@ -1,6 +1,7 @@
 import { colors } from '@src/utils/styles/colors';
 import { StyleSheet, View, SafeAreaView } from 'react-native';
 import NavigationBar from '@src/components/NavigationBar';
+import AuthGuard from '../AuthGuard/AuthGuard';
 
 interface PageProps {
   authenticated?: boolean;
@@ -9,10 +10,12 @@ interface PageProps {
 
 export default function Page({ authenticated, children }: PageProps) {
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <View style={styles.container}>{children}</View>
-      {authenticated && <NavigationBar />}
-    </SafeAreaView>
+    <AuthGuard>
+      <SafeAreaView style={styles.safeArea}>
+        <View style={styles.container}>{children}</View>
+        {authenticated && <NavigationBar />}
+      </SafeAreaView>
+    </AuthGuard>
   );
 }
 

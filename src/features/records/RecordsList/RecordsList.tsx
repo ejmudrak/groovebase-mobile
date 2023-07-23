@@ -12,20 +12,20 @@ export default function RecordsList({ records }: RecordsListProps) {
     data: { items: staticItems = [] },
   } = useRecordsList();
 
-  const items = records?.length ? records : staticItems;
-
   return (
     <FlatList
-      data={items}
+      data={records}
       renderItem={({ item }) => (
         <RecordCard
           artist={item.artist}
-          title={item.title}
+          name={item.name}
           year={item.year}
           smallImageUrl={item.smallImageUrl}
         />
       )}
-      keyExtractor={(item) => item.id.toString()}
+      keyExtractor={(item) =>
+        item.discogsMasterId?.toString() || item.id?.toString()
+      }
       style={styles.container}
     />
   );

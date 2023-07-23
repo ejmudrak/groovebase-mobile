@@ -14,7 +14,6 @@ export default function findQuery<ServiceType>(
         .service(queryKey)
         .find({ query: params })
         .then(({ data, ...rest }: any) => {
-          console.log('rest: ', rest);
           return {
             items: data,
             ...rest,
