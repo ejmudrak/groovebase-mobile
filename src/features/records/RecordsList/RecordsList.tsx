@@ -1,11 +1,18 @@
 import { FlatList, StyleSheet } from 'react-native';
 import RecordCard from '../RecordCard';
 import useRecordsList from './useRecordsList';
+import { Record } from '@src/types';
 
-export default function RecordsList() {
+interface RecordsListProps {
+  records?: Record[];
+}
+
+export default function RecordsList({ records }: RecordsListProps) {
   const {
-    data: { items = [] },
+    data: { items: staticItems = [] },
   } = useRecordsList();
+
+  const items = records?.length ? records : staticItems;
 
   return (
     <FlatList

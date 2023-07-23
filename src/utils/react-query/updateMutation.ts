@@ -1,5 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 import feathersClient from '@src/utils/client';
+import { QueryParams } from '@src/types';
+import { Id } from '@feathersjs/feathers';
 
 interface UpdateOptions {
   mutationOptions?: any;
@@ -7,7 +9,7 @@ interface UpdateOptions {
 
 export default function updateMutation<ServiceType, UpdateData>(
   queryKey: string,
-  id: string | number | null | undefined,
+  id: Id,
   params?: QueryParams<ServiceType>,
   options?: UpdateOptions,
 ) {

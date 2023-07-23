@@ -1,10 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 import feathersClient from '@src/utils/client';
+import { Id } from '@feathersjs/feathers';
 
 // Gets one record's data from the API
 export default function getQuery<ServiceType>(
   queryKey: string,
-  id: string | number | null | undefined,
+  id: Id,
   params?: any,
   options?: any,
 ) {

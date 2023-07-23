@@ -1,11 +1,13 @@
-import { QueryParams } from '@src/types';
 import { Service } from '@src/utils/services';
+import { findQuery } from '@src/utils/react-query';
+import { QueryParams, Record } from '@src/types';
 
 /*
-Endpoint: /lessons
+Endpoint: /records
 Methods: fetch
 */
 
-type CollectionQueryParams = QueryParams<any>;
-
-export const useCollectionQuery = (params: CollectionQueryParams) => {};
+export const useRecordsQuery = (params?: QueryParams<Record>) =>
+  findQuery<Record>(Service.Records, {
+    ...params,
+  });

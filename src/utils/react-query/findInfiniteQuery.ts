@@ -1,5 +1,6 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import feathersClient from '@src/utils/client';
+import { FindResult, QueryParams } from '@src/types';
 
 // Fetches data from the API, allowing for infinite scroll pagination
 export default function findInfiniteQuery<ServiceType>(

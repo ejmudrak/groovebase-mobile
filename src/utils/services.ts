@@ -1,4 +1,4 @@
 export enum Service {
-  Collection = '/collection',
+  Records = '/records',
   Users = '/users',
 }

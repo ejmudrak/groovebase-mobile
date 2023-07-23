@@ -30,6 +30,12 @@
     },
     "plugins": [
       "@react-native-google-signin/google-signin"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "18edacd6-8baf-4e28-b409-fa79c9393db0"
+      }
+    },
+    "owner": "erikmudrak"
   }
 }

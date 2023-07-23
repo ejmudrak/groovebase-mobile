@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import feathersClient from '@src/utils/client';
+import { QueryParams } from '@src/types';
 
 interface SoftDeleteOptions {
   mutationOptions?: any;

@@ -7,7 +7,8 @@ export const useGoogleLogin = () => {
     mutationFn: (accessToken: string) =>
       client.authenticate({ strategy: 'google', accessToken }),
     onSuccess: async (response: any) => {
-      await AsyncStorage.setItem('@user', JSON.stringify(response.user));
+      console.log('response: ', response);
+      await AsyncStorage.setItem('user', JSON.stringify(response.user));
     },
   });
 };

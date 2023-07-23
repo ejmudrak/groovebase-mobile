@@ -1,7 +1,11 @@
 import * as Google from 'expo-auth-session/providers/google';
 import * as WebBrowser from 'expo-web-browser';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { WEB_GOOGLE_CLIENT_ID, IOS_GOOGLE_CLIENT_ID } from '@env';
+import {
+  WEB_GOOGLE_CLIENT_ID,
+  IOS_GOOGLE_CLIENT_ID,
+  EXPO_GOOGLE_CLIENT_ID,
+} from '@env';
 import { useEffect } from 'react';
 import { useGoogleLogin } from '../useGoogleLogin';
 import { useNavigation } from '@react-navigation/native';
@@ -17,6 +21,7 @@ export default function useLoginForm() {
     androidClientId: '',
     iosClientId: IOS_GOOGLE_CLIENT_ID,
     webClientId: WEB_GOOGLE_CLIENT_ID,
+    expoClientId: EXPO_GOOGLE_CLIENT_ID,
   });
 
   useEffect(() => {
@@ -41,7 +46,7 @@ export default function useLoginForm() {
   };
 
   const getLocalUser = async () => {
-    const data = await AsyncStorage.getItem('@user');
+    const data = await AsyncStorage.getItem('user');
     return data ? JSON.parse(data) : null;
   };
 

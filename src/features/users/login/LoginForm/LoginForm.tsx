@@ -5,6 +5,7 @@ import { StyleSheet, View } from 'react-native';
 import { colors } from '@src/utils/styles/colors';
 import { useState } from 'react';
 import useLoginForm from './useLoginForm';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function LoginForm() {
   const { promptGoogleAuthRequest } = useLoginForm();
@@ -48,6 +49,13 @@ export default function LoginForm() {
         size='md'
         fullWidth
         onPress={() => promptGoogleAuthRequest()}
+      />
+
+      <Button
+        title='Clear Storage'
+        size='md'
+        fullWidth
+        onPress={async () => await AsyncStorage.removeItem('user')}
       />
     </View>
   );
