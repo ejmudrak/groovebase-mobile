@@ -1,19 +1,31 @@
 import Header from '@src/components/Header';
 import Page from '@src/components/Page/Page';
 import RecordsList from '@src/features/records/RecordsList/RecordsList';
-import SearchInput from '@src/features/records/add-record/SearchInput/SearchInput';
-import useSearchInput from '@src/features/records/add-record/SearchInput/useSearchInput';
+import SearchInput from '@src/components/SearchInput';
+import useSearch from '@src/utils/hooks/useSearch';
 import { StyleSheet } from 'react-native';
+import { useRecordsQuery } from '@src/features/records/useRecordsQuery';
+import { Record } from '@src/types';
+import { useNavigation } from '@react-navigation/native';
 
 export default function AddRecord() {
-  const { searchValue, setSearchValue, records } = useSearchInput();
+  const navigation = useNavigation<any>();
+  const { searchValue, setSearchValue, items } = useSearch({
+    useSearchQuery: useRecordsQuery,
+    initialValue: 'Tame Impala',
+    queryKey: 'name',
+  });
+
+  const handleOnRecordPress = (record: Record) => {
+    navigation.navigate('AddRecordForm', { record });
+  };
 
   return (
     <Page authenticated>
       <Header title='Add Record' displayBackButton style={styles.header} />
       <SearchInput searchValue={searchValue} setSearchValue={setSearchValue} />
 
-      <RecordsList records={records as any} />
+      <RecordsList records={items as any} onRecordPress={handleOnRecordPress} />
     </Page>
   );
 }

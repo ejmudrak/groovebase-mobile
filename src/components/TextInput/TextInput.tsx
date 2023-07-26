@@ -13,34 +13,38 @@ import { Platform } from 'react-native';
 export interface TextInputProps extends RNTextInputProps {
   label?: string;
   hideOutline?: boolean;
+  inputContainerStyle?: object;
+  leftIcon?: JSX.Element;
+  rightIcon?: JSX.Element;
 }
 
-export default function TextInput(props: TextInputProps) {
-  const { hideOutline, label, style, ...rest } = props;
-
+export default function TextInput({
+  hideOutline,
+  label,
+  style,
+  inputContainerStyle,
+  leftIcon,
+  rightIcon,
+  ...rest
+}: TextInputProps) {
   const [isFocused, setIsFocused] = useState(false);
 
   return (
     <View style={styles.container}>
       {Boolean(label) && <Text variant='body3Bold'>{label}</Text>}
-      <RNTextInput
-        style={[
-          styles.input,
-          isFocused &&
-            !hideOutline &&
-            Platform.select({
-              web: { outlineColor: colors.blue[500] },
-              ios: { borderColor: colors.blue[500] },
-              android: { borderColor: colors.blue[500] },
-            }),
-          style,
-        ]}
-        placeholderTextColor={colors.black[400]}
-        onBlur={() => setIsFocused(false)}
-        onFocus={() => setIsFocused(true)}
-        underlineColorAndroid='transparent'
-        {...rest}
-      />
+
+      <View style={[styles.inputContainer, inputContainerStyle]}>
+        {Boolean(leftIcon) && leftIcon}
+        <RNTextInput
+          style={[styles.input, style]}
+          placeholderTextColor={colors.black[400]}
+          onBlur={() => setIsFocused(false)}
+          onFocus={() => setIsFocused(true)}
+          underlineColorAndroid='transparent'
+          {...rest}
+        />
+        {Boolean(rightIcon) && rightIcon}
+      </View>
     </View>
   );
 }
@@ -53,13 +57,23 @@ const styles = StyleSheet.create({
     gap: 8,
     width: '100%',
   },
-  input: {
+  inputContainer: {
+    height: 48,
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    gap: 8,
     borderWidth: 1,
     borderRadius: 12,
     borderColor: colors.gray[100],
-    padding: 12,
+    paddingLeft: 12,
+    paddingRight: 16,
+  },
+  input: {
+    height: '100%',
     width: '100%',
-    height: 48,
     ...typography.body3,
   },
 });

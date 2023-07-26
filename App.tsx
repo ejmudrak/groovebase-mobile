@@ -20,6 +20,8 @@ import { AppStateStatus, Platform } from 'react-native';
 import { useAppState } from '@src/utils/hooks/useAppState';
 import { useOnlineManager } from '@src/utils/hooks/useOnlineManager';
 import { StackParamsList } from '@src/types';
+import { useCurrentUser } from '@src/features/users/useCurrentUser';
+import AddRecordFormPage from '@src/pages/AddRecordForm.page';
 
 const Stack = createNativeStackNavigator<StackParamsList>();
 
@@ -34,6 +36,20 @@ function onAppStateChange(status: AppStateStatus) {
 }
 
 export default function App() {
+  const queryClient = new QueryClient({
+    defaultOptions: { queries: { retry: 2 } },
+  });
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <Navigation />
+    </QueryClientProvider>
+  );
+}
+
+const Navigation = () => {
+  const user = useCurrentUser();
+
   let [fontsLoaded] = useFonts({
     Barlow_700Bold,
     Barlow_600SemiBold,
@@ -54,24 +70,26 @@ export default function App() {
     return null;
   }
 
-  const queryClient = new QueryClient({
-    defaultOptions: { queries: { retry: 2 } },
-  });
-
   return (
-    <QueryClientProvider client={queryClient}>
-      <NavigationContainer onReady={onLayoutRootView}>
-        <Stack.Navigator
-          initialRouteName='Login'
-          screenOptions={{
-            headerShown: false,
-          }}
-        >
-          <Stack.Screen name='Login' component={LoginPage} />
-          <Stack.Screen name='Collection' component={CollectionPage} />
-          <Stack.Screen name='AddRecord' component={AddRecordPage} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </QueryClientProvider>
+    <NavigationContainer onReady={onLayoutRootView}>
+      <Stack.Navigator
+        initialRouteName='Login'
+        screenOptions={{
+          headerShown: false,
+        }}
+      >
+        {!user ? (
+          <>
+            <Stack.Screen name='Login' component={LoginPage} />
+          </>
+        ) : (
+          <>
+            {/* <Stack.Screen name='Collection' component={CollectionPage} /> */}
+            <Stack.Screen name='AddRecord' component={AddRecordPage} />
+            <Stack.Screen name='AddRecordForm' component={AddRecordFormPage} />
+          </>
+        )}
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
+};

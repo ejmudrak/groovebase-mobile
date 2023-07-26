@@ -1,32 +1,32 @@
-import { FlatList, StyleSheet } from 'react-native';
+import { FlatList, StyleSheet, View } from 'react-native';
 import RecordCard from '../RecordCard';
-import useRecordsList from './useRecordsList';
 import { Record } from '@src/types';
+import Text from '@src/components/Text';
 
 interface RecordsListProps {
   records?: Record[];
+  onRecordPress: (record: Record) => void;
 }
 
-export default function RecordsList({ records }: RecordsListProps) {
-  const {
-    data: { items: staticItems = [] },
-  } = useRecordsList();
-
+export default function RecordsList({
+  records,
+  onRecordPress,
+}: RecordsListProps) {
   return (
     <FlatList
       data={records}
       renderItem={({ item }) => (
-        <RecordCard
-          artist={item.artist}
-          name={item.name}
-          year={item.year}
-          smallImageUrl={item.smallImageUrl}
-        />
+        <RecordCard record={item} onPress={onRecordPress} />
       )}
       keyExtractor={(item) =>
         item.discogsMasterId?.toString() || item.id?.toString()
       }
       style={styles.container}
+      ListEmptyComponent={
+        <View>
+          <Text>No records found.</Text>
+        </View>
+      }
     />
   );
 }

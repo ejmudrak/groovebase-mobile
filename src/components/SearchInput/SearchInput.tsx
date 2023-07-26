@@ -1,14 +1,18 @@
 import TextInput from '@src/components/TextInput/TextInput';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Pressable } from 'react-native';
 import { colors } from '@src/utils/styles/colors';
 import { shadows } from '@src/utils/styles/shadows';
+import SearchIcon from '@src/components/Icons/SearchIcon';
+import CloseIcon from '@src/components/Icons/CloseIcon';
 
 export interface SearchInputProps {
+  placeholder?: string;
   searchValue: string;
   setSearchValue: (val: string) => void;
 }
 
 export default function SearchInput({
+  placeholder,
   searchValue,
   setSearchValue,
 }: SearchInputProps) {
@@ -17,9 +21,16 @@ export default function SearchInput({
       <TextInput
         value={searchValue}
         onChangeText={setSearchValue}
-        placeholder='Search by artist or record'
+        placeholder={placeholder}
         hideOutline
         style={styles.input}
+        inputContainerStyle={styles.inputContainerStyle}
+        leftIcon={<SearchIcon color={colors.blue[200]} />}
+        rightIcon={
+          <Pressable onPress={() => setSearchValue('')}>
+            <CloseIcon color={colors.black[400]} />
+          </Pressable>
+        }
       />
     </View>
   );
@@ -30,9 +41,11 @@ const styles = StyleSheet.create({
     width: '100%',
     marginBottom: 16,
   },
-  input: {
+  inputContainerStyle: {
+    borderWidth: 0,
+    borderRadius: 12,
     backgroundColor: colors.white[500],
-    border: 'none',
     ...shadows[100],
   },
+  input: {},
 });

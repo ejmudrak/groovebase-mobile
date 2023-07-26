@@ -68,6 +68,7 @@ export type StackParamsList = {
   Login: undefined;
   Collection: undefined;
   AddRecord: undefined;
+  AddRecordForm: undefined;
 };
 
 export interface Record extends FeathersRecord {

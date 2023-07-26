@@ -1,10 +1,12 @@
-import { useReauthenticate } from '@src/features/users/login/useReauthenticate';
-import { useEffect, useMemo, useState } from 'react';
-import { View } from 'react-native';
 import Text from '@src/components/Text';
+import { View } from 'react-native';
+import { useEffect, useMemo, useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
+import { useReauthenticate } from '@src/features/users/login/useReauthenticate';
 
 export default function AuthGuard({ children }: { children: React.ReactNode }) {
   const [hasAttemptedReauth, setHasAttemptedReauth] = useState(false);
+  const { navigate } = useNavigation();
 
   const {
     mutate: reauthenticate,
@@ -22,7 +24,13 @@ export default function AuthGuard({ children }: { children: React.ReactNode }) {
     if ((isReauthenticated || isReauthenticatedError) && !hasAttemptedReauth) {
       setHasAttemptedReauth(true);
     }
-  }, [isReauthenticated, hasAttemptedReauth]);
+  }, [isReauthenticated, isReauthenticatedError, hasAttemptedReauth]);
+
+  useEffect(() => {
+    if (hasAttemptedReauth && isReauthenticatedError) {
+      navigate('Login' as never);
+    }
+  }, [hasAttemptedReauth, isReauthenticatedError, navigate]);
 
   const isLoading = useMemo(() => {
     if (!hasAttemptedReauth) {
