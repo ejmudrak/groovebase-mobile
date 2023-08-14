@@ -41,7 +41,7 @@ export default function useLoginForm() {
       }
     } else {
       // We have user data, so let's move on to the main app!
-      navigate('AddRecord' as never);
+      navigate('AddRecordSearch' as never);
     }
   };
 

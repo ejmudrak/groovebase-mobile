@@ -38,7 +38,7 @@ export default function LoginForm() {
 
       <View style={styles.dividerContainer}>
         <View style={styles.divider} />
-        <Text style={styles.dividerText} color={colors.black[400]}>
+        <Text color={colors.black[400]}>
           OR
         </Text>
         <View style={styles.divider} />
@@ -86,9 +86,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     width: '100%',
-  },
-  dividerText: {
-    width: '20%',
   },
   divider: {
     borderWidth: 0.5,

@@ -1,18 +1,33 @@
 export const shadows = {
   0: {},
   100: {
-    boxShadow: '0px 4px 4px 0px rgba(162, 189, 203, 0.16)',
+    shadowColor: '#A2BDCB',
+    shadowOffset: {width: 0, height: 4},
+    shadowRadius: 4,
+    shadowOpacity: 0.16
   },
   200: {
-    boxShadow: '0px 8px 12px 0px rgba(162, 189, 203, 0.32)',
+    shadowColor: '#A2BDCB',
+    shadowOffset: {width: 0, height: 8},
+    shadowRadius: 12,
+    shadowOpacity: 0.24
   },
   300: {
-    boxShadow: '0px 12px 20px 0px rgba(162, 189, 203, 0.24)',
+    shadowColor: '#A2BDCB',
+    shadowOffset: {width: 0, height: 12},
+    shadowRadius: 20,
+    shadowOpacity: 0.24
   },
   400: {
-    boxShadow: '0px 18px 24px 0px rgba(162, 189, 203, 0.30)',
+    shadowColor: '#A2BDCB',
+    shadowOffset: {width: 0, height: 18},
+    shadowRadius: 24,
+    shadowOpacity: 0.3
   },
   500: {
-    boxShadow: '0px 20px 28px 0px rgba(162, 189, 203, 0.40)',
+    shadowColor: '#A2BDCB',
+    shadowOffset: {width: 0, height: 20},
+    shadowRadius: 28,
+    shadowOpacity: 0.4
   },
 };

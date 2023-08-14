@@ -29,12 +29,18 @@ const styles = StyleSheet.create({
   container: {
     width: '100%',
     height: 83,
+    position: 'absolute',
+    bottom: 0,
     backgroundColor: colors.white[500],
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingVertical: 16,
     paddingHorizontal: 72,
-    boxShadow: '0px -2px 24px 0px rgba(0, 0, 0, 0.08)',
+
+    shadowColor: 'rgba(0,0,0)',
+    shadowOffset: { width: 0, height: -2 },
+    shadowRadius: 24,
+    shadowOpacity: 0.08
   },
 });

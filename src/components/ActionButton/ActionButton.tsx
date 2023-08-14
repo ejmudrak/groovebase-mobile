@@ -39,7 +39,7 @@ export default function ActionButton({}: ActionButtonProps) {
             <ActionItem
               icon={<CollectionIcon color={colors.blue[500]} />}
               label='Add record to collection'
-              onPress={() => handleNavigate('AddRecord')}
+              onPress={() => handleNavigate('AddRecordSearch')}
             />
           </View>
 

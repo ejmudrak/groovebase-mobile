@@ -1,3 +1,8 @@
+/* 
+  @component AddRecordSearch
+  @description Page where users search for albums and select that one that they want to add to their collection
+*/
+
 import Header from '@src/components/Header';
 import Page from '@src/components/Page/Page';
 import RecordsList from '@src/features/records/RecordsList/RecordsList';
@@ -8,7 +13,7 @@ import { useRecordsQuery } from '@src/features/records/useRecordsQuery';
 import { Record } from '@src/types';
 import { useNavigation } from '@react-navigation/native';
 
-export default function AddRecord() {
+export default function AddRecordSearch() {
   const navigation = useNavigation<any>();
   const { searchValue, setSearchValue, items } = useSearch({
     useSearchQuery: useRecordsQuery,

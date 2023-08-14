@@ -1,3 +1,8 @@
+/* 
+  @component AddRecordForm
+  @description Page where users input fields about the record that they're adding to their collection
+*/
+
 import Header from '@src/components/Header';
 import Page from '@src/components/Page/Page';
 import { StyleSheet } from 'react-native';
@@ -8,7 +13,7 @@ import TextInput from '@src/components/TextInput/TextInput';
 
 export interface AddRecordFormPageProps {}
 
-export default function AddRecordFormPage() {
+export default function AddRecordForm() {
   const { params: { record = {} } = {} } = useRoute<any>();
 
   return (
