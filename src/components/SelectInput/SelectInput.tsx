@@ -1,13 +1,13 @@
 /*
-  @component Template
+  @component SelectInput
   @description 
 */
 
 import { View, StyleSheet } from 'react-native';
 
-export interface TemplateProps {}
+export interface SelectInputProps {}
 
-export default function Template({}: TemplateProps) {
+export default function SelectInput({}: SelectInputProps) {
   return <View style={styles.container}></View>;
 }
 

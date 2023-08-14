@@ -33,7 +33,6 @@ export default function RecordContent({
 
 const styles = StyleSheet.create({
   container: {
-    padding: 8,
     height: 80,
     display: 'flex',
     flexDirection: 'row',

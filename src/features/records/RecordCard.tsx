@@ -21,10 +21,11 @@ export default function RecordCard({ record, onPress }: RecordCardProps) {
 const styles = StyleSheet.create({
   container: {
     height: 80,
+    padding: 8,
+    marginBottom: 8,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'flex-start',
-    marginBottom: 8,
     width: '100%',
   },
 });

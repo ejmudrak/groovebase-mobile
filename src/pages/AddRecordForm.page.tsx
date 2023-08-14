@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   },
   card: {
     width: '100%',
-    padding: 12,
+    padding: 16,
     display: 'flex',
     flexDirection: 'column',
     gap: 12,
