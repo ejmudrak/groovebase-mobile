@@ -10,10 +10,11 @@ import Card from '@src/components/Card/Card';
 import RecordContent from '@src/components/RecordContent/RecordContent';
 import { useRoute } from '@react-navigation/native';
 import TextInput from '@src/components/TextInput/TextInput';
+import AddRecordForm from '@src/features/records/add-record/AddRecordForm';
 
 export interface AddRecordFormPageProps {}
 
-export default function AddRecordForm() {
+export default function AddRecordFormPage() {
   const { params: { record = {} } = {} } = useRoute<any>();
 
   return (
@@ -23,7 +24,7 @@ export default function AddRecordForm() {
         <Card elevation={100} style={styles.card}>
           <RecordContent {...record} />
 
-          <TextInput label='Bin' />
+          <AddRecordForm />
         </Card>
       )}
     </Page>
