@@ -10,16 +10,17 @@ import Text from '../Text/Text';
 import { colors } from '@src/utils/styles/colors';
 import IconButton from '../IconButton/IconButton';
 import CheckIcon from '../Icons/CheckIcon';
-import { shadows } from '@src/utils/styles/shadows';
 import SelectOption from './SelectOption';
+import useSelectInput from './useSelectInput';
 
 export interface Option {
   label: string;
   value: string;
 }
-export interface SelectInputProps extends Omit<TextInputProps, 'value'> {
+export interface SelectInputProps
+  extends Omit<TextInputProps, 'value' | 'onChange'> {
   options: Option[];
-  onChange: (...event: any[]) => void;
+  onChange: (newValue: Option[]) => void;
   value: Option[];
   multiple?: boolean;
 }
@@ -31,29 +32,21 @@ export default function SelectInput({
   value,
   ...restOfProps
 }: SelectInputProps) {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selected, setSelected] = useState<Option[]>([]);
-  const closeModal = () => setIsModalOpen(false);
-
-  const handleConfirm = () => {
-    closeModal();
-
-    // update form values
-    onChange(selected);
-  };
-
-  const getFormattedValue = useCallback(
-    (value: Option[]) => {
-      return value.map((v) => v.label).join(', ');
-    },
-    [value],
-  );
+  const {
+    closeModal,
+    getFormattedValue,
+    handleConfirm,
+    isModalOpen,
+    selected,
+    setIsModalOpen,
+    setSelected,
+  } = useSelectInput({ value, onChange });
 
   return (
     <View style={styles.container}>
       <TextInput
         {...restOfProps}
-        onPressOut={() => setIsModalOpen(true)}
+        onFocus={() => setIsModalOpen(true)}
         value={getFormattedValue(value)}
       />
 
@@ -67,7 +60,10 @@ export default function SelectInput({
           <View style={styles.modalHeader}>
             <Text variant='h4'>Select options</Text>
 
-            <IconButton style={styles.confirmButton} onPress={handleConfirm}>
+            <IconButton
+              style={styles.confirmButton}
+              onPress={() => handleConfirm(selected)}
+            >
               <CheckIcon color={colors.white[500]} />
             </IconButton>
           </View>
@@ -80,6 +76,7 @@ export default function SelectInput({
                 selected={selected}
                 setSelected={setSelected}
                 multiple={multiple}
+                handleConfirm={handleConfirm}
               />
             )}
             keyExtractor={(item) => item.value}

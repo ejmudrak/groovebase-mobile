@@ -3,12 +3,13 @@
   @description 
 */
 
-import { View, StyleSheet } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
-import Text from '@src/components/Text/Text';
-import SelectInput from '@src/components/SelectInput/SelectInput';
-import TextInput from '@src/components/TextInput/TextInput';
-import actionOptions from '../../utils/action-options';
+import ActionInput from '../ActionInput';
+import BinsInput from '../BinsInput';
+import ConditionInput from '../ConditionInput';
+import TextInput from '@src/components/TextInput';
+import Button from '@src/components/Button/Button';
 
 export interface AddRecordFormProps {}
 
@@ -21,57 +22,100 @@ export default function AddRecordForm({}: AddRecordFormProps) {
   } = useForm({
     defaultValues: {
       action: [],
-      bins: '',
+      bins: [],
+      mediaCondition: [],
+      color: '',
+      price: '',
+      notes: '',
     },
   });
-  const onSubmit = (data: any) => console.log(data);
+  const onSubmit = (data: any) => console.log('submitted data: ', data);
 
   console.log('values: ', getValues());
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       <Controller
         control={control}
+        name='action'
+        render={({ field, fieldState }) => (
+          <ActionInput {...field} {...fieldState} />
+        )}
         rules={{
           required: true,
         }}
-        render={({ field: { onChange, onBlur, value } }) => (
-          <SelectInput
-            options={actionOptions}
-            label={`How'd you get it?`}
-            placeholder='Select an option'
-            onBlur={onBlur}
-            onChange={onChange}
-            value={value}
-          />
-        )}
-        name='action'
       />
-      {errors.action && <Text>This is required.</Text>}
 
       <Controller
         control={control}
-        rules={{
-          required: true,
-        }}
+        name='bins'
+        render={({ field, fieldState }) => (
+          <BinsInput {...field} {...fieldState} multiple />
+        )}
+      />
+
+      <Controller
+        control={control}
+        name='mediaCondition'
+        render={({ field, fieldState }) => (
+          <ConditionInput {...field} {...fieldState} />
+        )}
+      />
+
+      <Controller
+        control={control}
+        name='color'
         render={({ field: { onChange, onBlur, value } }) => (
           <TextInput
-            label='Bins'
-            placeholder='Select bins'
-            onBlur={onBlur}
+            label='Color'
+            placeholder='ex. black, cosmic marble purple'
             onChangeText={onChange}
+            onBlur={onBlur}
             value={value}
           />
         )}
-        name='bins'
       />
-      {errors.bins && <Text>This is required.</Text>}
-    </View>
+
+      <Controller
+        control={control}
+        name='price'
+        render={({ field: { onChange, onBlur, value } }) => (
+          <TextInput
+            label='Price'
+            placeholder='Enter how much you paid'
+            onChangeText={onChange}
+            onBlur={onBlur}
+            value={value}
+          />
+        )}
+      />
+
+      <Controller
+        control={control}
+        name='notes'
+        render={({ field: { onChange, onBlur, value } }) => (
+          <TextInput
+            label='Liner Notes'
+            placeholder='Write some liner notes...'
+            onChangeText={onChange}
+            onBlur={onBlur}
+            value={value}
+          />
+        )}
+      />
+
+      <Button title='Submit' onPress={onSubmit} />
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    height: 325,
+    // flex: 1,
+  },
+  content: {
+    flexGrow: 1,
     width: '100%',
     display: 'flex',
     flexDirection: 'column',

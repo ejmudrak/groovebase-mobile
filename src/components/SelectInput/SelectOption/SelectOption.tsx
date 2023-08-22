@@ -3,14 +3,16 @@
   @description option item in the selection modal
 */
 
-import { View, StyleSheet, Pressable } from 'react-native';
-import { Option } from './SelectInput';
-import Text from '../Text/Text';
-import Checkbox from '../Checkbox/Checkbox';
+import { StyleSheet, Pressable } from 'react-native';
+import { Option } from '../SelectInput';
+import Text from '../../Text/Text';
+import Checkbox from '../../Checkbox/Checkbox';
 import { colors } from '@src/utils/styles/colors';
 import { useMemo } from 'react';
+import useSelectOption from './useSelectOption';
 
 export interface SelectOptionProps {
+  handleConfirm: (newSelected: Option[]) => void;
   multiple?: boolean;
   option: Option;
   selected: Option[];
@@ -18,31 +20,13 @@ export interface SelectOptionProps {
 }
 
 export default function SelectOption({
-  multiple,
   option,
-  selected,
-  setSelected,
+  ...restOfProps
 }: SelectOptionProps) {
-  const isSelected = useMemo(
-    () => Boolean(selected.find((s) => s.value === option.value)),
-    [selected, option.value],
-  );
-
-  const handleOptionPress = () => {
-    if (multiple) {
-      // add or remove from selected options
-      if (!isSelected) {
-        setSelected((prevSelected) => prevSelected.concat([option]));
-      } else {
-        setSelected((prevSelected) =>
-          prevSelected.filter((ps) => ps.value !== option.value),
-        );
-      }
-    } else {
-      // set this option as the only selected option
-      setSelected([option]);
-    }
-  };
+  const { isSelected, handleOptionPress } = useSelectOption({
+    option,
+    ...restOfProps,
+  });
 
   return (
     <Pressable

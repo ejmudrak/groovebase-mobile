@@ -1,32 +1,32 @@
 /*
-  @component ActionInput
-  @description Select input that asks user how they got a record
+  @component ConditionInput
+  @description Select input for specifying the condition of a record
 */
 
 import SelectInput from '@src/components/SelectInput/SelectInput';
 import { StyleSheet } from 'react-native';
-import useActionInput from './useActionInput';
 import { ControllerFieldState, ControllerRenderProps } from 'react-hook-form';
 import Text from '@src/components/Text/Text';
+import useConditionInput from './useConditionInput';
 
-export interface ActionInputProps
+export interface ConditionInputProps
   extends ControllerRenderProps,
     ControllerFieldState {}
 
-export default function ActionInput({
+export default function ConditionInput({
   onBlur,
   onChange,
   value,
   error,
-}: ActionInputProps) {
-  const { actionOptions } = useActionInput();
+}: ConditionInputProps) {
+  const { conditionOptions } = useConditionInput();
 
   return (
     <>
       <SelectInput
-        options={actionOptions}
-        label={`How'd you get it?`}
-        placeholder='Select an option'
+        options={conditionOptions}
+        label='Condition'
+        placeholder='Select media condition'
         onBlur={onBlur}
         onChange={onChange}
         value={value}
