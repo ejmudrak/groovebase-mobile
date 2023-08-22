@@ -11,12 +11,14 @@ import { colors } from '@src/utils/styles/colors';
 import { useMemo } from 'react';
 
 export interface SelectOptionProps {
+  multiple?: boolean;
   option: Option;
   selected: Option[];
   setSelected: React.Dispatch<React.SetStateAction<Option[]>>;
 }
 
 export default function SelectOption({
+  multiple,
   option,
   selected,
   setSelected,
@@ -27,12 +29,18 @@ export default function SelectOption({
   );
 
   const handleOptionPress = () => {
-    if (!isSelected) {
-      setSelected((prevSelected) => prevSelected.concat([option]));
+    if (multiple) {
+      // add or remove from selected options
+      if (!isSelected) {
+        setSelected((prevSelected) => prevSelected.concat([option]));
+      } else {
+        setSelected((prevSelected) =>
+          prevSelected.filter((ps) => ps.value !== option.value),
+        );
+      }
     } else {
-      setSelected((prevSelected) =>
-        prevSelected.filter((ps) => ps.value !== option.value),
-      );
+      // set this option as the only selected option
+      setSelected([option]);
     }
   };
 

@@ -8,6 +8,7 @@ import { useForm, Controller } from 'react-hook-form';
 import Text from '@src/components/Text/Text';
 import SelectInput from '@src/components/SelectInput/SelectInput';
 import TextInput from '@src/components/TextInput/TextInput';
+import actionOptions from '../../utils/action-options';
 
 export interface AddRecordFormProps {}
 
@@ -16,19 +17,16 @@ export default function AddRecordForm({}: AddRecordFormProps) {
     control,
     handleSubmit,
     formState: { errors },
+    getValues,
   } = useForm({
     defaultValues: {
-      action: '',
+      action: [],
       bins: '',
     },
   });
   const onSubmit = (data: any) => console.log(data);
 
-  const actionOptions = [
-    { value: '1', label: 'Snagged a new release' },
-    { value: '2', label: 'Went crate digging' },
-    { value: '3', label: 'Was graciously gifted' },
-  ];
+  console.log('values: ', getValues());
 
   return (
     <View style={styles.container}>
@@ -43,7 +41,7 @@ export default function AddRecordForm({}: AddRecordFormProps) {
             label={`How'd you get it?`}
             placeholder='Select an option'
             onBlur={onBlur}
-            onChangeText={onChange}
+            onChange={onChange}
             value={value}
           />
         )}

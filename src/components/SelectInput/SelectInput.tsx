@@ -5,7 +5,7 @@
 
 import { View, StyleSheet, Modal, FlatList } from 'react-native';
 import TextInput, { TextInputProps } from '../TextInput/TextInput';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import Text from '../Text/Text';
 import { colors } from '@src/utils/styles/colors';
 import IconButton from '../IconButton/IconButton';
@@ -17,12 +17,18 @@ export interface Option {
   label: string;
   value: string;
 }
-export interface SelectInputProps extends TextInputProps {
+export interface SelectInputProps extends Omit<TextInputProps, 'value'> {
   options: Option[];
+  onChange: (...event: any[]) => void;
+  value: Option[];
+  multiple?: boolean;
 }
 
 export default function SelectInput({
+  multiple,
   options,
+  onChange,
+  value,
   ...restOfProps
 }: SelectInputProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -31,12 +37,25 @@ export default function SelectInput({
 
   const handleConfirm = () => {
     closeModal();
+
     // update form values
+    onChange(selected);
   };
+
+  const getFormattedValue = useCallback(
+    (value: Option[]) => {
+      return value.map((v) => v.label).join(', ');
+    },
+    [value],
+  );
 
   return (
     <View style={styles.container}>
-      <TextInput {...restOfProps} onPressOut={() => setIsModalOpen(true)} />
+      <TextInput
+        {...restOfProps}
+        onPressOut={() => setIsModalOpen(true)}
+        value={getFormattedValue(value)}
+      />
 
       <Modal
         animationType='slide'
@@ -60,6 +79,7 @@ export default function SelectInput({
                 option={item}
                 selected={selected}
                 setSelected={setSelected}
+                multiple={multiple}
               />
             )}
             keyExtractor={(item) => item.value}
