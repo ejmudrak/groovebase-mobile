@@ -10,17 +10,32 @@ import BinsInput from '../BinsInput';
 import ConditionInput from '../ConditionInput';
 import TextInput from '@src/components/TextInput';
 import Button from '@src/components/Button/Button';
+import {
+  AddRecordFormData,
+  addRecordFormSchema,
+} from './add-record-form.schema';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useCreateUserRecord } from '../hooks/use-create-user-record';
+import { Record } from '@src/types';
+import { useCreateRecord } from '../hooks/use-create-record';
+import { useCurrentUser } from '@src/features/users/useCurrentUser';
 
-export interface AddRecordFormProps {}
+export interface AddRecordFormProps {
+  record: Record;
+}
 
-export default function AddRecordForm({}: AddRecordFormProps) {
+export default function AddRecordForm({ record }: AddRecordFormProps) {
+  const user = useCurrentUser();
+
   const {
     control,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid, isDirty },
     getValues,
-  } = useForm({
+  } = useForm<AddRecordFormData>({
     defaultValues: {
+      userId: user?.id,
+      recordId: undefined,
       action: [],
       bins: [],
       mediaCondition: [],
@@ -28,97 +43,113 @@ export default function AddRecordForm({}: AddRecordFormProps) {
       price: '',
       notes: '',
     },
+    resolver: yupResolver(addRecordFormSchema),
   });
-  const onSubmit = (data: any) => console.log('submitted data: ', data);
 
-  console.log('values: ', getValues());
+  const { mutate: createUserRecord } = useCreateUserRecord();
+  const { mutate: createRecord } = useCreateRecord();
+
+  const onSubmit = (data: AddRecordFormData) => {
+    // Adds record to db, then adds record to user's collection
+    createRecord(record, {
+      onSuccess: ({ id }) => createUserRecord({ recordId: id, ...data }),
+    });
+  };
 
   return (
-    <ScrollView style={styles.container} contentContainerStyle={styles.content}>
-      <Controller
-        control={control}
-        name='action'
-        render={({ field, fieldState }) => (
-          <ActionInput {...field} {...fieldState} />
-        )}
-        rules={{
-          required: true,
-        }}
-      />
-
-      <Controller
-        control={control}
-        name='bins'
-        render={({ field, fieldState }) => (
-          <BinsInput {...field} {...fieldState} multiple />
-        )}
-      />
-
-      <Controller
-        control={control}
-        name='mediaCondition'
-        render={({ field, fieldState }) => (
-          <ConditionInput {...field} {...fieldState} />
-        )}
-      />
-
-      <Controller
-        control={control}
-        name='color'
-        render={({ field: { onChange, onBlur, value } }) => (
-          <TextInput
-            label='Color'
-            placeholder='ex. black, cosmic marble purple'
-            onChangeText={onChange}
-            onBlur={onBlur}
-            value={value}
+    <ScrollView style={styles.container}>
+      <View style={styles.form}>
+        <View style={styles.fields}>
+          <Controller
+            control={control}
+            name='action'
+            render={({ field, fieldState }) => (
+              <ActionInput {...field} {...fieldState} />
+            )}
+            rules={{
+              required: true,
+            }}
           />
-        )}
-      />
 
-      <Controller
-        control={control}
-        name='price'
-        render={({ field: { onChange, onBlur, value } }) => (
-          <TextInput
-            label='Price'
-            placeholder='Enter how much you paid'
-            onChangeText={onChange}
-            onBlur={onBlur}
-            value={value}
+          <Controller
+            control={control}
+            name='bins'
+            render={({ field, fieldState }) => (
+              <BinsInput {...field} {...fieldState} multiple />
+            )}
           />
-        )}
-      />
 
-      <Controller
-        control={control}
-        name='notes'
-        render={({ field: { onChange, onBlur, value } }) => (
-          <TextInput
-            label='Liner Notes'
-            placeholder='Write some liner notes...'
-            onChangeText={onChange}
-            onBlur={onBlur}
-            value={value}
+          <Controller
+            control={control}
+            name='mediaCondition'
+            render={({ field, fieldState }) => (
+              <ConditionInput {...field} {...fieldState} />
+            )}
           />
-        )}
-      />
 
-      <Button title='Submit' onPress={onSubmit} />
+          <Controller
+            control={control}
+            name='color'
+            render={({ field: { onChange, onBlur, value } }) => (
+              <TextInput
+                label='Color'
+                placeholder='ex. black, cosmic marble purple'
+                onChangeText={onChange}
+                onBlur={onBlur}
+                value={value}
+              />
+            )}
+          />
+
+          <Controller
+            control={control}
+            name='price'
+            render={({ field: { onChange, onBlur, value } }) => (
+              <TextInput
+                label='Price'
+                placeholder='Enter how much you paid'
+                onChangeText={onChange}
+                onBlur={onBlur}
+                value={value}
+              />
+            )}
+          />
+
+          <Controller
+            control={control}
+            name='notes'
+            render={({ field: { onChange, onBlur, value } }) => (
+              <TextInput
+                label='Liner Notes'
+                placeholder='Write some additional notes...'
+                onChangeText={onChange}
+                onBlur={onBlur}
+                value={value}
+              />
+            )}
+          />
+        </View>
+
+        <Button
+          title='Submit'
+          onPress={handleSubmit(onSubmit)}
+          disabled={!isDirty || (isDirty && !isValid)}
+        />
+      </View>
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    height: 325,
-    // flex: 1,
+    height: 425,
   },
-  content: {
-    flexGrow: 1,
+  form: { display: 'flex', gap: 24, marginBottom: 8 },
+  fields: {
     width: '100%',
     display: 'flex',
     flexDirection: 'column',
     gap: 8,
+    flexGrow: 1,
   },
 });

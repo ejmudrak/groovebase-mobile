@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { Option } from './SelectInput';
 
 interface Params {
@@ -6,10 +6,11 @@ interface Params {
   onChange: (newValue: Option[]) => void;
 }
 
-export default function ({ value, onChange }: Params) {
+export default function useSelectInput({ value, onChange }: Params) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selected, setSelected] = useState<Option[]>([]);
   const closeModal = () => setIsModalOpen(false);
+  const inputRef = useRef<any>(null);
 
   const handleConfirm = (newSelected: Option[]) => {
     closeModal();
@@ -30,6 +31,7 @@ export default function ({ value, onChange }: Params) {
     getFormattedValue,
     handleConfirm,
     isModalOpen,
+    inputRef,
     selected,
     setIsModalOpen,
     setSelected,

@@ -5,7 +5,6 @@
 
 import { View, StyleSheet, Modal, FlatList } from 'react-native';
 import TextInput, { TextInputProps } from '../TextInput/TextInput';
-import { useCallback, useState } from 'react';
 import Text from '../Text/Text';
 import { colors } from '@src/utils/styles/colors';
 import IconButton from '../IconButton/IconButton';
@@ -26,6 +25,7 @@ export interface SelectInputProps
 }
 
 export default function SelectInput({
+  label,
   multiple,
   options,
   onChange,
@@ -37,6 +37,7 @@ export default function SelectInput({
     getFormattedValue,
     handleConfirm,
     isModalOpen,
+    inputRef,
     selected,
     setIsModalOpen,
     setSelected,
@@ -45,6 +46,8 @@ export default function SelectInput({
   return (
     <View style={styles.container}>
       <TextInput
+        inputRef={inputRef}
+        label={label}
         {...restOfProps}
         onFocus={() => setIsModalOpen(true)}
         value={getFormattedValue(value)}
@@ -54,11 +57,14 @@ export default function SelectInput({
         animationType='slide'
         transparent
         visible={isModalOpen}
-        onDismiss={closeModal}
+        onDismiss={() => {
+          inputRef.current.blur();
+          closeModal();
+        }}
       >
         <View style={styles.modalContent}>
           <View style={styles.modalHeader}>
-            <Text variant='h4'>Select options</Text>
+            <Text variant='h4'>Select {label}</Text>
 
             <IconButton
               style={styles.confirmButton}

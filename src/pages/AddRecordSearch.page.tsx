@@ -26,7 +26,7 @@ export default function AddRecordSearch() {
   };
 
   return (
-    <Page authenticated>
+    <Page authenticated hideNavBar>
       <Header title='Add Record' displayBackButton style={styles.header} />
       <SearchInput searchValue={searchValue} setSearchValue={setSearchValue} />
 

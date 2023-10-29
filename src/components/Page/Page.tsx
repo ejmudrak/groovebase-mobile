@@ -6,14 +6,19 @@ import AuthGuard from '../AuthGuard/AuthGuard';
 interface PageProps {
   authenticated?: boolean;
   children: any;
+  hideNavBar?: boolean;
 }
 
-export default function Page({ authenticated, children }: PageProps) {
+export default function Page({
+  authenticated,
+  children,
+  hideNavBar,
+}: PageProps) {
   return (
     <AuthGuard>
       <SafeAreaView style={styles.safeArea}>
         <View style={styles.container}>{children}</View>
-        {authenticated && <NavigationBar />}
+        {authenticated && !hideNavBar && <NavigationBar />}
       </SafeAreaView>
     </AuthGuard>
   );

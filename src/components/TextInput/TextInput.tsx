@@ -8,24 +8,25 @@ import {
 } from 'react-native';
 import Text from '../Text';
 import { useState } from 'react';
-import { Platform } from 'react-native';
 
 export interface TextInputProps extends RNTextInputProps {
-  label?: string;
   hideOutline?: boolean;
   inputContainerStyle?: object;
+  inputRef?: any;
+  label?: string;
   leftIcon?: JSX.Element;
   rightIcon?: JSX.Element;
 }
 
 export default function TextInput({
   hideOutline,
-  label,
-  style,
   inputContainerStyle,
+  inputRef,
+  label,
   leftIcon,
   rightIcon,
-  ...rest
+  style,
+  ...restOfProps
 }: TextInputProps) {
   const [isFocused, setIsFocused] = useState(false);
 
@@ -41,7 +42,8 @@ export default function TextInput({
           onBlur={() => setIsFocused(false)}
           onFocus={() => setIsFocused(true)}
           underlineColorAndroid='transparent'
-          {...rest}
+          ref={inputRef}
+          {...restOfProps}
         />
         {Boolean(rightIcon) && rightIcon}
       </View>
