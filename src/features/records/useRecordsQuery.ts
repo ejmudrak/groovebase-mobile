@@ -7,7 +7,9 @@ Endpoint: /records
 Methods: fetch
 */
 
-export const useRecordsQuery = (params?: QueryParams<Record>) =>
+export const useRecordsQuery = (
+  params?: QueryParams<Record & { userId: number }>,
+) =>
   findQuery<Record>(Service.Records, {
     ...params,
   });

@@ -17,12 +17,20 @@ export default function Header({
   title,
   style,
 }: HeaderProps) {
-  const { goBack } = useNavigation();
+  const { goBack, canGoBack, navigate } = useNavigation();
+
+  const handleGoBack = () => {
+    if (canGoBack()) {
+      goBack();
+    } else {
+      navigate('Collection' as never);
+    }
+  };
 
   return (
     <View style={[styles.container, style]}>
       {displayBackButton && (
-        <IconButton onPress={goBack} style={styles.backButton}>
+        <IconButton onPress={handleGoBack} style={styles.backButton}>
           <BackIcon />
         </IconButton>
       )}

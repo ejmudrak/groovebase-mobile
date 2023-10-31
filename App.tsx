@@ -84,8 +84,11 @@ const Navigation = () => {
           </>
         ) : (
           <>
-            {/* <Stack.Screen name='Collection' component={CollectionPage} /> */}
-            <Stack.Screen name='AddRecordSearch' component={AddRecordSearchPage} />
+            <Stack.Screen name='Collection' component={CollectionPage} />
+            <Stack.Screen
+              name='AddRecordSearch'
+              component={AddRecordSearchPage}
+            />
             <Stack.Screen name='AddRecordForm' component={AddRecordFormPage} />
           </>
         )}

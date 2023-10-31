@@ -1,7 +1,7 @@
 import { Record } from '@src/types';
 import createMutation from '@src/utils/react-query/createMutation';
 import { Service } from '@src/utils/services';
-import { AddRecordFormData } from '../AddRecordForm/add-record-form.schema';
+import { AddRecordFormData } from '../AddRecordForm/AddRecordForm.schema';
 
 /*
 Endpoint: /user-records

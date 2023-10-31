@@ -10,15 +10,13 @@ import BinsInput from '../BinsInput';
 import ConditionInput from '../ConditionInput';
 import TextInput from '@src/components/TextInput';
 import Button from '@src/components/Button/Button';
-import {
-  AddRecordFormData,
-  addRecordFormSchema,
-} from './add-record-form.schema';
+import { AddRecordFormData, addRecordFormSchema } from './AddRecordForm.schema';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useCreateUserRecord } from '../hooks/use-create-user-record';
+import { useCreateUserRecord } from '../hooks/useCreateUserRecord';
 import { Record } from '@src/types';
-import { useCreateRecord } from '../hooks/use-create-record';
+import { useCreateRecord } from '../hooks/useCreateRecord';
 import { useCurrentUser } from '@src/features/users/useCurrentUser';
+import { useNavigation } from '@react-navigation/native';
 
 export interface AddRecordFormProps {
   record: Record;
@@ -26,12 +24,12 @@ export interface AddRecordFormProps {
 
 export default function AddRecordForm({ record }: AddRecordFormProps) {
   const user = useCurrentUser();
+  const { navigate } = useNavigation();
 
   const {
     control,
     handleSubmit,
     formState: { errors, isValid, isDirty },
-    getValues,
   } = useForm<AddRecordFormData>({
     defaultValues: {
       userId: user?.id,
@@ -52,7 +50,15 @@ export default function AddRecordForm({ record }: AddRecordFormProps) {
   const onSubmit = (data: AddRecordFormData) => {
     // Adds record to db, then adds record to user's collection
     createRecord(record, {
-      onSuccess: ({ id }) => createUserRecord({ recordId: id, ...data }),
+      onSuccess: ({ id }) =>
+        createUserRecord(
+          { recordId: id, ...data },
+          {
+            onSuccess: () => {
+              navigate('Collection' as never);
+            },
+          },
+        ),
     });
   };
 
