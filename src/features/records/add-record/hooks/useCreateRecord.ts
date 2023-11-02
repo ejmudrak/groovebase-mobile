@@ -10,7 +10,6 @@ Adds data for a vinyl record to database
 
 export const useCreateRecord = () => {
   const getCreateData = ({ year, ...item }: Record) => {
-    console.log('item: ', item);
     return {
       year: typeof year === 'string' ? parseInt(year) : year,
       ...item,
