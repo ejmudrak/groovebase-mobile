@@ -11,13 +11,13 @@ import Text from '@src/components/Text/Text';
 
 export interface ActionInputProps
   extends ControllerRenderProps,
-    ControllerFieldState {}
+    ControllerFieldState {
+  required?: boolean;
+}
 
 export default function ActionInput({
-  onBlur,
-  onChange,
-  value,
   error,
+  ...restOfProps
 }: ActionInputProps) {
   const { actionOptions } = useActionInput();
 
@@ -27,9 +27,7 @@ export default function ActionInput({
         options={actionOptions}
         label={`How'd you get it?`}
         placeholder='Select an option'
-        onBlur={onBlur}
-        onChange={onChange}
-        value={value}
+        {...restOfProps}
       />
       {Boolean(error) && <Text>This field is required</Text>}
     </>

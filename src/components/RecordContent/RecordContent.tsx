@@ -20,7 +20,7 @@ export default function RecordContent({
 
       <View style={styles.labelContainer}>
         <Text variant='body4' color={colors.black[400]}>
-          {artist.name}
+          {artist}
         </Text>
         <Text variant='body2Bold'>{name}</Text>
         <Text variant='body4' color={colors.black[400]}>

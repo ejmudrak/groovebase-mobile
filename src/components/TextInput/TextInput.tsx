@@ -16,6 +16,7 @@ export interface TextInputProps extends RNTextInputProps {
   label?: string;
   leftIcon?: JSX.Element;
   rightIcon?: JSX.Element;
+  required?: boolean;
 }
 
 export default function TextInput({
@@ -25,6 +26,7 @@ export default function TextInput({
   label,
   leftIcon,
   rightIcon,
+  required,
   style,
   ...restOfProps
 }: TextInputProps) {
@@ -32,7 +34,12 @@ export default function TextInput({
 
   return (
     <View style={styles.container}>
-      {Boolean(label) && <Text variant='body3Bold'>{label}</Text>}
+      {Boolean(label) && (
+        <Text variant='body3Bold'>
+          {label}
+          <Text style={styles.requiredText}>{required && ' *'}</Text>
+        </Text>
+      )}
 
       <View style={[styles.inputContainer, inputContainerStyle]}>
         {Boolean(leftIcon) && leftIcon}
@@ -77,5 +84,8 @@ const styles = StyleSheet.create({
     height: '100%',
     width: '100%',
     ...typography.body3,
+  },
+  requiredText: {
+    color: 'red',
   },
 });

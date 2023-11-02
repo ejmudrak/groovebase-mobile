@@ -22,6 +22,7 @@ export interface SelectInputProps
   onChange: (newValue: Option[]) => void;
   value: Option[];
   multiple?: boolean;
+  required?: boolean;
 }
 
 export default function SelectInput({

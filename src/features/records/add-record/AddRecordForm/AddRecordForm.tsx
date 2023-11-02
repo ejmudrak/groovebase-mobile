@@ -48,13 +48,15 @@ export default function AddRecordForm({ record }: AddRecordFormProps) {
   const { mutate: createRecord } = useCreateRecord();
 
   const onSubmit = (data: AddRecordFormData) => {
-    // Adds record to db, then adds record to user's collection
+    // Adds record to db
     createRecord(record, {
       onSuccess: ({ id }) =>
+        // Adds record to user's collection
         createUserRecord(
           { recordId: id, ...data },
           {
             onSuccess: () => {
+              // Redirects to Collection page
               navigate('Collection' as never);
             },
           },
@@ -70,7 +72,18 @@ export default function AddRecordForm({ record }: AddRecordFormProps) {
             control={control}
             name='action'
             render={({ field, fieldState }) => (
-              <ActionInput {...field} {...fieldState} />
+              <ActionInput {...field} {...fieldState} required />
+            )}
+            rules={{
+              required: true,
+            }}
+          />
+
+          <Controller
+            control={control}
+            name='mediaCondition'
+            render={({ field, fieldState }) => (
+              <ConditionInput {...field} {...fieldState} required />
             )}
             rules={{
               required: true,
@@ -82,14 +95,6 @@ export default function AddRecordForm({ record }: AddRecordFormProps) {
             name='bins'
             render={({ field, fieldState }) => (
               <BinsInput {...field} {...fieldState} multiple />
-            )}
-          />
-
-          <Controller
-            control={control}
-            name='mediaCondition'
-            render={({ field, fieldState }) => (
-              <ConditionInput {...field} {...fieldState} />
             )}
           />
 
