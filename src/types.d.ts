@@ -67,6 +67,9 @@ export interface User {
 export type StackParamsList = {
   Login: undefined;
   Collection: undefined;
+  Record: undefined;
+  Bins: undefined;
+  Bin: undefined;
   AddRecordSearch: undefined;
   AddRecordForm: undefined;
 };

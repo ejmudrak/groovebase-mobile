@@ -18,7 +18,7 @@ export default function updateMutation<ServiceType, UpdateData>(
   // We're using the patch method,
   //  so the existing record's data will be merged with `updatedData`
   return useMutation<ServiceType, Error, UpdateData>(
-    (updatedData) =>
+    (updatedData: any) =>
       feathersClient
         .service(queryKey)
         .patch(id, updatedData, { query: params })

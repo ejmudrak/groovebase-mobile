@@ -22,6 +22,7 @@ import { useOnlineManager } from '@src/utils/hooks/useOnlineManager';
 import { StackParamsList } from '@src/types';
 import { useCurrentUser } from '@src/features/users/useCurrentUser';
 import AddRecordFormPage from '@src/pages/AddRecordForm.page';
+import RecordPage from '@src/pages/Record.page';
 
 const Stack = createNativeStackNavigator<StackParamsList>();
 
@@ -85,6 +86,7 @@ const Navigation = () => {
         ) : (
           <>
             <Stack.Screen name='Collection' component={CollectionPage} />
+            <Stack.Screen name='Record' component={RecordPage} />
             <Stack.Screen
               name='AddRecordSearch'
               component={AddRecordSearchPage}

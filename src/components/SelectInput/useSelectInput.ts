@@ -21,6 +21,8 @@ export default function useSelectInput({ value, onChange }: Params) {
 
   const getFormattedValue = useCallback(
     (value: Option[]) => {
+      if (!value?.length) return '';
+
       return value.map((v) => v.label).join(', ');
     },
     [value],

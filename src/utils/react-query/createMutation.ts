@@ -15,13 +15,13 @@ export default function createMutation<ServiceType, CreateDataType>(
 
   // We add `CreateDataType` to the return types of useMutation so that we can use it on the `mutationFn`
   return useMutation<ServiceType, Error, CreateDataType[] | CreateDataType>(
-    (newData: CreateDataType[] | CreateDataType) => {
+    async (newData: CreateDataType[] | CreateDataType) => {
       // Makes formatted create data payload
       const data = Array.isArray(newData)
         ? newData.map((item: CreateDataType) => getCreateData(item))
         : getCreateData(newData);
 
-      return feathersClient
+      return await feathersClient
         .service(queryKey)
         .create(data)
         .then((data: ServiceType) => data);

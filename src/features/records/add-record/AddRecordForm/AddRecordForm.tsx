@@ -47,7 +47,7 @@ export default function AddRecordForm({ record }: AddRecordFormProps) {
   const { mutate: createUserRecord } = useCreateUserRecord();
   const { mutate: createRecord } = useCreateRecord();
 
-  const onSubmit = (data: AddRecordFormData) => {
+  const addRecordToCollection = (data: AddRecordFormData) => {
     // Adds record to db
     createRecord(record, {
       onSuccess: ({ id }) =>
@@ -143,7 +143,7 @@ export default function AddRecordForm({ record }: AddRecordFormProps) {
 
         <Button
           title='Submit'
-          onPress={handleSubmit(onSubmit)}
+          onPress={handleSubmit(addRecordToCollection)}
           disabled={!isDirty || (isDirty && !isValid)}
         />
       </View>

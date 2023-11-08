@@ -5,12 +5,12 @@ import { Record } from '@src/types';
 
 interface RecordCardProps {
   record: Record;
-  onPress: (record: Record) => void;
+  onPress?: (record: Record) => void;
 }
 
 export default function RecordCard({ record, onPress }: RecordCardProps) {
   return (
-    <Pressable onPress={() => onPress(record)}>
+    <Pressable onPress={() => onPress && onPress(record)}>
       <Card elevation={100} style={styles.container}>
         <RecordContent {...record} />
       </Card>
