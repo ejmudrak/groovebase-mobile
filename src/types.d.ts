@@ -84,6 +84,13 @@ export interface Record extends FeathersRecord {
   genres: string[];
 }
 
+export interface Bin extends FeathersRecord {
+  name: string;
+  order: number;
+  featuredRecordId?: number;
+  userId: number;
+}
+
 interface SvgProps {
   color?: string;
 }

@@ -16,11 +16,7 @@ export default function NavigationBar() {
 
       <ActionButton />
 
-      <NavigationBarItem
-        label='Bins'
-        IconComponent={BinIcon}
-        page='Collection'
-      />
+      <NavigationBarItem label='Bins' IconComponent={BinIcon} page='Bins' />
     </View>
   );
 }
@@ -41,6 +37,6 @@ const styles = StyleSheet.create({
     shadowColor: 'rgba(0,0,0)',
     shadowOffset: { width: 0, height: -2 },
     shadowRadius: 24,
-    shadowOpacity: 0.08
+    shadowOpacity: 0.08,
   },
 });
