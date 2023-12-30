@@ -1,21 +1,18 @@
 import { FlatList, StyleSheet, View } from 'react-native';
 import Text from '@src/components/Text';
 import { BinsListProps } from './BinsList';
+import BinCard from '../BinCard';
 
 export default function BinsListView({ bins, onBinPress }: BinsListProps) {
   return (
     <FlatList
       data={bins}
-      renderItem={({ item }) => (
-        <View>
-          <Text>{item.name}</Text>
-        </View>
-      )}
+      renderItem={({ item }) => <BinCard bin={item} onPress={onBinPress} />}
       keyExtractor={(item) => item.id?.toString()}
       style={styles.container}
       ListEmptyComponent={
         <View>
-          <Text>No bins found.</Text>
+          <Text>No record bins found.</Text>
         </View>
       }
     />

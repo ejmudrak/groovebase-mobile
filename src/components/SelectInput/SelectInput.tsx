@@ -50,7 +50,10 @@ export default function SelectInput({
         inputRef={inputRef}
         label={label}
         {...restOfProps}
-        onFocus={() => setIsModalOpen(true)}
+        onFocus={() => {
+          setIsModalOpen(true);
+          inputRef.current.blur();
+        }}
         value={getFormattedValue(value)}
       />
 
@@ -59,7 +62,6 @@ export default function SelectInput({
         transparent
         visible={isModalOpen}
         onDismiss={() => {
-          inputRef.current.blur();
           closeModal();
         }}
       >

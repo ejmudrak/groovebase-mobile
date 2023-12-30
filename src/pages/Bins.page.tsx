@@ -11,14 +11,7 @@ export default function BinsPage() {
   const navigation = useNavigation<any>();
 
   const { data: { items: bins = [] } = {} } = useBinsQuery({
-    $or: [
-      {
-        userId: user?.id || 0,
-      },
-      {
-        isDefault: true,
-      },
-    ],
+    userId: user?.id || 0,
   });
 
   console.log('bins: ', bins);
@@ -29,7 +22,7 @@ export default function BinsPage() {
 
   return (
     <Page authenticated>
-      <Header title='Bins' />
+      <Header title='Record Bins' />
       <BinsList bins={bins} onBinPress={handleBinPress} />
     </Page>
   );

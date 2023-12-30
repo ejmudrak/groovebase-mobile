@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
     paddingVertical: 16,
     paddingHorizontal: 72,
 
+    boxShadow: '0px -2px 24px rgba(0, 0, 0, 0.08)', // for browser only
     shadowColor: 'rgba(0,0,0)',
     shadowOffset: { width: 0, height: -2 },
     shadowRadius: 24,

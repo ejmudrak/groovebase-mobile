@@ -88,7 +88,10 @@ export interface Bin extends FeathersRecord {
   name: string;
   order: number;
   featuredRecordId?: number;
+  featuredRecord?: Record;
   userId: number;
+  recentlyAddedRecords?: Record[];
+  numRecords: number;
 }
 
 interface SvgProps {
