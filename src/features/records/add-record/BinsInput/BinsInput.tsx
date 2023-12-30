@@ -11,6 +11,7 @@ import { ControllerFieldState, ControllerRenderProps } from 'react-hook-form';
 import Text from '@src/components/Text/Text';
 import { useBinsQuery } from '@src/features/bins/useBinsQuery';
 import { useMemo } from 'react';
+import { useCurrentUser } from '@src/features/users/useCurrentUser';
 
 export interface BinsInputProps
   extends ControllerRenderProps,
@@ -24,7 +25,10 @@ export default function BinsInput({
   error,
   ...restOfProps
 }: BinsInputProps) {
-  const { data: { items: bins = [] } = {} } = useBinsQuery();
+  const user = useCurrentUser();
+  const { data: { items: bins = [] } = {} } = useBinsQuery({
+    userId: user?.id,
+  });
 
   const options = useMemo(
     () =>

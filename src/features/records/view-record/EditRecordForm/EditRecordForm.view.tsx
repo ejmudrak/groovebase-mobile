@@ -14,11 +14,11 @@ import Button from '@src/components/Button';
 import ActionInput from '../../add-record/ActionInput';
 
 export default function EditRecordForm({
-  record,
   control,
-  onSubmit,
   isValid,
   isDirty,
+  updateUserRecord,
+  handleSubmit,
 }: EditRecordFormProps) {
   return (
     <Card elevation={100} style={styles.container}>
@@ -100,7 +100,7 @@ export default function EditRecordForm({
 
           <Button
             title='Submit'
-            onPress={onSubmit}
+            onPress={handleSubmit(updateUserRecord)}
             disabled={!isDirty || (isDirty && !isValid)}
           />
         </View>

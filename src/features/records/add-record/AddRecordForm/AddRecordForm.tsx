@@ -17,6 +17,7 @@ import { Record } from '@src/types';
 import { useCreateRecord } from '../hooks/useCreateRecord';
 import { useCurrentUser } from '@src/features/users/useCurrentUser';
 import { useNavigation } from '@react-navigation/native';
+import { useCreateRecordBin } from '@src/features/bins/useCreateRecordBin';
 
 export interface AddRecordFormProps {
   record: Record;
@@ -29,7 +30,7 @@ export default function AddRecordForm({ record }: AddRecordFormProps) {
   const {
     control,
     handleSubmit,
-    formState: { errors, isValid, isDirty },
+    formState: { isValid, isDirty },
   } = useForm<AddRecordFormData>({
     defaultValues: {
       userId: user?.id,
@@ -46,11 +47,12 @@ export default function AddRecordForm({ record }: AddRecordFormProps) {
 
   const { mutate: createUserRecord } = useCreateUserRecord();
   const { mutate: createRecord } = useCreateRecord();
+  const { mutate: createRecordBin } = useCreateRecordBin();
 
   const addRecordToCollection = (data: AddRecordFormData) => {
     // Adds record to db
     createRecord(record, {
-      onSuccess: ({ id }) =>
+      onSuccess: ({ id }) => {
         // Adds record to user's collection
         createUserRecord(
           { recordId: id, ...data },
@@ -60,7 +62,18 @@ export default function AddRecordForm({ record }: AddRecordFormProps) {
               navigate('Collection' as never);
             },
           },
-        ),
+        );
+
+        // Adds record to bin(s)
+        const recordBinsPayload = data?.bins?.map(({ value }) => ({
+          recordId: id,
+          binId: parseInt(value),
+        }));
+
+        if (recordBinsPayload?.length) {
+          createRecordBin(recordBinsPayload);
+        }
+      },
     });
   };
 

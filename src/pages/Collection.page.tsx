@@ -12,6 +12,7 @@ export default function CollectionPage() {
 
   const { data: { items: records = [] } = {} } = useRecordsQuery({
     userId: user?.id || 0,
+    $sort: { createdAt: -1 },
   });
 
   const handleOnRecordPress = (record: Record) => {

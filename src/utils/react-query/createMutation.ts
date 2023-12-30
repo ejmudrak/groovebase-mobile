@@ -7,7 +7,7 @@ interface CreateMutationOptions {
 
 export default function createMutation<ServiceType, CreateDataType>(
   queryKey: string,
-  getCreateData: (item: any) => any,
+  getCreateData: (item: any) => any = (item: any) => item,
   options?: CreateMutationOptions,
 ) {
   const queryClient = useQueryClient();

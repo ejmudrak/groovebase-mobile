@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { Option } from '../SelectInput';
-import { SelectOptionProps } from '.';
+import { SelectOptionProps } from './SelectOption';
 interface Params extends SelectOptionProps {}
 
 export default function ({

@@ -84,6 +84,21 @@ export interface Record extends FeathersRecord {
   genres: string[];
 }
 
+export interface UserRecord extends FeathersRecord {
+  recordId: number;
+  userId: number;
+  action: string;
+  mediaCondition: string;
+
+  // optional properties
+  notes?: string;
+  color?: string;
+  price?: number;
+  record?: Record;
+  user?: User;
+  bins?: Bin[];
+}
+
 export interface Bin extends FeathersRecord {
   name: string;
   order: number;

@@ -14,8 +14,6 @@ export default function BinsPage() {
     userId: user?.id || 0,
   });
 
-  console.log('bins: ', bins);
-
   const handleBinPress = (bin: Bin) => {
     console.log('clicked bin: ', bin);
   };

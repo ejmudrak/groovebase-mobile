@@ -6,46 +6,76 @@ import {
   editRecordFormSchema,
 } from './EditRecordForm.schema';
 import { useUpdateUserRecord } from './hooks/useUpdateUserRecord';
+import { useUserRecordQuery } from './hooks/useUserRecordQuery';
+import { useEffect, useMemo } from 'react';
+import {
+  convertActionToSelectOptions,
+  convertBinsToSelectOptions,
+  convertMediaConditionToSelectOptions,
+} from './utils/convert-options';
 
 export default function useEditRecordFormProps({
   record,
   ...restOfBaseProps
 }: BaseEditRecordFormProps) {
-  // TODO: Fetch user-record for this album
-  const userRecord: any = {};
+  const { data: userRecord, isSuccess: isUserRecordQuerySuccess } =
+    useUserRecordQuery(record.id);
 
   const {
     id,
-    action = [],
-    bins = [],
+    action,
+    bins,
     mediaCondition,
-    color,
-    price,
-    notes,
-  } = userRecord;
+    color = '',
+    price = '',
+    notes = '',
+  } = userRecord || {};
+
+  const initialValues = useMemo(
+    () => ({
+      action: convertActionToSelectOptions(action),
+      bins: convertBinsToSelectOptions(bins),
+      mediaCondition: convertMediaConditionToSelectOptions(mediaCondition),
+      color,
+      price: price ? price?.toString() : '',
+      notes,
+    }),
+    [isUserRecordQuerySuccess],
+  );
 
   // sets up form
   const {
     control,
     handleSubmit,
-    formState: { isValid, isDirty },
+    formState: { isValid, isDirty, errors },
+    reset,
   } = useForm<EditRecordFormData>({
     defaultValues: {
-      action,
-      bins,
-      mediaCondition,
-      color,
-      price,
-      notes,
+      action: [],
+      bins: [],
+      mediaCondition: [],
+      color: '',
+      price: '',
+      notes: '',
     },
     resolver: yupResolver(editRecordFormSchema),
   });
 
-  const { mutate: updateUserRecord } = useUpdateUserRecord(id);
+  // resets form when user-record is fetched with new values
+  useEffect(() => {
+    reset(initialValues);
+  }, [isUserRecordQuerySuccess]);
 
-  const onSubmit = () => {
-    handleSubmit((data: EditRecordFormData) => updateUserRecord(data));
+  const { mutate } = useUpdateUserRecord(id || 0);
+  const updateUserRecord = (data: EditRecordFormData) => mutate(data);
+
+  return {
+    control,
+    record,
+    handleSubmit,
+    updateUserRecord,
+    isValid,
+    isDirty,
+    ...restOfBaseProps,
   };
-
-  return { control, record, onSubmit, isValid, isDirty, ...restOfBaseProps };
 }

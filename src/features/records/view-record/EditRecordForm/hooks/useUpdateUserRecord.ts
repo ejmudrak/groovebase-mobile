@@ -11,9 +11,27 @@ Updates a record in a user's collection
 */
 
 export const useUpdateUserRecord = (id: Id, params?: object) => {
+  const getUpdateData = ({
+    action,
+    bins,
+    mediaCondition,
+    price,
+    ...item
+  }: EditRecordFormData) => {
+    return {
+      action: action?.length ? action[0]?.label : '',
+      mediaCondition: mediaCondition[0].label,
+      price: price ? parseInt(price) : undefined,
+      ...item,
+    };
+  };
+
   return updateMutation<Record, EditRecordFormData>(
     Service.UserRecords,
     id,
     params,
+    {
+      getUpdateData,
+    },
   );
 };

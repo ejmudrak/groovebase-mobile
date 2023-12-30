@@ -4,11 +4,19 @@ import Card from '@src/components/Card';
 import { colors } from '@src/utils/styles/colors';
 import Text from '@src/components/Text';
 
-export default function BinCard({ bin, onPress }: BinCardProps) {
+export default function BinCard({
+  bin,
+  onPress,
+  featuredRecordImageUrl,
+  previewRecords,
+}: BinCardProps) {
   return (
     <Pressable onPress={() => onPress && onPress(bin)}>
       <Card elevation={100} style={styles.container}>
-        <Image source={{ uri: '' }} style={styles.featuredImage} />
+        <Image
+          source={{ uri: featuredRecordImageUrl }}
+          style={styles.featuredImage}
+        />
 
         <View style={styles.binContainer}>
           <View style={styles.titleContainer}>
@@ -16,15 +24,15 @@ export default function BinCard({ bin, onPress }: BinCardProps) {
               {bin.name}
             </Text>
             <Text variant='body4' color={colors.black[400]}>
-              {bin.numRecords} records
+              {bin.numRecords} record{bin.numRecords === 1 ? '' : 's'}
             </Text>
           </View>
 
-          {bin?.recentlyAddedRecords && (
+          {previewRecords?.length > 0 && (
             <View style={styles.recordsContainer}>
-              {bin.recentlyAddedRecords.map((record) => (
+              {previewRecords.map((record) => (
                 <Image
-                  source={{ uri: '' }}
+                  source={{ uri: record.smallImageUrl }}
                   key={record.id}
                   style={styles.smallRecordImage}
                 />

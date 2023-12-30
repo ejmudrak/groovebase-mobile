@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { Option } from './SelectInput';
 
 interface Params {
@@ -9,6 +9,14 @@ interface Params {
 export default function useSelectInput({ value, onChange }: Params) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selected, setSelected] = useState<Option[]>([]);
+
+  // Sets initial value of selected once value is fetched
+  useEffect(() => {
+    if (value !== undefined) {
+      setSelected(value);
+    }
+  }, [value]);
+
   const closeModal = () => setIsModalOpen(false);
   const inputRef = useRef<any>(null);
 
