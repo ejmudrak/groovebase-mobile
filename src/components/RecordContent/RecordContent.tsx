@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   image: {
     height: 64,
     width: 64,
-    borderRadius: 24,
+    borderRadius: 16,
     backgroundColor: colors.gray[100],
   },
   labelContainer: {

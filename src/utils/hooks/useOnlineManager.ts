@@ -1,4 +1,4 @@
-// via: https://tanstack.com/query/v4/docs/react/examples/react/react-native
+// via: https://tanstack.com/query/latest/docs/react/react-native
 import * as React from 'react';
 import NetInfo from '@react-native-community/netinfo';
 import { onlineManager } from '@tanstack/react-query';

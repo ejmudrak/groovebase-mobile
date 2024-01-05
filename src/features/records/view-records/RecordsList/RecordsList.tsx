@@ -1,5 +1,5 @@
 import { FlatList, StyleSheet, View } from 'react-native';
-import RecordCard from '../RecordCard';
+import RecordCard from '../../RecordCard';
 import { Record } from '@src/types';
 import Text from '@src/components/Text';
 

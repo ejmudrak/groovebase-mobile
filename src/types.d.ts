@@ -70,6 +70,7 @@ export type StackParamsList = {
   Record: undefined;
   Bins: undefined;
   Bin: undefined;
+  RecordsInBin: undefined;
   AddRecordSearch: undefined;
   AddRecordForm: undefined;
 };

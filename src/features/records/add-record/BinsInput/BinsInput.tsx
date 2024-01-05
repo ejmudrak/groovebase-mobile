@@ -9,7 +9,7 @@ import SelectInput, {
 import { StyleSheet } from 'react-native';
 import { ControllerFieldState, ControllerRenderProps } from 'react-hook-form';
 import Text from '@src/components/Text/Text';
-import { useBinsQuery } from '@src/features/bins/useBinsQuery';
+import { useBinsQuery } from '@src/features/bins/hooks/useBinsQuery';
 import { useMemo } from 'react';
 import { useCurrentUser } from '@src/features/users/useCurrentUser';
 

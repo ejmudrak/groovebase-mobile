@@ -13,6 +13,7 @@ import {
   convertBinsToSelectOptions,
   convertMediaConditionToSelectOptions,
 } from './utils/convert-options';
+import { useCreateRecordBins } from '@src/features/bins/hooks/useCreateRecordBins';
 
 export default function useEditRecordFormProps({
   record,
@@ -66,8 +67,22 @@ export default function useEditRecordFormProps({
     reset(initialValues);
   }, [isUserRecordQuerySuccess]);
 
-  const { mutate } = useUpdateUserRecord(id || 0);
-  const updateUserRecord = (data: EditRecordFormData) => mutate(data);
+  const { mutate: handleUpdateUserRecord } = useUpdateUserRecord(id || 0);
+  const { mutate: createRecordBin } = useCreateRecordBins();
+
+  const updateUserRecord = (data: EditRecordFormData) => {
+    handleUpdateUserRecord(data);
+
+    // Removes existing bins and adds record to bin(s)
+    const recordBinsPayload = data?.bins?.map(({ value }) => ({
+      recordId: id,
+      binId: parseInt(value),
+    }));
+
+    if (recordBinsPayload?.length) {
+      createRecordBin(recordBinsPayload);
+    }
+  };
 
   return {
     control,

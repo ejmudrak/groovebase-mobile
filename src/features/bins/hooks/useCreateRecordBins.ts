@@ -8,6 +8,6 @@ Method: create
 Adds a record to a bin
 */
 
-export const useCreateRecordBin = () => {
+export const useCreateRecordBins = () => {
   return createMutation<Record, any>(Service.RecordBins);
 };

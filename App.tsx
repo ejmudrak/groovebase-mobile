@@ -24,6 +24,7 @@ import { useCurrentUser } from '@src/features/users/useCurrentUser';
 import AddRecordFormPage from '@src/pages/AddRecordForm.page';
 import RecordPage from '@src/pages/Record.page';
 import BinsPage from '@src/pages/Bins.page';
+import RecordsInBinPage from '@src/pages/RecordsInBin.page';
 
 const Stack = createNativeStackNavigator<StackParamsList>();
 
@@ -89,6 +90,7 @@ const Navigation = () => {
             <Stack.Screen name='Collection' component={CollectionPage} />
             <Stack.Screen name='Record' component={RecordPage} />
             <Stack.Screen name='Bins' component={BinsPage} />
+            <Stack.Screen name='RecordsInBin' component={RecordsInBinPage} />
             <Stack.Screen
               name='AddRecordSearch'
               component={AddRecordSearchPage}

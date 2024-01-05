@@ -23,13 +23,17 @@ export default function BinCard({
             <Text variant='h4' color={colors.black[500]}>
               {bin.name}
             </Text>
-            <Text variant='body4' color={colors.black[400]}>
+            <Text
+              variant='body4'
+              color={colors.black[400]}
+              style={styles.numRecordsLabel}
+            >
               {bin.numRecords} record{bin.numRecords === 1 ? '' : 's'}
             </Text>
           </View>
 
           {previewRecords?.length > 0 && (
-            <View style={styles.recordsContainer}>
+            <View style={styles.smallRecordsContainer}>
               {previewRecords.map((record) => (
                 <Image
                   source={{ uri: record.smallImageUrl }}
@@ -73,18 +77,22 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
   },
-  recordsContainer: {
+  numRecordsLabel: {
+    marginStart: 1,
+  },
+  smallRecordsContainer: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 4,
+    marginStart: 6, // aligns with title, subtracting border width from margin of small record image items
   },
   smallRecordImage: {
     height: 40,
     width: 40,
     borderRadius: 8,
-    borderWidth: 1,
+    borderWidth: 2,
     borderColor: colors.white[500],
     backgroundColor: colors.gray[100],
+    marginStart: -8,
   },
 });
