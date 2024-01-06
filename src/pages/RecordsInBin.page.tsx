@@ -25,7 +25,11 @@ export default function RecordsInBinPage() {
   return (
     <Page authenticated>
       <Header title={bin.name} displayBackButton />
-      <RecordList records={records} onRecordPress={handleOnRecordPress} />
+      <RecordList
+        records={records}
+        onRecordPress={handleOnRecordPress}
+        refreshing={isLoading}
+      />
 
       {isLoading && <RecordsListSkeleton />}
     </Page>

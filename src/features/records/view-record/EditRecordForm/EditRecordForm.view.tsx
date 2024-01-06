@@ -113,11 +113,18 @@ export default function EditRecordForm({
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height: 425,
+    height: 450,
     padding: 16,
+    flex: 1,
+    alignItems: 'stretch',
   },
 
-  form: { display: 'flex', gap: 24, marginBottom: 8 },
+  form: {
+    width: '100%',
+    display: 'flex',
+    gap: 24,
+    marginBottom: 8,
+  },
   fields: {
     width: '100%',
     display: 'flex',

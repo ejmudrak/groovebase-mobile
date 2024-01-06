@@ -60,11 +60,11 @@ export default function TextInput({
 
 const styles = StyleSheet.create({
   container: {
+    width: '100%',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-start',
     gap: 8,
-    width: '100%',
   },
   inputContainer: {
     height: 48,

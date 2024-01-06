@@ -166,7 +166,9 @@ export default function AddRecordForm({ record }: AddRecordFormProps) {
 
 const styles = StyleSheet.create({
   container: {
-    height: 425,
+    height: 450,
+    flex: 1,
+    width: '100%',
   },
   form: { display: 'flex', gap: 24, marginBottom: 8 },
   fields: {
