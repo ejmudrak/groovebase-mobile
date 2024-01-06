@@ -25,6 +25,8 @@ import AddRecordFormPage from '@src/pages/AddRecordForm.page';
 import RecordPage from '@src/pages/Record.page';
 import BinsPage from '@src/pages/Bins.page';
 import RecordsInBinPage from '@src/pages/RecordsInBin.page';
+import Toast from 'react-native-toast-message';
+import { toastConfig } from '@src/utils/toast-config';
 
 const Stack = createNativeStackNavigator<StackParamsList>();
 
@@ -99,6 +101,7 @@ const Navigation = () => {
           </>
         )}
       </Stack.Navigator>
+      <Toast config={toastConfig} />
     </NavigationContainer>
   );
 };

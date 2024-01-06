@@ -14,6 +14,7 @@ import {
   convertMediaConditionToSelectOptions,
 } from './utils/convert-options';
 import { useCreateRecordBins } from '@src/features/bins/hooks/useCreateRecordBins';
+import Toast from 'react-native-toast-message';
 
 export default function useEditRecordFormProps({
   record,
@@ -70,8 +71,18 @@ export default function useEditRecordFormProps({
     reset(initialValues);
   }, [isUserRecordQuerySuccess]);
 
-  const { mutate: handleUpdateUserRecord } = useUpdateUserRecord(id || 0);
-  const { mutate: createRecordBin } = useCreateRecordBins();
+  const {
+    mutate: handleUpdateUserRecord,
+    isSuccess: isUpdatingRecordSuccess,
+    isError: isUpdatingRecordError,
+    error: updatingRecordError,
+  } = useUpdateUserRecord(id || 0);
+  const {
+    mutate: createRecordBin,
+    isSuccess: isCreatingBinsSuccess,
+    isError: isCreatingBinsError,
+    error: creatingBinsError,
+  } = useCreateRecordBins();
 
   const updateUserRecord = (data: EditRecordFormData) => {
     handleUpdateUserRecord(data);
@@ -86,6 +97,27 @@ export default function useEditRecordFormProps({
       createRecordBin(recordBinsPayload);
     }
   };
+
+  useEffect(() => {
+    if (isUpdatingRecordSuccess) {
+      Toast.show({
+        type: 'success',
+        text1: 'Record updated! 🎸',
+        position: 'bottom',
+      });
+    }
+  }, [isUpdatingRecordSuccess]);
+
+  useEffect(() => {
+    if (isUpdatingRecordError) {
+      Toast.show({
+        type: 'error',
+        text1: 'Failed to update record',
+        text2: updatingRecordError?.message,
+        position: 'bottom',
+      });
+    }
+  }, [isUpdatingRecordError, updatingRecordError]);
 
   return {
     control,

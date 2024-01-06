@@ -102,7 +102,7 @@ export default function EditRecordForm({
           <Button
             title='Submit'
             onPress={handleSubmit(updateUserRecord)}
-            disabled={!isDirty || (isDirty && !isValid)}
+            disabled={!isDirty || (isDirty && !isValid) || isRecordQueryLoading}
           />
         </View>
       </ScrollView>

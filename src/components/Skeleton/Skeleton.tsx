@@ -1,3 +1,4 @@
+import { colors } from '@src/utils/styles/colors';
 import { useEffect } from 'react';
 import { StyleSheet } from 'react-native';
 import Animated, {
@@ -16,8 +17,9 @@ export default function Skeleton({
 }: SkeletonProps) {
   const opacity = useSharedValue(0.25);
 
+  // Increases opacity from 0.25 to 0.5 and back to 0.25 using reverse timing animation
   useEffect(() => {
-    opacity.value = withRepeat(withTiming(1, { duration: 500 }), -1);
+    opacity.value = withRepeat(withTiming(0.5, { duration: 750 }), -1, true);
   }, []);
 
   const animatedStyle = useAnimatedStyle(() => ({
@@ -29,6 +31,6 @@ export default function Skeleton({
 
 const styles = StyleSheet.create({
   skeleton: {
-    backgroundColor: 'gray',
+    backgroundColor: colors.gray[200],
   },
 });

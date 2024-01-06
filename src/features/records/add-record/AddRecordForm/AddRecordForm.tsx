@@ -18,6 +18,8 @@ import { useCreateRecord } from '../hooks/useCreateRecord';
 import { useCurrentUser } from '@src/features/users/useCurrentUser';
 import { useNavigation } from '@react-navigation/native';
 import { useCreateRecordBins } from '@src/features/bins/hooks/useCreateRecordBins';
+import Toast from 'react-native-toast-message';
+import { useEffect } from 'react';
 
 export interface AddRecordFormProps {
   record: Record;
@@ -46,7 +48,12 @@ export default function AddRecordForm({ record }: AddRecordFormProps) {
   });
 
   const { mutate: createUserRecord } = useCreateUserRecord();
-  const { mutate: createRecord } = useCreateRecord();
+  const {
+    mutate: createRecord,
+    isSuccess: isCreateRecordSuccess,
+    isError: isCreateRecordError,
+    error: createRecordError,
+  } = useCreateRecord();
   const { mutate: createRecordBin } = useCreateRecordBins();
 
   const addRecordToCollection = (data: AddRecordFormData) => {
@@ -76,6 +83,27 @@ export default function AddRecordForm({ record }: AddRecordFormProps) {
       },
     });
   };
+
+  useEffect(() => {
+    if (isCreateRecordSuccess) {
+      Toast.show({
+        type: 'success',
+        text1: 'Record added to your collection! 🎸',
+        position: 'bottom',
+      });
+    }
+  }, [isCreateRecordSuccess]);
+
+  useEffect(() => {
+    if (isCreateRecordError) {
+      Toast.show({
+        type: 'error',
+        text1: 'Failed to add record',
+        text2: createRecordError?.message,
+        position: 'bottom',
+      });
+    }
+  }, [isCreateRecordError]);
 
   return (
     <ScrollView style={styles.container}>
