@@ -19,8 +19,11 @@ export default function useEditRecordFormProps({
   record,
   ...restOfBaseProps
 }: BaseEditRecordFormProps) {
-  const { data: userRecord, isSuccess: isUserRecordQuerySuccess } =
-    useUserRecordQuery(record.id);
+  const {
+    data: userRecord,
+    isSuccess: isUserRecordQuerySuccess,
+    isLoading: isRecordQueryLoading,
+  } = useUserRecordQuery(record.id);
 
   const {
     id,
@@ -91,6 +94,7 @@ export default function useEditRecordFormProps({
     updateUserRecord,
     isValid,
     isDirty,
+    isRecordQueryLoading,
     ...restOfBaseProps,
   };
 }

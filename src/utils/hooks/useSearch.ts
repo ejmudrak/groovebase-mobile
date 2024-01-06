@@ -17,7 +17,7 @@ export default function useSearchInput({
 
   useDebounce(() => setQueryValue({ [queryKey]: searchValue }), [searchValue]);
 
-  const { data: { items = [] } = {} } = useSearchQuery(queryValue);
+  const { data: { items = [] } = {}, isLoading } = useSearchQuery(queryValue);
 
-  return { searchValue, setSearchValue, items };
+  return { searchValue, setSearchValue, items, isLoading };
 }

@@ -12,10 +12,11 @@ import { StyleSheet } from 'react-native';
 import { useRecordsQuery } from '@src/features/records/useRecordsQuery';
 import { Record } from '@src/types';
 import { useNavigation } from '@react-navigation/native';
+import RecordsListSkeleton from '@src/features/records/view-records/RecordsList/RecordsList.skeleton';
 
 export default function AddRecordSearch() {
   const navigation = useNavigation<any>();
-  const { searchValue, setSearchValue, items } = useSearch({
+  const { searchValue, setSearchValue, items, isLoading } = useSearch({
     useSearchQuery: useRecordsQuery,
     initialValue: 'Tame Impala',
     queryKey: 'name',
@@ -31,6 +32,8 @@ export default function AddRecordSearch() {
       <SearchInput searchValue={searchValue} setSearchValue={setSearchValue} />
 
       <RecordsList records={items as any} onRecordPress={handleOnRecordPress} />
+
+      {isLoading && <RecordsListSkeleton />}
     </Page>
   );
 }

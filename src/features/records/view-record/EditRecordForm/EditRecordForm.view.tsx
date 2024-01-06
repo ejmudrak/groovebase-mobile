@@ -17,6 +17,7 @@ export default function EditRecordForm({
   control,
   isValid,
   isDirty,
+  isRecordQueryLoading,
   updateUserRecord,
   handleSubmit,
 }: EditRecordFormProps) {

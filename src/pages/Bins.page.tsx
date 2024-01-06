@@ -3,6 +3,7 @@ import Header from '@src/components/Header';
 import Page from '@src/components/Page/Page';
 import { useBinsQuery } from '@src/features/bins/hooks/useBinsQuery';
 import BinsList from '@src/features/bins/view-bins/BinsList';
+import BinsListSkeleton from '@src/features/bins/view-bins/BinsList/BinsList.skeleton';
 import { useCurrentUser } from '@src/features/users/useCurrentUser';
 import { Bin } from '@src/types';
 import { useRefreshOnFocus } from '@src/utils/hooks/useRefreshOnFocus';
@@ -11,7 +12,11 @@ export default function BinsPage() {
   const user = useCurrentUser();
   const navigation = useNavigation<any>();
 
-  const { data: { items: bins = [] } = {}, refetch } = useBinsQuery({
+  const {
+    data: { items: bins = [] } = {},
+    refetch,
+    isLoading,
+  } = useBinsQuery({
     userId: user?.id || 0,
     $sort: { name: 1 },
   });
@@ -26,7 +31,13 @@ export default function BinsPage() {
   return (
     <Page authenticated>
       <Header title='Record Bins' />
-      <BinsList bins={bins} onBinPress={handleBinPress} />
+      <BinsList
+        bins={bins}
+        onBinPress={handleBinPress}
+        refreshing={isLoading}
+      />
+
+      {isLoading && <BinsListSkeleton />}
     </Page>
   );
 }
