@@ -1,5 +1,10 @@
 import { colors } from '@src/utils/styles/colors';
-import { Pressable, PressableProps, StyleSheet } from 'react-native';
+import {
+  ActivityIndicator,
+  Pressable,
+  PressableProps,
+  StyleSheet,
+} from 'react-native';
 import Text from '../Text';
 import { TextVariants } from '@src/utils/styles/typography';
 
@@ -8,6 +13,7 @@ export interface ButtonProps extends PressableProps {
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
   title: string;
   variant?: 'outlined' | 'contained';
+  isLoading?: boolean;
 }
 
 const textVariantMap: Record<string, TextVariants> = {
@@ -21,8 +27,9 @@ const textVariantMap: Record<string, TextVariants> = {
 export default function Button({
   disabled,
   fullWidth,
-  title,
+  isLoading,
   size = 'md',
+  title,
   variant = 'contained',
   ...rest
 }: ButtonProps) {
@@ -40,6 +47,12 @@ export default function Button({
       disabled={disabled}
       {...rest}
     >
+      {isLoading && (
+        <ActivityIndicator
+          style={styles.activityIndicator}
+          color={variant === 'outlined' ? colors.blue[500] : colors.white[500]}
+        />
+      )}
       <Text
         variant={textVariantMap[size]}
         style={
@@ -65,6 +78,9 @@ const styles = StyleSheet.create({
   disabled: {
     backgroundColor: colors.blue[100],
     border: 'none',
+  },
+  activityIndicator: {
+    marginRight: 12,
   },
 
   // variant styles

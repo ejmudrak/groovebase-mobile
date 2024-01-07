@@ -18,6 +18,7 @@ export default function EditRecordForm({
   isValid,
   isDirty,
   isRecordQueryLoading,
+  isUpdating,
   updateUserRecord,
   handleSubmit,
 }: EditRecordFormProps) {
@@ -102,6 +103,7 @@ export default function EditRecordForm({
           <Button
             title='Submit'
             onPress={handleSubmit(updateUserRecord)}
+            isLoading={isUpdating}
             disabled={!isDirty || (isDirty && !isValid) || isRecordQueryLoading}
           />
         </View>

@@ -73,15 +73,17 @@ export default function useEditRecordFormProps({
 
   const {
     mutate: handleUpdateUserRecord,
-    isSuccess: isUpdatingRecordSuccess,
-    isError: isUpdatingRecordError,
-    error: updatingRecordError,
+    isLoading: isUpdatingUserRecord,
+    isSuccess: isUpdatingUserRecordSuccess,
+    isError: isUpdatingUserRecordError,
+    error: updateUserRecordError,
   } = useUpdateUserRecord(id || 0);
   const {
     mutate: createRecordBin,
+    isLoading: isCreatingBins,
     isSuccess: isCreatingBinsSuccess,
     isError: isCreatingBinsError,
-    error: creatingBinsError,
+    error: createBinsError,
   } = useCreateRecordBins();
 
   const updateUserRecord = (data: EditRecordFormData) => {
@@ -99,25 +101,38 @@ export default function useEditRecordFormProps({
   };
 
   useEffect(() => {
-    if (isUpdatingRecordSuccess) {
+    if (isUpdatingUserRecordSuccess && isCreatingBinsSuccess) {
       Toast.show({
         type: 'success',
         text1: 'Record updated! 🎸',
         position: 'bottom',
       });
     }
-  }, [isUpdatingRecordSuccess]);
+  }, [isUpdatingUserRecordSuccess, isCreatingBinsSuccess]);
 
   useEffect(() => {
-    if (isUpdatingRecordError) {
+    if (isUpdatingUserRecordError) {
       Toast.show({
         type: 'error',
-        text1: 'Failed to update record',
-        text2: updatingRecordError?.message,
+        text1: 'Failed to update bins for record',
+        text2: updateUserRecordError?.message,
         position: 'bottom',
       });
     }
-  }, [isUpdatingRecordError, updatingRecordError]);
+  }, [isUpdatingUserRecordError, updateUserRecordError]);
+
+  useEffect(() => {
+    if (isCreatingBinsError) {
+      Toast.show({
+        type: 'error',
+        text1: 'Failed to update bins for record',
+        text2: createBinsError?.message,
+        position: 'bottom',
+      });
+    }
+  }, [isCreatingBinsError, createBinsError]);
+
+  const isUpdating = isUpdatingUserRecord || isCreatingBins;
 
   return {
     control,
@@ -127,6 +142,7 @@ export default function useEditRecordFormProps({
     isValid,
     isDirty,
     isRecordQueryLoading,
+    isUpdating,
     ...restOfBaseProps,
   };
 }

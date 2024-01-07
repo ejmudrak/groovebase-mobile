@@ -7,6 +7,7 @@ export interface EditRecordFormProps {
   isValid: boolean;
   isDirty: boolean;
   isRecordQueryLoading: boolean;
+  isUpdating: boolean;
   handleSubmit: UseFormHandleSubmit<EditRecordFormData, undefined>;
   updateUserRecord: SubmitHandler<EditRecordFormData>;
 }

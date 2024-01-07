@@ -47,14 +47,42 @@ export default function AddRecordForm({ record }: AddRecordFormProps) {
     resolver: yupResolver(addRecordFormSchema),
   });
 
-  const { mutate: createUserRecord } = useCreateUserRecord();
+  const {
+    mutate: createUserRecord,
+    isSuccess: isCreateUserRecordSuccess,
+    isLoading: isCreatingUserRecord,
+    isError: isCreatingUserRecordError,
+    error: createUserRecordError,
+  } = useCreateUserRecord();
+
   const {
     mutate: createRecord,
     isSuccess: isCreateRecordSuccess,
+    isLoading: isCreatingRecord,
     isError: isCreateRecordError,
     error: createRecordError,
   } = useCreateRecord();
-  const { mutate: createRecordBin } = useCreateRecordBins();
+
+  const {
+    mutate: createRecordBin,
+    isSuccess: isCreateRecordBinSuccess,
+    isLoading: isCreatingRecordBin,
+    isError: isCreatingRecordBinError,
+    error: createRecordBinError,
+  } = useCreateRecordBins();
+
+  const isSuccess =
+    isCreateRecordSuccess &&
+    isCreateUserRecordSuccess &&
+    isCreateRecordBinSuccess;
+
+  const isError =
+    isCreateRecordError ||
+    isCreatingUserRecordError ||
+    isCreatingRecordBinError;
+
+  const isLoading =
+    isCreatingRecord || isCreatingUserRecord || isCreatingRecordBin;
 
   const addRecordToCollection = (data: AddRecordFormData) => {
     // Adds record to db
@@ -66,7 +94,7 @@ export default function AddRecordForm({ record }: AddRecordFormProps) {
           {
             onSuccess: () => {
               // Redirects to Collection page
-              navigate('Collection' as never);
+              setTimeout(() => navigate('Collection' as never), 1000);
             },
           },
         );
@@ -85,25 +113,28 @@ export default function AddRecordForm({ record }: AddRecordFormProps) {
   };
 
   useEffect(() => {
-    if (isCreateRecordSuccess) {
+    if (isSuccess) {
       Toast.show({
         type: 'success',
         text1: 'Record added to your collection! 🎸',
         position: 'bottom',
       });
     }
-  }, [isCreateRecordSuccess]);
+  }, [isSuccess]);
 
   useEffect(() => {
-    if (isCreateRecordError) {
+    if (isError) {
       Toast.show({
         type: 'error',
         text1: 'Failed to add record',
-        text2: createRecordError?.message,
+        text2:
+          createRecordError?.message ||
+          createUserRecordError?.message ||
+          createRecordBinError?.message,
         position: 'bottom',
       });
     }
-  }, [isCreateRecordError]);
+  }, [isError, createRecordError, createUserRecordError, createRecordBinError]);
 
   return (
     <ScrollView style={styles.container}>
@@ -185,6 +216,7 @@ export default function AddRecordForm({ record }: AddRecordFormProps) {
         <Button
           title='Submit'
           onPress={handleSubmit(addRecordToCollection)}
+          isLoading={isLoading}
           disabled={!isDirty || (isDirty && !isValid)}
         />
       </View>
