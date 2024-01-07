@@ -7,6 +7,7 @@ import Toast from 'react-native-toast-message';
 
 export default function useUpdateRecordButtonProps({
   recordId,
+  userRecordId,
   ...restOfBaseProps
 }: BaseUpdateRecordButtonProps) {
   const {
@@ -15,7 +16,7 @@ export default function useUpdateRecordButtonProps({
     isSuccess: isUpdatingUserRecordSuccess,
     isError: isUpdatingUserRecordError,
     error: updateUserRecordError,
-  } = useUpdateUserRecord(recordId || 0);
+  } = useUpdateUserRecord(userRecordId);
 
   const {
     mutate: createRecordBin,

@@ -8,9 +8,15 @@ export interface UpdateRecordButtonProps
   updateUserRecord: SubmitHandler<EditRecordFormData>;
   isUpdating: boolean;
   recordId: number;
+  userRecordId: number;
 }
 
 export type BaseUpdateRecordButtonProps = Pick<
   UpdateRecordButtonProps,
-  'recordId' | 'handleSubmit' | 'isDirty' | 'isValid' | 'isRecordQueryLoading'
+  | 'recordId'
+  | 'handleSubmit'
+  | 'isDirty'
+  | 'isValid'
+  | 'isRecordQueryLoading'
+  | 'userRecordId'
 >;

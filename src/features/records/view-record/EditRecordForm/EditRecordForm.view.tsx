@@ -18,7 +18,8 @@ export default function EditRecordForm({
   isValid,
   isDirty,
   isRecordQueryLoading,
-  record,
+  recordId,
+  userRecordId,
   handleSubmit,
 }: EditRecordFormProps) {
   return (
@@ -100,7 +101,8 @@ export default function EditRecordForm({
           </View>
 
           <UpdateRecordButton
-            recordId={record.id}
+            recordId={recordId}
+            userRecordId={userRecordId}
             handleSubmit={handleSubmit}
             isDirty={isDirty}
             isValid={isValid}

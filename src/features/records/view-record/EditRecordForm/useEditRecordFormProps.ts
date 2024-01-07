@@ -78,13 +78,15 @@ export default function useEditRecordFormProps({
   });
 
   // resets form when user-record is fetched with new values
+  // TODO: Reset form on successful update
   useEffect(() => {
     reset(initialValues);
-  }, [isUserRecordQuerySuccess, userRecord]);
+  }, [isUserRecordQuerySuccess, initialValues]);
 
   return {
     control,
-    record,
+    recordId: record.id,
+    userRecordId: userRecord.id,
     handleSubmit,
     isValid,
     isDirty,
