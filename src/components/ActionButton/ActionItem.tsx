@@ -6,11 +6,26 @@ import { colors } from '@src/utils/styles/colors';
 export interface ActionItemProps extends PressableProps {
   icon: JSX.Element;
   label: string;
+  onPress: any;
+  closeModal?: () => void;
 }
 
-export default function ActionItem({ icon, label, ...props }: ActionItemProps) {
+export default function ActionItem({
+  icon,
+  label,
+  closeModal,
+  onPress,
+  ...props
+}: ActionItemProps) {
   return (
-    <Pressable style={[styles.container]} {...props}>
+    <Pressable
+      style={[styles.container]}
+      onPress={() => {
+        closeModal && closeModal();
+        onPress && onPress();
+      }}
+      {...props}
+    >
       <IconButton style={styles.iconButton}>{icon}</IconButton>
 
       <Text variant='body2Bold' color={colors.white[500]}>

@@ -10,16 +10,15 @@ import { Controller } from 'react-hook-form';
 import ConditionInput from '../../add-record/ConditionInput';
 import BinsInput from '../../add-record/BinsInput';
 import TextInput from '@src/components/TextInput';
-import Button from '@src/components/Button';
 import ActionInput from '../../add-record/ActionInput';
+import UpdateRecordButton from '../UpdateRecordButton';
 
 export default function EditRecordForm({
   control,
   isValid,
   isDirty,
   isRecordQueryLoading,
-  isUpdating,
-  updateUserRecord,
+  record,
   handleSubmit,
 }: EditRecordFormProps) {
   return (
@@ -100,11 +99,12 @@ export default function EditRecordForm({
             />
           </View>
 
-          <Button
-            title='Submit'
-            onPress={handleSubmit(updateUserRecord)}
-            isLoading={isUpdating}
-            disabled={!isDirty || (isDirty && !isValid) || isRecordQueryLoading}
+          <UpdateRecordButton
+            recordId={record.id}
+            handleSubmit={handleSubmit}
+            isDirty={isDirty}
+            isValid={isValid}
+            isRecordQueryLoading={isRecordQueryLoading}
           />
         </View>
       </ScrollView>

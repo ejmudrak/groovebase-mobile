@@ -7,12 +7,14 @@ import { shadows } from '@src/utils/styles/shadows';
 import { colors } from '@src/utils/styles/colors';
 
 export interface HeaderProps {
+  Actions?: () => JSX.Element;
   title: string;
   displayBackButton?: boolean;
   style?: any;
 }
 
 export default function Header({
+  Actions = EmptyActions,
   displayBackButton,
   title,
   style,
@@ -36,14 +38,18 @@ export default function Header({
       )}
       <Text variant='h3'>{title}</Text>
 
-      <View style={{ opacity: 0 }}>
-        <IconButton>
-          <View />
-        </IconButton>
-      </View>
+      <Actions />
     </View>
   );
 }
+
+const EmptyActions = () => (
+  <View style={{ opacity: 0 }}>
+    <IconButton>
+      <View />
+    </IconButton>
+  </View>
+);
 
 const styles = StyleSheet.create({
   container: {

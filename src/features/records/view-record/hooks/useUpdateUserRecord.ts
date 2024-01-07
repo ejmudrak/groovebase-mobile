@@ -1,6 +1,6 @@
 import { Record } from '@src/types';
 import { Service } from '@src/utils/services';
-import { EditRecordFormData } from '../EditRecordForm.schema';
+import { EditRecordFormData } from '../EditRecordForm/EditRecordForm.schema';
 import { updateMutation } from '@src/utils/react-query';
 import { Id } from '@feathersjs/feathers';
 
