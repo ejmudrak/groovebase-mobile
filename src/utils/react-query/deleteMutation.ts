@@ -34,7 +34,7 @@ export default function deleteMutation<ServiceType>(
       }
 
       if (!idsToDelete?.length && !params) {
-        console.error(
+        throw new Error(
           'MUTATION CANCELLED: No ids or params given, this request will delete all records for this service.',
         );
       } else {
@@ -43,7 +43,7 @@ export default function deleteMutation<ServiceType>(
           .remove(null, {
             query: deleteParams,
           })
-          .then((deletedData: ServiceType) => {
+          .then((deletedData: any) => {
             return deletedData;
           });
       }

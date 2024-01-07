@@ -1,19 +1,26 @@
-import { Pressable, PressableProps, StyleSheet } from 'react-native';
+import {
+  ActivityIndicator,
+  Pressable,
+  PressableProps,
+  StyleSheet,
+} from 'react-native';
 import IconButton from '@src/components/IconButton';
 import Text from '@src/components/Text';
 import { colors } from '@src/utils/styles/colors';
 
 export interface ActionItemProps extends PressableProps {
+  closeModal?: () => void;
   icon: JSX.Element;
+  isLoading?: boolean;
   label: string;
   onPress: any;
-  closeModal?: () => void;
 }
 
 export default function ActionItem({
-  icon,
-  label,
   closeModal,
+  icon,
+  isLoading,
+  label,
   onPress,
   ...props
 }: ActionItemProps) {
@@ -26,7 +33,9 @@ export default function ActionItem({
       }}
       {...props}
     >
-      <IconButton style={styles.iconButton}>{icon}</IconButton>
+      <IconButton style={styles.iconButton}>
+        {isLoading ? <ActivityIndicator color={colors.blue[500]} /> : icon}
+      </IconButton>
 
       <Text variant='body2Bold' color={colors.white[500]}>
         {label}

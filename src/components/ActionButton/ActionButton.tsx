@@ -1,4 +1,3 @@
-import ActionItem from './ActionItem';
 import AddPlusIcon from '../Icons/AddPlusIcon';
 import CollectionIcon from '../Icons/CollectionIcon';
 import useActionButton from './useActionButton';
@@ -6,6 +5,7 @@ import IconButton from '@src/components/IconButton';
 import { View, StyleSheet } from 'react-native';
 import { colors } from '@src/utils/styles/colors';
 import ActionsModal from '../ActionsModal';
+import ActionItem from '../ActionsModal/components/ActionItem';
 
 export interface ActionButtonProps {}
 
