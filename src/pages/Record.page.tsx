@@ -5,6 +5,7 @@ import RecordDetails from '@src/features/records/view-record/RecordDetails';
 
 export default function RecordPage() {
   const { params: { record = {} } = {} } = useRoute<any>();
+  console.log('record: ', record.price);
 
   return (
     <Page authenticated hideNavBar>

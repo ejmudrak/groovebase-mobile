@@ -6,15 +6,22 @@ import { useRecordsQuery } from '@src/features/records/useRecordsQuery';
 import { useCurrentUser } from '@src/features/users/useCurrentUser';
 import { Record } from '@src/types';
 import RecordsListSkeleton from '@src/features/records/view-records/RecordsList/RecordsList.skeleton';
+import useRefresh from '@src/utils/hooks/useRefresh';
 
 export default function CollectionPage() {
   const user = useCurrentUser();
   const navigation = useNavigation<any>();
 
-  const { data: { items: records = [] } = {}, isLoading } = useRecordsQuery({
+  const {
+    data: { items: records = [] } = {},
+    isLoading,
+    refetch,
+  } = useRecordsQuery({
     userId: user?.id || 0,
     $sort: { createdAt: -1 },
   });
+
+  useRefresh(refetch);
 
   const handleOnRecordPress = (record: Record) => {
     navigation.navigate('Record', { record });

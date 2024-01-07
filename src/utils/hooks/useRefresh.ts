@@ -7,17 +7,9 @@ import { useFocusEffect } from '@react-navigation/native';
   This custom hook will call the provided refetch function when the screen is focused again.
 */
 
-export function useRefreshOnFocus<T>(refetch: () => Promise<T>) {
-  const firstTimeRef = React.useRef(true);
-
+export default function useRefresh<T>(refetch: () => Promise<T>) {
   useFocusEffect(
     React.useCallback(() => {
-      // refetch is skipped the first time because useFocusEffect calls our callback on mount in addition to screen focus.
-      if (firstTimeRef.current) {
-        firstTimeRef.current = false;
-        return;
-      }
-
       refetch();
     }, [refetch]),
   );

@@ -6,7 +6,7 @@ import BinsList from '@src/features/bins/view-bins/BinsList';
 import BinsListSkeleton from '@src/features/bins/view-bins/BinsList/BinsList.skeleton';
 import { useCurrentUser } from '@src/features/users/useCurrentUser';
 import { Bin } from '@src/types';
-import { useRefreshOnFocus } from '@src/utils/hooks/useRefreshOnFocus';
+import useRefresh from '@src/utils/hooks/useRefresh';
 
 export default function BinsPage() {
   const user = useCurrentUser();
@@ -21,8 +21,7 @@ export default function BinsPage() {
     $sort: { name: 1 },
   });
 
-  // TODO: Make the refetch happen when this page is visited
-  useRefreshOnFocus(refetch);
+  useRefresh(refetch);
 
   const handleBinPress = (bin: Bin) => {
     navigation.navigate('RecordsInBin', { bin });

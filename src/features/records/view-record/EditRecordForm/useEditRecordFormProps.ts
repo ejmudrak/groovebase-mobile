@@ -15,6 +15,7 @@ import {
 } from './utils/convert-options';
 import { useCreateRecordBins } from '@src/features/bins/hooks/useCreateRecordBins';
 import Toast from 'react-native-toast-message';
+import useRefresh from '@src/utils/hooks/useRefresh';
 
 export default function useEditRecordFormProps({
   record,
@@ -24,7 +25,10 @@ export default function useEditRecordFormProps({
     data: userRecord,
     isSuccess: isUserRecordQuerySuccess,
     isLoading: isRecordQueryLoading,
+    refetch,
   } = useUserRecordQuery(record.id);
+
+  useRefresh(refetch);
 
   const {
     id,
@@ -45,7 +49,15 @@ export default function useEditRecordFormProps({
       price: price ? price?.toString() : '',
       notes,
     }),
-    [isUserRecordQuerySuccess],
+    [
+      isUserRecordQuerySuccess,
+      action,
+      bins,
+      mediaCondition,
+      color,
+      price,
+      notes,
+    ],
   );
 
   // sets up form
@@ -69,7 +81,7 @@ export default function useEditRecordFormProps({
   // resets form when user-record is fetched with new values
   useEffect(() => {
     reset(initialValues);
-  }, [isUserRecordQuerySuccess]);
+  }, [isUserRecordQuerySuccess, userRecord]);
 
   const {
     mutate: handleUpdateUserRecord,

@@ -18,7 +18,7 @@ export default function AddRecordSearch() {
   const navigation = useNavigation<any>();
   const { searchValue, setSearchValue, items, isLoading } = useSearch({
     useSearchQuery: useRecordsQuery,
-    initialValue: 'Tame Impala',
+    initialValue: undefined,
     queryKey: 'name',
   });
 
