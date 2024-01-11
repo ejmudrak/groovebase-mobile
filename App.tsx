@@ -27,6 +27,7 @@ import BinsPage from '@src/pages/Bins.page';
 import RecordsInBinPage from '@src/pages/RecordsInBin.page';
 import Toast from 'react-native-toast-message';
 import { toastConfig } from '@src/utils/toast-config';
+import AddBinPage from '@src/pages/AddBin.page';
 
 const Stack = createNativeStackNavigator<StackParamsList>();
 
@@ -93,6 +94,7 @@ const Navigation = () => {
             <Stack.Screen name='Record' component={RecordPage} />
             <Stack.Screen name='Bins' component={BinsPage} />
             <Stack.Screen name='RecordsInBin' component={RecordsInBinPage} />
+            <Stack.Screen name='AddBin' component={AddBinPage} />
             <Stack.Screen
               name='AddRecordSearch'
               component={AddRecordSearchPage}

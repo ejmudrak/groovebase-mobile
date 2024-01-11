@@ -73,6 +73,7 @@ export type StackParamsList = {
   RecordsInBin: undefined;
   AddRecordSearch: undefined;
   AddRecordForm: undefined;
+  AddBin: undefined;
 };
 
 export interface Record extends FeathersRecord {

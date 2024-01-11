@@ -6,6 +6,7 @@ import { View, StyleSheet } from 'react-native';
 import { colors } from '@src/utils/styles/colors';
 import ActionsModal from '../ActionsModal';
 import ActionItem from '../ActionsModal/components/ActionItem';
+import BinIcon from '../Icons/BinIcon';
 
 export interface ActionButtonProps {}
 
@@ -18,6 +19,11 @@ export default function ActionButton({}: ActionButtonProps) {
         icon={<CollectionIcon color={colors.blue[500]} />}
         label='Add record to collection'
         onPress={() => handleNavigate('AddRecordSearch')}
+      />
+      <ActionItem
+        icon={<BinIcon color={colors.blue[500]} />}
+        label='Create new bin'
+        onPress={() => handleNavigate('AddBin')}
       />
     </ActionsModal>
   );
