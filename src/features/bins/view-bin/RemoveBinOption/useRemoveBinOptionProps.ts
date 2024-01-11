@@ -10,11 +10,9 @@ export default function useRemoveBinOptionProps(
 ) {
   const { binId, closeModal } = baseProps;
   const { navigate } = useNavigation();
-
-  // Removes all records from a bin using a query param,
-  //  which needs the bin's id and the user's id
   const user = useCurrentUser();
 
+  // Removes a bin using a query param, which needs the user's id
   const {
     mutate: removeBin,
     isLoading,
@@ -66,7 +64,7 @@ export default function useRemoveBinOptionProps(
     if (!binId || !user?.id) {
       Toast.show({
         type: 'error',
-        text1: 'Failed to remove bin',
+        text1: 'Cannot remove bin',
         text2: 'Bin ID or user ID is missing',
         position: 'bottom',
       });

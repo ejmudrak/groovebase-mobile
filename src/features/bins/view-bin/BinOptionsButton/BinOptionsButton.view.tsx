@@ -10,17 +10,17 @@ import { colors } from '@src/utils/styles/colors';
 import { shadows } from '@src/utils/styles/shadows';
 import { StyleSheet } from 'react-native';
 import ActionsModal from '@src/components/ActionsModal';
-import RemoveRecordOption from '../RemoveBinOption';
+import RemoveBinOption from '../RemoveBinOption';
 
 export default function BinOptionsButton() {
-  const { params: { record = {} } = {} } = useRoute<any>();
+  const { params: { bin = {} } = {} } = useRoute<any>();
 
   return (
     <ActionsModal
       title={`What would you like to do?`}
       OpenModalComponent={OptionsButton}
     >
-      <RemoveRecordOption recordId={record.id} />
+      <RemoveBinOption binId={bin.id} />
     </ActionsModal>
   );
 }
