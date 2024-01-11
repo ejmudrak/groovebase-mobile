@@ -7,14 +7,14 @@ import { shadows } from '@src/utils/styles/shadows';
 import { colors } from '@src/utils/styles/colors';
 
 export interface HeaderProps {
-  Actions?: () => JSX.Element;
+  ActionsComponent?: () => JSX.Element; // The component that will be rendered on the right side of the header
   title: string;
   displayBackButton?: boolean;
   style?: any;
 }
 
 export default function Header({
-  Actions = EmptyActions,
+  ActionsComponent = EmptyActionsComponent,
   displayBackButton,
   title,
   style,
@@ -38,12 +38,12 @@ export default function Header({
       )}
       <Text variant='h3'>{title}</Text>
 
-      <Actions />
+      <ActionsComponent />
     </View>
   );
 }
 
-const EmptyActions = () => (
+const EmptyActionsComponent = () => (
   <View style={{ opacity: 0 }}>
     <IconButton>
       <View />

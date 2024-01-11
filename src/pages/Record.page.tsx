@@ -9,7 +9,11 @@ export default function RecordPage() {
 
   return (
     <Page authenticated hideNavBar>
-      <Header title='Record' displayBackButton Actions={RecordOptionsButton} />
+      <Header
+        title='Record'
+        displayBackButton
+        ActionsComponent={RecordOptionsButton}
+      />
       <RecordDetails record={record} />
     </Page>
   );

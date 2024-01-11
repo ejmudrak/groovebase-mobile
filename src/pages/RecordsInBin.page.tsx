@@ -7,6 +7,7 @@ import { useCurrentUser } from '@src/features/users/useCurrentUser';
 import { Record } from '@src/types';
 import RecordsListSkeleton from '@src/features/records/view-records/RecordsList/RecordsList.skeleton';
 import useRefresh from '@src/utils/hooks/useRefresh';
+import BinOptionsButton from '@src/features/bins/view-bin/BinOptionsButton';
 
 export default function RecordsInBinPage() {
   const { params: { bin = {} } = {} } = useRoute<any>();
@@ -31,7 +32,11 @@ export default function RecordsInBinPage() {
 
   return (
     <Page authenticated>
-      <Header title={bin.name} displayBackButton />
+      <Header
+        title={bin.name}
+        displayBackButton
+        ActionsComponent={BinOptionsButton}
+      />
       <RecordList
         records={records}
         onRecordPress={handleOnRecordPress}
