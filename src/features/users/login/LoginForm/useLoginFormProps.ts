@@ -6,7 +6,7 @@ import {
   IOS_GOOGLE_CLIENT_ID,
   EXPO_GOOGLE_CLIENT_ID,
 } from '@env';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useGoogleLogin } from '../useGoogleLogin';
 import { useNavigation } from '@react-navigation/native';
 
@@ -15,8 +15,6 @@ WebBrowser.maybeCompleteAuthSession();
 export default function useLoginFormProps() {
   const { mutate: authenticate, isSuccess: isAuthenticated } = useGoogleLogin();
   const { navigate } = useNavigation();
-  const [email, onChangeEmail] = useState('');
-  const [password, onChangePassword] = useState('');
 
   // The promptAsync function starts the Google signin flow
   const [_, response, promptAsync] = Google.useAuthRequest({
@@ -55,9 +53,5 @@ export default function useLoginFormProps() {
 
   return {
     promptGoogleAuthRequest: promptAsync,
-    email,
-    onChangeEmail,
-    password,
-    onChangePassword,
   };
 }
