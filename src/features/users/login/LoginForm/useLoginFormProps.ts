@@ -6,15 +6,17 @@ import {
   IOS_GOOGLE_CLIENT_ID,
   EXPO_GOOGLE_CLIENT_ID,
 } from '@env';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useGoogleLogin } from '../useGoogleLogin';
 import { useNavigation } from '@react-navigation/native';
 
 WebBrowser.maybeCompleteAuthSession();
 
-export default function useLoginForm() {
+export default function useLoginFormProps() {
   const { mutate: authenticate, isSuccess: isAuthenticated } = useGoogleLogin();
   const { navigate } = useNavigation();
+  const [email, onChangeEmail] = useState('');
+  const [password, onChangePassword] = useState('');
 
   // The promptAsync function starts the Google signin flow
   const [_, response, promptAsync] = Google.useAuthRequest({
@@ -24,31 +26,38 @@ export default function useLoginForm() {
     expoClientId: EXPO_GOOGLE_CLIENT_ID,
   });
 
+  // Once the user is authenticated via Google, we can use the accessToken to authenticate with our API server
   useEffect(() => {
+    const handleAuthenticate = async () => {
+      const localUser = await getLocalUser();
+
+      if (!localUser) {
+        if (
+          response?.type === 'success' &&
+          response?.authentication?.accessToken
+        ) {
+          // Authenticates with our API server, creating or finding the entity for this profile
+          authenticate(response?.authentication?.accessToken);
+        }
+      } else {
+        // We have user data, so let's move on to the main app!
+        navigate('Collection' as never);
+      }
+    };
+
     handleAuthenticate();
   }, [response, isAuthenticated]);
-
-  const handleAuthenticate = async () => {
-    const user = await getLocalUser();
-
-    if (!user) {
-      if (
-        response?.type === 'success' &&
-        response?.authentication?.accessToken
-      ) {
-        // Authenticates with our API server, creating or finding the entity for this profile
-        authenticate(response?.authentication?.accessToken);
-      }
-    } else {
-      // We have user data, so let's move on to the main app!
-      navigate('Collection' as never);
-    }
-  };
 
   const getLocalUser = async () => {
     const data = await AsyncStorage.getItem('user');
     return data ? JSON.parse(data) : null;
   };
 
-  return { promptGoogleAuthRequest: promptAsync };
+  return {
+    promptGoogleAuthRequest: promptAsync,
+    email,
+    onChangeEmail,
+    password,
+    onChangePassword,
+  };
 }

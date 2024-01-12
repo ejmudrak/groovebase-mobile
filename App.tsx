@@ -9,7 +9,7 @@ import {
   Barlow_400Regular,
   Barlow_700Bold,
 } from '@expo-google-fonts/barlow';
-import { useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {
   QueryClient,
@@ -28,6 +28,7 @@ import RecordsInBinPage from '@src/pages/RecordsInBin.page';
 import Toast from 'react-native-toast-message';
 import { toastConfig } from '@src/utils/toast-config';
 import AddBinPage from '@src/pages/AddBin.page';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Stack = createNativeStackNavigator<StackParamsList>();
 

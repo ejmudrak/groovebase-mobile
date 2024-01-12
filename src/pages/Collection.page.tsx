@@ -7,6 +7,7 @@ import { useCurrentUser } from '@src/features/users/useCurrentUser';
 import { Record } from '@src/types';
 import RecordsListSkeleton from '@src/features/records/view-records/RecordsList/RecordsList.skeleton';
 import useRefresh from '@src/utils/hooks/useRefresh';
+import RecordsListOptions from '@src/features/records/view-records/RecordsListOptions';
 
 export default function CollectionPage() {
   const user = useCurrentUser();
@@ -29,7 +30,7 @@ export default function CollectionPage() {
 
   return (
     <Page authenticated>
-      <Header title='Collection' />
+      <Header title='Collection' ActionsComponent={RecordsListOptions} />
       <RecordList
         records={records}
         onRecordPress={handleOnRecordPress}

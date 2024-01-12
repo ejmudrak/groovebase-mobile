@@ -3,7 +3,7 @@ import Text from '@src/components/Text';
 import Card from '@src/components/Card/Card';
 import { colors } from '@src/utils/styles/colors';
 import Page from '@src/components/Page';
-import LoginForm from '@src/features/users/login/LoginForm/LoginForm';
+import LoginForm from '@src/features/users/login/LoginForm';
 
 export default function LoginPage() {
   return (
@@ -15,7 +15,7 @@ export default function LoginPage() {
           </Text>
 
           <Text variant='body1Bold' color={colors.black[400]}>
-            The new hub for vinyl collectors, crate diggers, and music lovers
+            The hub for vinyl collectors, crate diggers, and music lovers
           </Text>
         </View>
 

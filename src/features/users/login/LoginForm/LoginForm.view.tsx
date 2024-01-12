@@ -4,14 +4,17 @@ import TextInput from '@src/components/TextInput/TextInput';
 import { StyleSheet, View } from 'react-native';
 import { colors } from '@src/utils/styles/colors';
 import { useState } from 'react';
-import useLoginForm from './useLoginForm';
+import useLoginForm from './useLoginFormProps';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { LoginFormProps } from './LoginForm';
 
-export default function LoginForm() {
-  const { promptGoogleAuthRequest } = useLoginForm();
-  const [email, onChangeEmail] = useState('');
-  const [password, onChangePassword] = useState('');
-
+export default function LoginForm({
+  promptGoogleAuthRequest,
+  email,
+  onChangeEmail,
+  password,
+  onChangePassword,
+}: LoginFormProps) {
   return (
     <View style={styles.container}>
       <View style={styles.inputsContainer}>
@@ -38,9 +41,7 @@ export default function LoginForm() {
 
       <View style={styles.dividerContainer}>
         <View style={styles.divider} />
-        <Text color={colors.black[400]}>
-          OR
-        </Text>
+        <Text color={colors.black[400]}>OR</Text>
         <View style={styles.divider} />
       </View>
 

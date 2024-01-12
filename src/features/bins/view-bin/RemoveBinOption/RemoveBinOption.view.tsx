@@ -10,7 +10,7 @@ export default function RemoveBinOption({
   return (
     <ActionItem
       icon={<TrashIcon color={colors.blue[500]} />}
-      label='Delete bin'
+      label='Remove bin'
       onPress={handleRemoveBin}
       isLoading={isRemovingBin}
     />
