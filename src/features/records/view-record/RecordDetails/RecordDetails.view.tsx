@@ -19,7 +19,7 @@ export default function RecordDetails({ record }: RecordDetailsProps) {
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
+    flex: 1,
     display: 'flex',
     flexDirection: 'column',
     gap: 8,

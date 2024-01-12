@@ -27,10 +27,11 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   card: {
-    width: '100%',
     padding: 16,
     display: 'flex',
     flexDirection: 'column',
     gap: 12,
+    flex: 0,
+    height: 188,
   },
 });

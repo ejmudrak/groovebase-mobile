@@ -37,13 +37,13 @@ export default function RecordsInBinPage() {
         displayBackButton
         ActionsComponent={BinOptionsButton}
       />
+      {isLoading && <RecordsListSkeleton />}
+
       <RecordList
         records={records}
         onRecordPress={handleOnRecordPress}
         refreshing={isLoading}
       />
-
-      {isLoading && <RecordsListSkeleton />}
     </Page>
   );
 }

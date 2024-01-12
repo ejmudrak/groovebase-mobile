@@ -19,8 +19,7 @@ export default function Card({ children, elevation = 0, style }: CardProps) {
 const styles = StyleSheet.create({
   container: {
     display: 'flex',
-    width: 'auto',
-    height: 'auto',
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     flexShrink: 0,

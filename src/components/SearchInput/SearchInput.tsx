@@ -38,7 +38,6 @@ export default function SearchInput({
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
     marginBottom: 16,
   },
   inputContainerStyle: {
@@ -47,5 +46,5 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white[500],
     ...shadows[100],
   },
-  input: {},
+  input: { flex: 1 },
 });
