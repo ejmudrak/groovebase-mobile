@@ -2,43 +2,50 @@ import { FlatList, StyleSheet, View } from 'react-native';
 import RecordCard from '../../RecordCard';
 import { Record } from '@src/types';
 import Text from '@src/components/Text';
+import RecordsListSkeleton from './RecordsList.skeleton';
 
 interface RecordsListProps {
   records?: Record[];
   onRecordPress: (record: Record) => void;
   refreshing?: boolean;
+  fetchNextPage?: () => void;
 }
 
 export default function RecordsList({
   records,
   onRecordPress,
   refreshing,
+  fetchNextPage,
 }: RecordsListProps) {
   return (
-    <FlatList
-      data={records}
-      renderItem={({ item }) => (
-        <RecordCard record={item} onPress={onRecordPress} />
-      )}
-      keyExtractor={(item) =>
-        item.discogsMasterId?.toString() || item.id?.toString()
-      }
-      refreshing={refreshing}
-      style={styles.container}
-      ListEmptyComponent={
-        !refreshing ? (
-          <View>
-            <Text>No records found.</Text>
-          </View>
-        ) : null
-      }
-    />
+    <>
+      {refreshing && !records?.length && <RecordsListSkeleton />}
+
+      <FlatList
+        data={records}
+        renderItem={({ item }) => (
+          <RecordCard record={item} onPress={onRecordPress} />
+        )}
+        keyExtractor={(item) =>
+          item.discogsMasterId?.toString() || item.id?.toString()
+        }
+        refreshing={refreshing}
+        onEndReached={fetchNextPage}
+        onEndReachedThreshold={0.1}
+        ListEmptyComponent={
+          !refreshing ? (
+            <View>
+              <Text>No records found.</Text>
+            </View>
+          ) : null
+        }
+      />
+    </>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
-    height: '100%',
+    flex: 1,
   },
 });

@@ -5,7 +5,6 @@ import RecordList from '@src/features/records/view-records/RecordsList';
 import { useRecordsQuery } from '@src/features/records/useRecordsQuery';
 import { useCurrentUser } from '@src/features/users/useCurrentUser';
 import { Record } from '@src/types';
-import RecordsListSkeleton from '@src/features/records/view-records/RecordsList/RecordsList.skeleton';
 import useRefresh from '@src/utils/hooks/useRefresh';
 import BinOptionsButton from '@src/features/bins/view-bin/BinOptionsButton';
 
@@ -37,7 +36,6 @@ export default function RecordsInBinPage() {
         displayBackButton
         ActionsComponent={BinOptionsButton}
       />
-      {isLoading && <RecordsListSkeleton />}
 
       <RecordList
         records={records}

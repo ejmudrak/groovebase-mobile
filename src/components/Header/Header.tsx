@@ -9,6 +9,7 @@ import { colors } from '@src/utils/styles/colors';
 export interface HeaderProps {
   ActionsComponent?: () => JSX.Element; // The component that will be rendered on the right side of the header
   title: string;
+  subtitle?: string;
   displayBackButton?: boolean;
   style?: any;
 }
@@ -18,6 +19,7 @@ export default function Header({
   displayBackButton,
   title,
   style,
+  subtitle,
 }: HeaderProps) {
   const { goBack, canGoBack, navigate } = useNavigation();
 
@@ -36,7 +38,10 @@ export default function Header({
           <BackIcon />
         </IconButton>
       )}
-      <Text variant='h3'>{title}</Text>
+      <View>
+        <Text variant='h3'>{title}</Text>
+        {subtitle && <Text variant='body3'>{subtitle}</Text>}
+      </View>
 
       <ActionsComponent />
     </View>
@@ -53,7 +58,6 @@ const EmptyActionsComponent = () => (
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
     marginBottom: 24,
 
     display: 'flex',
