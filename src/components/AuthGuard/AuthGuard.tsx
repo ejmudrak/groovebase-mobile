@@ -50,8 +50,8 @@ export default function AuthGuard({ children }: { children: React.ReactNode }) {
 
 const Loading = () => {
   return (
-    <View>
-      <Text>Loading...</Text>
+    <View style={{ padding: 16 }}>
+      <Text variant='body1Bold'>Loading...</Text>
     </View>
   );
 };

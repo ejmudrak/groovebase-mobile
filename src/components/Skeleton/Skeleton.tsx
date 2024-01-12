@@ -19,7 +19,7 @@ export default function Skeleton({
 
   // Increases opacity from 0.25 to 0.5 and back to 0.25 using reverse timing animation
   useEffect(() => {
-    opacity.value = withRepeat(withTiming(0.5, { duration: 750 }), -1, true);
+    opacity.value = withRepeat(withTiming(0.5, { duration: 1000 }), -1, true);
   }, []);
 
   const animatedStyle = useAnimatedStyle(() => ({

@@ -31,13 +31,13 @@ export default function CollectionPage() {
   return (
     <Page authenticated>
       <Header title='Collection' ActionsComponent={RecordsListOptions} />
+      {isLoading && <RecordsListSkeleton />}
+
       <RecordList
         records={records}
         onRecordPress={handleOnRecordPress}
         refreshing={isLoading}
       />
-
-      {isLoading && <RecordsListSkeleton />}
     </Page>
   );
 }

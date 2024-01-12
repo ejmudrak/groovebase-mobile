@@ -10,7 +10,7 @@ import {
   convertActionToSelectOptions,
   convertBinsToSelectOptions,
   convertMediaConditionToSelectOptions,
-} from '../utils/convert-options';
+} from '@src/features/records/view-record/utils/convert-options';
 import useRefresh from '@src/utils/hooks/useRefresh';
 import { useCurrentUser } from '@src/features/users/useCurrentUser';
 import { useUserRecordsQuery } from '../hooks/useUserRecordsQuery';
