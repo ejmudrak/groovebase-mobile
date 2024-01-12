@@ -85,6 +85,7 @@ export default function useEditRecordFormProps({
 
   return {
     control,
+    record,
     recordId: record.id,
     userRecordId: userRecord.id,
     handleSubmit,

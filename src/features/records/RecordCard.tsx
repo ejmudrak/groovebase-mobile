@@ -20,12 +20,12 @@ export default function RecordCard({ record, onPress }: RecordCardProps) {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 0,
     height: 80,
     padding: 8,
     marginBottom: 8,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'flex-start',
-    width: '100%',
   },
 });

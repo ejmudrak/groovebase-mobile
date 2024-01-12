@@ -4,7 +4,7 @@
 */
 
 import { View, StyleSheet, ScrollView } from 'react-native';
-import { EditRecordFormProps } from './EditRecordForm';
+import type { EditRecordFormProps } from './EditRecordForm';
 import Card from '@src/components/Card';
 import { Controller } from 'react-hook-form';
 import ConditionInput from '../../add-record/ConditionInput';
@@ -116,24 +116,19 @@ export default function EditRecordForm({
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
-    height: 450,
     padding: 16,
     flex: 1,
     alignItems: 'stretch',
   },
 
   form: {
-    width: '100%',
     display: 'flex',
     gap: 24,
     marginBottom: 8,
   },
   fields: {
-    width: '100%',
     display: 'flex',
     flexDirection: 'column',
     gap: 8,
-    flexGrow: 1,
   },
 });
