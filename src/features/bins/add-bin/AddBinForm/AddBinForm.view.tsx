@@ -3,7 +3,7 @@
   @description 
 */
 
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Controller } from 'react-hook-form';
 import TextInput from '@src/components/TextInput';
 import Button from '@src/components/Button/Button';
@@ -18,7 +18,7 @@ export default function AddBinForm({
   isValid,
 }: AddBinFormProps) {
   return (
-    <ScrollView style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.form}>
         <View style={styles.fields}>
           <Controller
@@ -43,7 +43,7 @@ export default function AddBinForm({
           disabled={!isDirty || (isDirty && !isValid)}
         />
       </View>
-    </ScrollView>
+    </View>
   );
 }
 

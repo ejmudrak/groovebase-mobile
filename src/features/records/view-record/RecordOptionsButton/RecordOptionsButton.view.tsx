@@ -37,6 +37,8 @@ const styles = StyleSheet.create({
   },
   optionsButton: {
     backgroundColor: colors.white[500],
+    borderColor: colors.gray[100],
+    borderWidth: 1,
     ...shadows[100],
   },
 });

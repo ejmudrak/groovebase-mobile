@@ -28,7 +28,7 @@ export default function AuthGuard({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     if (hasAttemptedReauth && isReauthenticatedError) {
-      navigate('Login' as never);
+      // TODO: Clear user from local storage and RQ?
     }
   }, [hasAttemptedReauth, isReauthenticatedError, navigate]);
 

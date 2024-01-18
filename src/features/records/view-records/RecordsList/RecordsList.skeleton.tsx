@@ -17,6 +17,9 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     gap: 8,
     flex: 1,
+    paddingTop: 8,
+    paddingLeft: 16,
+    paddingRight: 16,
   },
   skeleton: { height: 80, borderRadius: 24 },
 });

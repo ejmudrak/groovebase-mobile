@@ -5,7 +5,7 @@
 
 import Header from '@src/components/Header';
 import Page from '@src/components/Page/Page';
-import { StyleSheet } from 'react-native';
+import { ScrollView, StyleSheet } from 'react-native';
 import Card from '@src/components/Card/Card';
 import RecordContent from '@src/components/RecordContent/RecordContent';
 import { useRoute } from '@react-navigation/native';
@@ -18,22 +18,25 @@ export default function AddRecordFormPage() {
 
   return (
     <Page authenticated hideNavBar>
-      <Header title='Add Record' displayBackButton style={styles.header} />
+      <Header title='Add Record' displayBackButton />
       {record !== undefined && (
-        <Card elevation={100} style={styles.card}>
-          <RecordContent {...record} />
+        <ScrollView style={styles.pageContent}>
+          <Card elevation={100} style={styles.card}>
+            <RecordContent {...record} />
 
-          <AddRecordForm record={record} />
-        </Card>
+            <AddRecordForm record={record} />
+          </Card>
+        </ScrollView>
       )}
     </Page>
   );
 }
 
 const styles = StyleSheet.create({
-  header: {
-    marginBottom: 16,
+  pageContent: {
+    padding: 16,
   },
+
   card: {
     width: '100%',
     padding: 16,

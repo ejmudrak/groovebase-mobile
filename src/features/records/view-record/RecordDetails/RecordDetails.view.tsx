@@ -3,17 +3,17 @@
   @description 
 */
 
-import { View, StyleSheet } from 'react-native';
+import { StyleSheet, ScrollView } from 'react-native';
 import type { RecordDetailsProps } from './RecordDetails';
 import RecordCard from '../../RecordCard';
 import EditRecordForm from '../EditRecordForm';
 
 export default function RecordDetails({ record }: RecordDetailsProps) {
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <RecordCard record={record} />
       <EditRecordForm record={record} />
-    </View>
+    </ScrollView>
   );
 }
 
@@ -22,6 +22,9 @@ const styles = StyleSheet.create({
     flex: 1,
     display: 'flex',
     flexDirection: 'column',
+    paddingTop: 8,
+    paddingLeft: 16,
+    paddingRight: 16,
     gap: 8,
   },
 });

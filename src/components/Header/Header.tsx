@@ -58,7 +58,13 @@ const EmptyActionsComponent = () => (
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 24,
+    backgroundColor: colors.white[500],
+    borderBottomColor: colors.white[300],
+    borderBottomWidth: 1,
+    paddingTop: 8,
+    paddingLeft: 24,
+    paddingRight: 16,
+    paddingBottom: 16,
 
     display: 'flex',
     flexDirection: 'row',
@@ -68,6 +74,8 @@ const styles = StyleSheet.create({
 
   backButton: {
     backgroundColor: colors.white[500],
+    borderColor: colors.gray[100],
+    borderWidth: 1,
     ...shadows[100],
   },
 });

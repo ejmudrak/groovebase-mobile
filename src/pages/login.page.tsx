@@ -29,12 +29,13 @@ export default function LoginPage() {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
     gap: 24,
-    height: '100%',
+    padding: 16,
   },
 
   header: {
@@ -45,6 +46,7 @@ const styles = StyleSheet.create({
 
   card: {
     padding: 24,
+    flex: 0,
     width: '100%',
   },
 });

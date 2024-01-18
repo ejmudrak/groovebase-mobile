@@ -41,23 +41,8 @@ const styles = StyleSheet.create({
   headerContainer: {
     display: 'flex',
     flexDirection: 'column',
-    gap: 8,
-    justifyContent: 'center',
-    alignItems: 'center',
+    gap: 4,
+    alignItems: 'flex-start',
     width: '100%',
-  },
-
-  dividerContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-    gap: 24,
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '100%',
-  },
-  divider: {
-    borderWidth: 0.5,
-    borderColor: colors.gray[100],
-    width: '40%',
   },
 });

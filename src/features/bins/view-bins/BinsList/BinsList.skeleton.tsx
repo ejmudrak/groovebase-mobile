@@ -12,5 +12,12 @@ export default function BinsListSkeleton() {
 }
 
 const styles = StyleSheet.create({
-  skeleton: { height: 116, width: '100%', borderRadius: 24 },
+  skeleton: {
+    height: 116,
+    width: '100%',
+    borderRadius: 24,
+    paddingLeft: 16,
+    paddingRight: 16,
+    paddingTop: 8,
+  },
 });

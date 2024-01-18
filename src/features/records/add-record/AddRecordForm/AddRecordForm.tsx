@@ -3,7 +3,7 @@
   @description 
 */
 
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 import ActionInput from '../ActionInput';
 import BinsInput from '../BinsInput';
@@ -137,7 +137,7 @@ export default function AddRecordForm({ record }: AddRecordFormProps) {
   }, [isError, createRecordError, createUserRecordError, createRecordBinError]);
 
   return (
-    <ScrollView style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.form}>
         <View style={styles.fields}>
           <Controller
@@ -220,13 +220,12 @@ export default function AddRecordForm({ record }: AddRecordFormProps) {
           disabled={!isDirty || (isDirty && !isValid)}
         />
       </View>
-    </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    height: 450,
     flex: 1,
     width: '100%',
   },

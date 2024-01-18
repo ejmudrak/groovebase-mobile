@@ -22,6 +22,7 @@ export default function Page({
         >
           {children}
         </View>
+
         {authenticated && !hideNavBar && <NavigationBar />}
       </SafeAreaView>
     </AuthGuard>
@@ -31,12 +32,11 @@ export default function Page({
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: colors.white[300],
+    backgroundColor: colors.white[500],
   },
   container: {
     flex: 1,
-    paddingLeft: 16,
-    paddingRight: 16,
+    backgroundColor: colors.white[300],
   },
   containerWithNavBar: {
     paddingBottom: 50,

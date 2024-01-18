@@ -8,7 +8,7 @@ import Page from '@src/components/Page/Page';
 import RecordsList from '@src/features/records/view-records/RecordsList/RecordsList';
 import SearchInput from '@src/components/SearchInput';
 import useSearch from '@src/utils/hooks/useSearch';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { useRecordsQuery } from '@src/features/records/useRecordsQuery';
 import { Record } from '@src/types';
 import { useNavigation } from '@react-navigation/native';
@@ -28,18 +28,29 @@ export default function AddRecordSearch() {
 
   return (
     <Page authenticated hideNavBar>
-      <Header title='Add Record' displayBackButton style={styles.header} />
-      <SearchInput searchValue={searchValue} setSearchValue={setSearchValue} />
+      <Header title='Add Record' displayBackButton />
 
-      <RecordsList records={items as any} onRecordPress={handleOnRecordPress} />
+      <View style={styles.searchInputContainer}>
+        <SearchInput
+          searchValue={searchValue}
+          setSearchValue={setSearchValue}
+        />
+      </View>
 
-      {isLoading && <RecordsListSkeleton />}
+      <RecordsList
+        records={items as any}
+        onRecordPress={handleOnRecordPress}
+        refreshing={isLoading}
+      />
     </Page>
   );
 }
 
 const styles = StyleSheet.create({
-  header: {
-    marginBottom: 16,
+  searchInputContainer: {
+    paddingTop: 8,
+    paddingLeft: 16,
+    paddingRight: 16,
+    marginBottom: -8,
   },
 });

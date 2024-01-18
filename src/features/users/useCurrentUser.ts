@@ -1,16 +1,29 @@
-import { useQueryClient, useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { Service } from '@src/utils/services';
 import { User } from '@src/types';
+import {
+  getLocalStorageUser,
+  removeLocalStorageUser,
+} from './login/userLocalStorage';
+import { useEffect } from 'react';
 
-// Gets the current user from the cache
-export function useCurrentUser(): User | undefined {
+export function useCurrentUser(): User | undefined | null {
   const queryClient = useQueryClient();
 
-  // We're putting this in a useQuery so that it re-renders components when the value changes
-  const response = useQuery({
-    queryKey: [Service.Users],
-    queryFn: () => queryClient.getQueryData([Service.Users]),
-  });
+  const { data: user } = useQuery<User | undefined | null>(
+    [Service.Users],
+    async (): Promise<User | undefined | null> =>
+      // await queryClient.getQueryData([Service.Users]),
+      await getLocalStorageUser(),
+    {
+      refetchOnMount: true,
+      refetchOnWindowFocus: true,
+      refetchOnReconnect: true,
+      onError: () => {
+        removeLocalStorageUser();
+      },
+    },
+  );
 
-  return response?.data as User;
+  return user;
 }

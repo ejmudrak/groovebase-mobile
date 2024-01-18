@@ -14,7 +14,7 @@ export interface AddBinPageProps {}
 export default function AddBinPage() {
   return (
     <Page authenticated hideNavBar>
-      <Header title='Create Bin' displayBackButton style={styles.header} />
+      <Header title='Create Bin' displayBackButton />
       <Card elevation={100} style={styles.card}>
         <AddBinForm />
       </Card>
@@ -23,10 +23,8 @@ export default function AddBinPage() {
 }
 
 const styles = StyleSheet.create({
-  header: {
-    marginBottom: 16,
-  },
   card: {
+    margin: 16,
     padding: 16,
     display: 'flex',
     flexDirection: 'column',

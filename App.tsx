@@ -9,7 +9,7 @@ import {
   Barlow_400Regular,
   Barlow_700Bold,
 } from '@expo-google-fonts/barlow';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {
   QueryClient,
@@ -19,7 +19,7 @@ import {
 import { AppStateStatus, Platform } from 'react-native';
 import { useAppState } from '@src/utils/hooks/useAppState';
 import { useOnlineManager } from '@src/utils/hooks/useOnlineManager';
-import { StackParamsList } from '@src/types';
+import { StackParamsList, User } from '@src/types';
 import { useCurrentUser } from '@src/features/users/useCurrentUser';
 import AddRecordFormPage from '@src/pages/AddRecordForm.page';
 import RecordPage from '@src/pages/Record.page';
@@ -49,14 +49,18 @@ export default function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Navigation />
+      <NavWrapper />
     </QueryClientProvider>
   );
 }
 
-const Navigation = () => {
+const NavWrapper = () => {
   const user = useCurrentUser();
+  console.log('current user:', user);
+  return <Navigation user={user} />;
+};
 
+const Navigation = ({ user }: { user?: User | null }) => {
   let [fontsLoaded] = useFonts({
     Barlow_700Bold,
     Barlow_600SemiBold,
@@ -85,10 +89,8 @@ const Navigation = () => {
           headerShown: false,
         }}
       >
-        {!user ? (
-          <>
-            <Stack.Screen name='Login' component={LoginPage} />
-          </>
+        {!user?.id ? (
+          <Stack.Screen name='Login' component={LoginPage} />
         ) : (
           <>
             <Stack.Screen name='Collection' component={CollectionPage} />

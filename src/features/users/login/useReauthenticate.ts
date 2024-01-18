@@ -10,6 +10,7 @@ export function useReauthenticate() {
     mutationFn: () => feathersClient.reAuthenticate(),
     onSuccess: (response: any) => {
       queryClient.setQueryData([Service.Users], response.user);
+      return response.user;
     },
   });
 }

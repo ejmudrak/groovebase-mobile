@@ -10,8 +10,8 @@ export const useGoogleLogin = () => {
     mutationFn: (accessToken: string) =>
       client.authenticate({ strategy: 'google', accessToken }),
     onSuccess: async (response: any) => {
-      await AsyncStorage.setItem('user', JSON.stringify(response.user));
       await queryClient.setQueryData([Service.Users], response.user);
+      await AsyncStorage.setItem('user', JSON.stringify(response.user));
     },
   });
 };

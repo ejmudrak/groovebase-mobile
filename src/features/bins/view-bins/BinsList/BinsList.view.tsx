@@ -30,5 +30,8 @@ const styles = StyleSheet.create({
   container: {
     width: '100%',
     height: '100%',
+    paddingTop: 8,
+    paddingLeft: 16,
+    paddingRight: 16,
   },
 });

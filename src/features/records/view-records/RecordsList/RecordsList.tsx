@@ -23,6 +23,7 @@ export default function RecordsList({
 
       <FlatList
         data={records}
+        style={styles.listContainer}
         renderItem={({ item }) => (
           <RecordCard record={item} onPress={onRecordPress} />
         )}
@@ -45,7 +46,9 @@ export default function RecordsList({
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  listContainer: {
+    paddingTop: 8,
+    paddingLeft: 16,
+    paddingRight: 16,
   },
 });

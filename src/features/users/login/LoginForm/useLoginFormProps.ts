@@ -9,12 +9,13 @@ import {
 import { useEffect } from 'react';
 import { useGoogleLogin } from '../useGoogleLogin';
 import { useNavigation } from '@react-navigation/native';
+import { useCurrentUser } from '../../useCurrentUser';
 
 WebBrowser.maybeCompleteAuthSession();
 
 export default function useLoginFormProps() {
   const { mutate: authenticate, isSuccess: isAuthenticated } = useGoogleLogin();
-  const { navigate } = useNavigation();
+  const currentUser = useCurrentUser();
 
   // The promptAsync function starts the Google signin flow
   const [_, response, promptAsync] = Google.useAuthRequest({
@@ -29,7 +30,7 @@ export default function useLoginFormProps() {
     const handleAuthenticate = async () => {
       const localUser = await getLocalUser();
 
-      if (!localUser) {
+      if (!localUser?.id) {
         if (
           response?.type === 'success' &&
           response?.authentication?.accessToken
@@ -37,9 +38,6 @@ export default function useLoginFormProps() {
           // Authenticates with our API server, creating or finding the entity for this profile
           authenticate(response?.authentication?.accessToken);
         }
-      } else {
-        // We have user data, so let's move on to the main app!
-        navigate('Collection' as never);
       }
     };
 
