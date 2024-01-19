@@ -1,7 +1,10 @@
+import { Bin } from '@src/types';
+
 export interface BinsListProps {
-  bins?: Record[];
+  bins?: Bin[];
   onBinPress: (record: Record) => void;
   refreshing?: boolean;
+  fetchNextPage?: () => void;
 }
 
 export type BaseBinsListProps = BinsListProps;

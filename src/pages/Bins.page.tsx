@@ -1,22 +1,24 @@
-import { useNavigation } from '@react-navigation/native';
+import BinsList from '@src/features/bins/view-bins/BinsList';
 import Header from '@src/components/Header';
 import Page from '@src/components/Page/Page';
-import { useBinsQuery } from '@src/features/bins/hooks/useBinsQuery';
-import BinsList from '@src/features/bins/view-bins/BinsList';
-import BinsListSkeleton from '@src/features/bins/view-bins/BinsList/BinsList.skeleton';
-import { useCurrentUser } from '@src/features/users/useCurrentUser';
-import { Bin } from '@src/types';
 import useRefresh from '@src/utils/hooks/useRefresh';
+import { Bin } from '@src/types';
+import { useBinsInfiniteQuery } from '@src/features/bins/hooks/useBinsInfiniteQuery';
+import { useCurrentUser } from '@src/features/users/useCurrentUser';
+import { useNavigation } from '@react-navigation/native';
 
 export default function BinsPage() {
   const user = useCurrentUser();
   const navigation = useNavigation<any>();
 
   const {
-    data: { items: bins = [] } = {},
-    refetch,
+    allItems: bins = [],
+    fetchNextPage,
+    hasNextPage,
     isLoading,
-  } = useBinsQuery({
+    refetch,
+    total,
+  } = useBinsInfiniteQuery({
     userId: user?.id || 0,
     $sort: { name: 1 },
   });
@@ -29,14 +31,13 @@ export default function BinsPage() {
 
   return (
     <Page authenticated>
-      <Header title='Record Bins' />
+      <Header title='Record Bins' subtitle={`${total} bins`} />
       <BinsList
         bins={bins}
         onBinPress={handleBinPress}
         refreshing={isLoading}
+        fetchNextPage={hasNextPage ? fetchNextPage : undefined}
       />
-
-      {isLoading && <BinsListSkeleton />}
     </Page>
   );
 }

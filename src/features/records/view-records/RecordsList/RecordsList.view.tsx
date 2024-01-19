@@ -1,15 +1,8 @@
-import { FlatList, StyleSheet, View } from 'react-native';
 import RecordCard from '../../RecordCard';
-import { Record } from '@src/types';
-import Text from '@src/components/Text';
 import RecordsListSkeleton from './RecordsList.skeleton';
-
-interface RecordsListProps {
-  records?: Record[];
-  onRecordPress: (record: Record) => void;
-  refreshing?: boolean;
-  fetchNextPage?: () => void;
-}
+import Text from '@src/components/Text';
+import { FlatList, StyleSheet, View } from 'react-native';
+import { RecordsListProps } from './RecordsList';
 
 export default function RecordsList({
   records,

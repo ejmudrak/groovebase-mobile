@@ -5,14 +5,13 @@
 
 import Header from '@src/components/Header';
 import Page from '@src/components/Page/Page';
-import RecordsList from '@src/features/records/view-records/RecordsList/RecordsList';
+import RecordsList from '@src/features/records/view-records/RecordsList';
 import SearchInput from '@src/components/SearchInput';
 import useSearch from '@src/utils/hooks/useSearch';
 import { StyleSheet, View } from 'react-native';
 import { useRecordsQuery } from '@src/features/records/useRecordsQuery';
 import { Record } from '@src/types';
 import { useNavigation } from '@react-navigation/native';
-import RecordsListSkeleton from '@src/features/records/view-records/RecordsList/RecordsList.skeleton';
 
 export default function AddRecordSearch() {
   const navigation = useNavigation<any>();
