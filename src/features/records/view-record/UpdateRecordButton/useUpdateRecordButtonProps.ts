@@ -77,6 +77,7 @@ export default function useUpdateRecordButtonProps({
 
   return {
     updateUserRecord,
+    userRecordId,
     isUpdating,
     recordId,
     ...restOfBaseProps,

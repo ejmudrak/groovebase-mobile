@@ -33,6 +33,7 @@ export default function AddRecordSearch() {
         <SearchInput
           searchValue={searchValue}
           setSearchValue={setSearchValue}
+          placeholder='ex. The Beatles'
         />
       </View>
 

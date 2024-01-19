@@ -28,6 +28,6 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center',
-    paddingBottom: 16,
+    paddingBottom: 24,
   },
 });

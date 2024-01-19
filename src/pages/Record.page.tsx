@@ -8,7 +8,7 @@ export default function RecordPage() {
   const { params: { record = {} } = {} } = useRoute<any>();
 
   return (
-    <Page authenticated hideNavBar>
+    <Page authenticated>
       <Header
         title='Record'
         displayBackButton

@@ -17,7 +17,7 @@ export default function AddRecordFormPage() {
   const { params: { record = {} } = {} } = useRoute<any>();
 
   return (
-    <Page authenticated hideNavBar>
+    <Page authenticated>
       <Header title='Add Record' displayBackButton />
       {record !== undefined && (
         <ScrollView style={styles.pageContent}>
@@ -43,5 +43,6 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     gap: 12,
+    marginBottom: 32,
   },
 });

@@ -3,6 +3,7 @@
   @description 
 */
 
+import { StyleSheet, View } from 'react-native';
 import type { UpdateRecordButtonProps } from './UpdateRecordButton';
 import Button from '@src/components/Button';
 
@@ -15,11 +16,17 @@ export default function UpdateRecordButton({
   isUpdating,
 }: UpdateRecordButtonProps) {
   return (
-    <Button
-      title='Submit'
-      onPress={handleSubmit(updateUserRecord)}
-      isLoading={isUpdating}
-      disabled={!isDirty || (isDirty && !isValid) || isRecordQueryLoading}
-    />
+    <View style={styles.container}>
+      <Button
+        title='Submit'
+        onPress={handleSubmit(updateUserRecord)}
+        isLoading={isUpdating}
+        disabled={!isDirty || (isDirty && !isValid) || isRecordQueryLoading}
+      />
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {},
+});

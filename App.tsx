@@ -11,26 +11,27 @@ import {
 } from '@expo-google-fonts/barlow';
 import { useCallback } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {
   QueryClient,
   QueryClientProvider,
   focusManager,
 } from '@tanstack/react-query';
-import { AppStateStatus, Platform } from 'react-native';
-import { useAppState } from '@src/utils/hooks/useAppState';
-import { useOnlineManager } from '@src/utils/hooks/useOnlineManager';
-import { StackParamsList, User } from '@src/types';
-import { useCurrentUser } from '@src/features/users/useCurrentUser';
+import AddBinPage from '@src/pages/AddBin.page';
 import AddRecordFormPage from '@src/pages/AddRecordForm.page';
-import RecordPage from '@src/pages/Record.page';
 import BinsPage from '@src/pages/Bins.page';
+import RecordPage from '@src/pages/Record.page';
 import RecordsInBinPage from '@src/pages/RecordsInBin.page';
 import Toast from 'react-native-toast-message';
+import { AppStateStatus, Platform } from 'react-native';
+import { StackParamsList, User } from '@src/types';
 import { toastConfig } from '@src/utils/toast-config';
-import AddBinPage from '@src/pages/AddBin.page';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useAppState } from '@src/utils/hooks/useAppState';
+import { useCurrentUser } from '@src/features/users/useCurrentUser';
+import { useOnlineManager } from '@src/utils/hooks/useOnlineManager';
 
 const Stack = createNativeStackNavigator<StackParamsList>();
+const Tab = createBottomTabNavigator();
 
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
@@ -81,31 +82,78 @@ const Navigation = ({ user }: { user?: User | null }) => {
     return null;
   }
 
-  return (
-    <NavigationContainer onReady={onLayoutRootView}>
-      <Stack.Navigator
-        initialRouteName='Login'
+  const CollectionStack = createNativeStackNavigator();
+
+  function CollectionStackScreen() {
+    return (
+      <CollectionStack.Navigator
         screenOptions={{
           headerShown: false,
         }}
       >
+        <CollectionStack.Screen name='Collection' component={CollectionPage} />
+        <CollectionStack.Screen name='Record' component={RecordPage} />
+      </CollectionStack.Navigator>
+    );
+  }
+
+  const BinsStack = createNativeStackNavigator();
+
+  function BinsStackScreen() {
+    return (
+      <BinsStack.Navigator
+        screenOptions={{
+          headerShown: false,
+        }}
+      >
+        <BinsStack.Screen name='Bins' component={BinsPage} />
+        <BinsStack.Screen name='RecordsInBin' component={RecordsInBinPage} />
+        <BinsStack.Screen name='Record' component={RecordPage} />
+      </BinsStack.Navigator>
+    );
+  }
+
+  const AddDrawer = createBottomTabNavigator();
+
+  function AddDrawerScreen() {
+    return (
+      <AddDrawer.Navigator
+        screenOptions={{
+          headerShown: false,
+          tabBarStyle: { display: 'none' },
+        }}
+      >
+        <AddDrawer.Screen
+          name='AddRecordSearch'
+          component={AddRecordSearchPage}
+        />
+        <AddDrawer.Screen name='AddRecordForm' component={AddRecordFormPage} />
+        <AddDrawer.Screen name='AddBin' component={AddBinPage} />
+      </AddDrawer.Navigator>
+    );
+  }
+
+  return (
+    <NavigationContainer onReady={onLayoutRootView}>
+      <Tab.Navigator
+        initialRouteName='Login'
+        screenOptions={{
+          headerShown: false,
+          // TODO: Customize native tab bar instead of using custom one
+          tabBarStyle: { display: 'none' },
+        }}
+      >
         {!user?.id ? (
-          <Stack.Screen name='Login' component={LoginPage} />
+          <Tab.Screen name='Login' component={LoginPage} />
         ) : (
           <>
-            <Stack.Screen name='Collection' component={CollectionPage} />
-            <Stack.Screen name='Record' component={RecordPage} />
-            <Stack.Screen name='Bins' component={BinsPage} />
-            <Stack.Screen name='RecordsInBin' component={RecordsInBinPage} />
-            <Stack.Screen name='AddBin' component={AddBinPage} />
-            <Stack.Screen
-              name='AddRecordSearch'
-              component={AddRecordSearchPage}
-            />
-            <Stack.Screen name='AddRecordForm' component={AddRecordFormPage} />
+            <Tab.Screen name='Collection' component={CollectionStackScreen} />
+            <Tab.Screen name='AddRecordSearch' component={AddDrawerScreen} />
+            <Tab.Screen name='Bins' component={BinsStackScreen} />
           </>
         )}
-      </Stack.Navigator>
+      </Tab.Navigator>
+
       <Toast config={toastConfig} />
     </NavigationContainer>
   );

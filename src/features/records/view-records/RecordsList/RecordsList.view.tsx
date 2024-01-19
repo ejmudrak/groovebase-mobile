@@ -36,7 +36,7 @@ export default function RecordsList({
         )}
         ListEmptyComponent={
           !refreshing ? (
-            <View>
+            <View style={styles.listEmptyContainer}>
               <Text>No records found.</Text>
             </View>
           ) : null
@@ -51,5 +51,10 @@ const styles = StyleSheet.create({
     paddingTop: 8,
     paddingLeft: 16,
     paddingRight: 16,
+  },
+  listEmptyContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });

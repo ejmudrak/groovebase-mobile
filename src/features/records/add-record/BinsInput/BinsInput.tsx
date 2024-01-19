@@ -27,8 +27,9 @@ export default function BinsInput({
 }: BinsInputProps) {
   const user = useCurrentUser();
   const { data: { items: bins = [] } = {} } = useBinsQuery({
-    userId: user?.id,
+    userId: user?.id || 0,
     $sort: { name: 1 },
+    $limit: 100,
   });
 
   const options = useMemo(

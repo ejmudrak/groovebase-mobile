@@ -117,6 +117,7 @@ const styles = StyleSheet.create({
     padding: 16,
     flex: 1,
     alignItems: 'stretch',
+    marginBottom: 16,
   },
 
   form: {

@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 83,
     position: 'absolute',
-    bottom: 0,
+    bottom: 8,
     backgroundColor: colors.white[500],
     display: 'flex',
     flexDirection: 'row',
