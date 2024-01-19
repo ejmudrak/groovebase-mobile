@@ -3,6 +3,7 @@ import RecordsListSkeleton from './RecordsList.skeleton';
 import Text from '@src/components/Text';
 import { FlatList, StyleSheet, View } from 'react-native';
 import { RecordsListProps } from './RecordsList';
+import ListFooter from '@src/components/ListFooter';
 
 export default function RecordsList({
   records,
@@ -26,6 +27,13 @@ export default function RecordsList({
         refreshing={refreshing}
         onEndReached={fetchNextPage}
         onEndReachedThreshold={0.1}
+        ListFooterComponent={() => (
+          <ListFooter
+            refreshing={refreshing}
+            hasItems={Boolean(records?.length)}
+            Skeleton={RecordsListSkeleton}
+          />
+        )}
         ListEmptyComponent={
           !refreshing ? (
             <View>

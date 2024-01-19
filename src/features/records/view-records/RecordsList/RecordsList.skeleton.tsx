@@ -1,9 +1,9 @@
 import { StyleSheet, View } from 'react-native';
 import Skeleton from '@src/components/Skeleton';
 
-export default function RecordsListSkeleton() {
+export default function RecordsListSkeleton({ style }: { style?: any }) {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, style]}>
       {new Array(10).fill(0).map((_, index) => (
         <Skeleton style={styles.skeleton} key={index} />
       ))}

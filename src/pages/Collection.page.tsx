@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import Header from '@src/components/Header';
 import Page from '@src/components/Page/Page';
-import RecordList from '@src/features/records/view-records/RecordsList';
+import RecordsList from '@src/features/records/view-records/RecordsList';
 import { useCurrentUser } from '@src/features/users/useCurrentUser';
 import { Record } from '@src/types';
 import useRefresh from '@src/utils/hooks/useRefresh';
@@ -38,7 +38,7 @@ export default function CollectionPage() {
         ActionsComponent={RecordsListOptions}
       />
 
-      <RecordList
+      <RecordsList
         records={records}
         onRecordPress={handleOnRecordPress}
         refreshing={isLoading}

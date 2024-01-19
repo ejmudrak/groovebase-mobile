@@ -3,6 +3,7 @@ import BinsListSkeleton from './BinsList.skeleton';
 import Text from '@src/components/Text';
 import { BinsListProps } from './BinsList';
 import { FlatList, StyleSheet, View } from 'react-native';
+import ListFooter from '@src/components/ListFooter';
 
 export default function BinsListView({
   bins,
@@ -22,6 +23,13 @@ export default function BinsListView({
         onEndReached={fetchNextPage}
         onEndReachedThreshold={0.1}
         style={styles.container}
+        ListFooterComponent={() => (
+          <ListFooter
+            refreshing={refreshing}
+            hasItems={Boolean(bins?.length)}
+            Skeleton={BinsListSkeleton}
+          />
+        )}
         ListEmptyComponent={
           !refreshing ? (
             <View>
@@ -41,5 +49,11 @@ const styles = StyleSheet.create({
     paddingTop: 8,
     paddingLeft: 16,
     paddingRight: 16,
+  },
+  listFooterContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    paddingBottom: 16,
   },
 });
