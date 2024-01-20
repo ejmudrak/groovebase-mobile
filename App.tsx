@@ -1,7 +1,7 @@
 import * as SplashScreen from 'expo-splash-screen';
-import CollectionPage from '@src/pages/Collection.page';
-import LoginPage from '@src/pages/Login.page';
-import AddRecordSearchPage from '@src/pages/AddRecordSearch.page';
+import CollectionPage from '@src/(app)/records';
+import LoginPage from '@src/sign-in';
+import AddRecordSearchPage from '@src/(app)/add-record/search';
 import { NavigationContainer } from '@react-navigation/native';
 import {
   useFonts,
@@ -17,18 +17,18 @@ import {
   QueryClientProvider,
   focusManager,
 } from '@tanstack/react-query';
-import AddBinPage from '@src/pages/AddBin.page';
-import AddRecordFormPage from '@src/pages/AddRecordForm.page';
-import BinsPage from '@src/pages/Bins.page';
-import RecordPage from '@src/pages/Record.page';
-import RecordsInBinPage from '@src/pages/RecordsInBin.page';
+import AddBinPage from '@src/(app)/add-bin';
+import AddRecordFormPage from '@src/(app)/add-record/form';
+import BinsPage from '@src/(app)/bins';
+import RecordPage from '@src/(app)/record/[recordId]';
+import RecordsInBinPage from '@src/(app)/bins/[binId]';
 import Toast from 'react-native-toast-message';
 import { AppStateStatus, Platform } from 'react-native';
-import { StackParamsList, User } from '@src/types';
-import { toastConfig } from '@src/utils/toast-config';
-import { useAppState } from '@src/utils/hooks/useAppState';
-import { useCurrentUser } from '@src/features/users/useCurrentUser';
-import { useOnlineManager } from '@src/utils/hooks/useOnlineManager';
+import { StackParamsList, User } from 'types';
+import { toastConfig } from 'utils/toast-config';
+import { useAppState } from 'utils/hooks/useAppState';
+import { useCurrentUser } from 'features/users/useCurrentUser';
+import { useOnlineManager } from 'utils/hooks/useOnlineManager';
 
 const Stack = createNativeStackNavigator<StackParamsList>();
 const Tab = createBottomTabNavigator();
