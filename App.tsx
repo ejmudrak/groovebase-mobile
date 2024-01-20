@@ -57,7 +57,6 @@ export default function App() {
 
 const NavWrapper = () => {
   const user = useCurrentUser();
-  console.log('current user:', user);
   return <Navigation user={user} />;
 };
 
