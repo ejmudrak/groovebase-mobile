@@ -10,7 +10,8 @@ import { useRecordsInfiniteQuery } from '@features/records/hooks/useRecordsInfin
 import { router } from 'expo-router';
 
 export default function RecordsInBinPage() {
-  const { params: { bin = {} } = {} } = useRoute<any>();
+  // TODO: Replace this with real data
+  const bin = {} as any;
   const user = useCurrentUser();
 
   const {

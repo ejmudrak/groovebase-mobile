@@ -2,6 +2,7 @@
   "expo": {
     "name": "groovebase-mobile",
     "slug": "groovebase-mobile",
+    "scheme": "com.erikmudrak.groovebasemobile",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -11,25 +12,32 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "experiments": {
+      "tsconfigPaths": true
+    },
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.anonymous.groovebasemobile"
+      "bundleIdentifier": "com.erikmudrak.groovebasemobile"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.anonymous.groovebasemobile"
+      "package": "com.erikmudrak.groovebasemobile"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
     },
     "plugins": [
-      "@react-native-google-signin/google-signin",
+      [
+        "@react-native-google-signin/google-signin",
+        {
+          "iosUrlScheme": "com.googleusercontent.apps.472031918708-ppnv74j5qtm22uibvmbia8n9pvr0gjnb"
+        }
+      ],
       "expo-router"
     ],
     "extra": {

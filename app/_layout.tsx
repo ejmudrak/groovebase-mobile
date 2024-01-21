@@ -15,10 +15,8 @@ import Toast from 'react-native-toast-message';
 import { AppStateStatus, Platform } from 'react-native';
 import { toastConfig } from '@utils/toast-config';
 import { useAppState } from '@utils/hooks/useAppState';
-import { useCurrentUser } from '@features/users/useCurrentUser';
 import { useOnlineManager } from '@utils/hooks/useOnlineManager';
 import { Slot, Stack } from 'expo-router';
-import { User } from 'types';
 import { useEffect } from 'react';
 export {
   // Catch any errors thrown by the Layout component.
