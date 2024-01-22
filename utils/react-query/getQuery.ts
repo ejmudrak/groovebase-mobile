@@ -5,7 +5,7 @@ import { Id } from '@feathersjs/feathers';
 // Gets one record's data from the API
 export default function getQuery<ServiceType>(
   queryKey: string,
-  id: Id,
+  id?: Id,
   params?: any,
   options?: any,
 ) {

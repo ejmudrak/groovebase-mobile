@@ -1,4 +1,3 @@
-import { useRoute } from '@react-navigation/native';
 import Header from '@components/Header';
 import Page from '@components/Page/Page';
 import RecordList from '@features/records/view-records/RecordsList';
@@ -7,12 +6,13 @@ import { Record } from 'types';
 import useRefresh from '@utils/hooks/useRefresh';
 import BinOptionsButton from '@features/bins/view-bin/BinOptionsButton';
 import { useRecordsInfiniteQuery } from '@features/records/hooks/useRecordsInfiniteQuery';
-import { router } from 'expo-router';
+import { router, useLocalSearchParams } from 'expo-router';
+import { useBinQuery } from '@features/records/view-record/hooks/useBinQuery';
 
-export default function RecordsInBinPage() {
-  // TODO: Replace this with real data
-  const bin = {} as any;
+export default function BinPage() {
   const user = useCurrentUser();
+  const { binId } = useLocalSearchParams<{ binId: string }>();
+  const { data: bin } = useBinQuery(binId);
 
   const {
     allItems: records = [],
@@ -23,7 +23,7 @@ export default function RecordsInBinPage() {
     total,
   } = useRecordsInfiniteQuery({
     userId: user?.id || 0,
-    binId: bin.id,
+    binId: bin?.id,
     $sort: { createdAt: -1 },
   });
 
@@ -39,7 +39,7 @@ export default function RecordsInBinPage() {
   return (
     <Page authenticated>
       <Header
-        title={bin.name}
+        title={bin?.name || 'Bin'}
         subtitle={`${total} records in bin`}
         displayBackButton
         ActionsComponent={BinOptionsButton}

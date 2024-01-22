@@ -5,7 +5,7 @@ import CollectionIcon from '../Icons/CollectionIcon';
 import BinIcon from '../Icons/BinIcon';
 import { ActionButton } from '../ActionButton';
 
-export default function NavigationBar() {
+export default function TabBar() {
   return (
     <View style={styles.container}>
       <TabBarItem

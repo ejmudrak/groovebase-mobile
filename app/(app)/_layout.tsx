@@ -1,17 +1,9 @@
 import { Redirect, Stack } from 'expo-router';
-
-// import { useSession } from '../../ctx';
-import Text from '@components/Text';
 import { useCurrentUser } from '@features/users/useCurrentUser';
 
 export default function AppLayout() {
-  // const { session, isLoading } = useSession();
   const user = useCurrentUser();
-
-  // You can keep the splash screen open, or render a loading screen like we do here.
-  // if (isLoading) {
-  //   return <Text>Loading...</Text>;
-  // }
+  console.log('user: ', user);
 
   // Only require authentication within the (app) group's layout as users
   // need to be able to access the (auth) group and sign in again.
@@ -22,5 +14,9 @@ export default function AppLayout() {
   }
 
   // This layout can be deferred because it's not the root layout.
-  return <Stack />;
+  return (
+    <Stack screenOptions={{ headerShown: false }} initialRouteName='(tabs)'>
+      <Stack.Screen name='(tabs)' options={{ headerShown: false }} />
+    </Stack>
+  );
 }

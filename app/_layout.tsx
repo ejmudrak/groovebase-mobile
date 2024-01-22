@@ -66,20 +66,7 @@ export default function RootLayout() {
   return (
     <QueryClientProvider client={queryClient}>
       <Slot />
-    </QueryClientProvider>
-  );
-}
-
-function RootLayoutNav() {
-  // const colorScheme = useColorScheme();
-
-  return (
-    <>
-      <Stack>
-        <Stack.Screen name='(auth)' options={{ headerShown: false }} />
-        {/* <Stack.Screen name='modal' options={{ presentation: 'modal' }} /> */}
-      </Stack>
       <Toast config={toastConfig} />
-    </>
+    </QueryClientProvider>
   );
 }

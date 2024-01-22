@@ -1,11 +1,13 @@
 import Page from '@components/Page';
 import Header from '@components/Header';
-import RecordDetails from '@features/records/[record]/RecordDetails';
-import RecordOptionsButton from '@features/records/[record]/RecordOptionsButton';
+import RecordDetails from '@features/records/view-record/RecordDetails';
+import RecordOptionsButton from '@features/records/view-record/RecordOptionsButton';
+import { useLocalSearchParams } from 'expo-router';
+import { useRecordQuery } from '@features/records/view-record/hooks/useRecordQuery';
 
 export default function RecordPage() {
-  // TODO: Replace this with real data
-  const record = {} as any;
+  const { recordId } = useLocalSearchParams<{ recordId: string }>();
+  const { data: record = {} } = useRecordQuery(recordId);
 
   return (
     <Page authenticated>

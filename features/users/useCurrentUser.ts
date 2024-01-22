@@ -19,9 +19,9 @@ export function useCurrentUser(): User | undefined | null {
       refetchOnMount: true,
       refetchOnWindowFocus: true,
       refetchOnReconnect: true,
-      onError: () => {
-        removeLocalStorageUser();
-      },
+      // onError: () => {
+      //   removeLocalStorageUser();
+      // },
     },
   );
 
