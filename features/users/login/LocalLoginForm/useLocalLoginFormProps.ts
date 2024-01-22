@@ -9,11 +9,15 @@ export default function useLocalLoginFormProps({
   const [password, onChangePassword] = useState('');
 
   const {
-    mutate: logIn,
+    mutate: authenticate,
     isLoading: isLoggingIn,
     error,
     isError,
   } = useLocalLogin();
+
+  const logIn = () => {
+    authenticate({ email: email.toLowerCase(), password });
+  };
 
   return {
     email,

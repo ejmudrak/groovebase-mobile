@@ -4,14 +4,9 @@ import { StyleSheet, View } from 'react-native';
 import { colors } from 'utils/styles/colors';
 import { LoginFormProps } from './LoginForm';
 import LocalLoginForm from '../LocalLoginForm';
+import { GoogleSigninButton } from '@react-native-google-signin/google-signin';
 
-export default function LoginForm({
-  promptGoogleAuthRequest,
-  signIn,
-  logout,
-  userInfo,
-  error,
-}: LoginFormProps) {
+export default function LoginForm({ promptGoogleAuthRequest }: LoginFormProps) {
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>

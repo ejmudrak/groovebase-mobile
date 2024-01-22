@@ -20,6 +20,7 @@ export default function useLoginFormProps() {
   const [error, setError] = useState<any>();
   const [userInfo, setUserInfo] = useState<any>();
 
+  // TODO: This method is deprecated, use @react-native-google-signin instead
   // The promptAsync function starts the Google signin flow
   const [_, response, promptAsync] = Google.useAuthRequest({
     androidClientId: ANDROID_GOOGLE_CLIENT_ID,
