@@ -4,8 +4,12 @@ import Card from '@components/Card/Card';
 import { colors } from '@utils/styles/colors';
 import Page from '@components/Page';
 import LoginForm from '@features/users/login/LoginForm';
+import { useCurrentUser } from '@features/users/useCurrentUser';
 
 export default function LoginPage() {
+  const user = useCurrentUser();
+  console.log('sign-in user: ', user);
+
   return (
     <Page>
       <View style={styles.container}>

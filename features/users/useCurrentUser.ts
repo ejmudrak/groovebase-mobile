@@ -5,7 +5,6 @@ import {
   getLocalStorageUser,
   removeLocalStorageUser,
 } from './login/userLocalStorage';
-import { useEffect } from 'react';
 
 export function useCurrentUser(): User | undefined | null {
   const queryClient = useQueryClient();
@@ -19,9 +18,9 @@ export function useCurrentUser(): User | undefined | null {
       refetchOnMount: true,
       refetchOnWindowFocus: true,
       refetchOnReconnect: true,
-      // onError: () => {
-      //   removeLocalStorageUser();
-      // },
+      onError: () => {
+        removeLocalStorageUser();
+      },
     },
   );
 
