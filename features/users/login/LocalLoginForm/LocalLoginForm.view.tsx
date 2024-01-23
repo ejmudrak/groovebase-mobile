@@ -18,12 +18,18 @@ export default function LocalLoginForm({
         <TextInput
           value={email}
           onChangeText={onChangeEmail}
+          spellCheck={false}
+          autoCapitalize='none'
+          autoComplete='email'
           label='Email'
           placeholder='Enter your email'
         />
         <TextInput
           value={password}
           onChangeText={onChangePassword}
+          secureTextEntry
+          spellCheck={false}
+          autoCapitalize='none'
           label='Password'
           placeholder='Enter your password'
         />

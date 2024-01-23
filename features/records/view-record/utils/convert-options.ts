@@ -1,6 +1,6 @@
 import { Option } from 'components/SelectInput/SelectInput';
-import { actionOptions } from '@app/(app)/add-record/ActionInput/useActionInput';
-import { conditions } from '@app/(app)/add-record/ConditionInput/useConditionInput';
+import { actionOptions } from '@features/records/add-record/ActionInput/useActionInput';
+import { conditions } from '@features/records/add-record/ConditionInput/useConditionInput';
 
 export const convertActionToSelectOptions = (action?: string): Option[] => {
   if (!action) return [];

@@ -1,7 +1,6 @@
 import { colors } from 'utils/styles/colors';
 import { StyleSheet, View, SafeAreaView } from 'react-native';
 import NavigationBar from 'components/TabBar';
-import AuthGuard from '../AuthGuard/AuthGuard';
 
 interface PageProps {
   authenticated?: boolean;
@@ -22,7 +21,7 @@ export default function Page({
         {children}
       </View>
 
-      {authenticated && !hideNavBar && <NavigationBar />}
+      {/* {authenticated && !hideNavBar && <NavigationBar />} */}
     </SafeAreaView>
   );
 }

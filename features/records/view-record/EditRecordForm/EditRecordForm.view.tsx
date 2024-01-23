@@ -3,14 +3,14 @@
   @description 
 */
 
-import { View, StyleSheet, ScrollView } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import type { EditRecordFormProps } from './EditRecordForm';
 import Card from 'components/Card';
 import { Controller } from 'react-hook-form';
-import ConditionInput from '../../../../app/(app)/add-record/ConditionInput';
-import BinsInput from '../../../../app/(app)/add-record/BinsInput';
+import ConditionInput from '@features/records/add-record/ConditionInput';
+import BinsInput from '@features/records/add-record/BinsInput';
 import TextInput from 'components/TextInput';
-import ActionInput from '../../../../app/(app)/add-record/ActionInput';
+import ActionInput from '@features/records/add-record/ActionInput';
 import UpdateRecordButton from '../UpdateRecordButton';
 
 export default function EditRecordForm({

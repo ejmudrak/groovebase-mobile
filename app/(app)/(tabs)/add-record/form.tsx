@@ -8,7 +8,7 @@ import Page from '@components/Page/Page';
 import { ScrollView, StyleSheet } from 'react-native';
 import Card from '@components/Card/Card';
 import RecordContent from '@components/RecordContent/RecordContent';
-import AddRecordForm from '@app/(app)/add-record/AddRecordForm';
+import AddRecordForm from '@features/records/add-record/AddRecordForm';
 
 export interface AddRecordFormPageProps {}
 

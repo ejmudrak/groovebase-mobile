@@ -25,7 +25,7 @@ export default function BinsPage() {
   useRefresh(refetch);
 
   const handleBinPress = (bin: Bin) => {
-    router.push({ pathname: 'bins/[binId]', params: { binId: bin.id } });
+    router.push({ pathname: 'bin/[binId]', params: { binId: bin.id } });
   };
 
   return (
