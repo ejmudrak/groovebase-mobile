@@ -17,7 +17,7 @@ export function useLocalLogin() {
       queryClient.setQueryData([Service.Users], response.user);
       await AsyncStorage.setItem('user', JSON.stringify(response.user));
 
-      router.replace('/records');
+      router.replace('(tabs)/records');
     },
   });
 }

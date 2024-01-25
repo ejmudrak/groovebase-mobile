@@ -1,4 +1,4 @@
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, SafeAreaView } from 'react-native';
 import Text from '@components/Text';
 import Card from '@components/Card/Card';
 import { colors } from '@utils/styles/colors';
@@ -13,15 +13,17 @@ export default function LoginPage() {
   return (
     <Page>
       <View style={styles.container}>
-        <View style={styles.header}>
-          <Text variant='h1' color={colors.blue[500]}>
-            Welcome to Groovebase
-          </Text>
+        <SafeAreaView>
+          <View style={styles.header}>
+            <Text variant='h1' color={colors.blue[500]}>
+              Welcome to Groovebase
+            </Text>
 
-          <Text variant='body1Bold' color={colors.black[400]}>
-            The hub for vinyl collectors, crate diggers, and music lovers
-          </Text>
-        </View>
+            <Text variant='body1Bold' color={colors.black[400]}>
+              The hub for vinyl collectors, crate diggers, and music lovers
+            </Text>
+          </View>
+        </SafeAreaView>
 
         <Card elevation={200} style={styles.card}>
           <LoginForm />

@@ -68,22 +68,24 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     height: 48,
-    width: '100%',
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
     gap: 8,
+
     borderWidth: 1,
     borderRadius: 12,
     borderColor: colors.gray[100],
+
     paddingLeft: 12,
     paddingRight: 16,
+    paddingBottom: 0,
   },
   input: {
-    height: '100%',
-    width: '100%',
-    ...typography.body3,
+    flex: 1,
+    fontSize: typography.body3.fontSize,
+    fontFamily: typography.body3.fontFamily,
   },
   requiredText: {
     color: 'red',

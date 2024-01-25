@@ -7,13 +7,27 @@
     Sets up an auth guard that handles reauthenticating the user with the Groovebase API
 */
 
-import { Redirect, Stack } from 'expo-router';
+import { Redirect, Stack, router, usePathname } from 'expo-router';
 import { useCurrentUser } from '@features/users/useCurrentUser';
 import { useReauthenticate } from '@features/users/login/useReauthenticate';
 import { useEffect, useMemo, useState } from 'react';
 
+export const unstable_settings = {
+  // Ensure that reloading on `/modal` keeps a back button present.
+  initialRouteName: '(tabs)/records',
+};
+
 export default function AppLayout() {
   const user = useCurrentUser();
+  const pathname = usePathname();
+  console.log('pathname: ', pathname);
+
+  useEffect(() => {
+    if (user?.id && pathname === '/') {
+      router.replace('/records');
+    }
+  }, [user?.id, pathname]);
+
   const [hasAttemptedReauth, setHasAttemptedReauth] = useState(false);
 
   const {
@@ -63,7 +77,10 @@ export default function AppLayout() {
   }
 
   return (
-    <Stack screenOptions={{ headerShown: false }}>
+    <Stack
+      screenOptions={{ headerShown: false }}
+      initialRouteName='(tabs)/records'
+    >
       <Stack.Screen name='(tabs)' options={{ headerShown: false }} />
     </Stack>
   );

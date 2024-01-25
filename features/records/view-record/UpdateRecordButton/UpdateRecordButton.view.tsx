@@ -18,7 +18,7 @@ export default function UpdateRecordButton({
   return (
     <View style={styles.container}>
       <Button
-        title='Submit'
+        title='Save'
         onPress={handleSubmit(updateUserRecord)}
         isLoading={isUpdating}
         disabled={!isDirty || (isDirty && !isValid) || isRecordQueryLoading}

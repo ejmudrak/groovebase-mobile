@@ -1,29 +1,25 @@
 import AddPlusIcon from '../Icons/AddPlusIcon';
 import CollectionIcon from '../Icons/CollectionIcon';
-import useActionButton from './useActionButton';
 import IconButton from 'components/IconButton';
 import { View, StyleSheet } from 'react-native';
 import { colors } from 'utils/styles/colors';
 import ActionsModal from '../ActionsModal';
 import ActionItem from '../ActionsModal/components/ActionItem';
 import BinIcon from '../Icons/BinIcon';
+import { ActionButtonProps } from './ActionButton';
 
-export interface ActionButtonProps {}
-
-export default function ActionButton({}: ActionButtonProps) {
-  const { handleNavigate } = useActionButton();
-
+export default function ActionButton({ router }: ActionButtonProps) {
   return (
     <ActionsModal title={`What's up?`} OpenModalComponent={AddButton}>
       <ActionItem
         icon={<CollectionIcon color={colors.blue[500]} />}
         label='Add record to collection'
-        onPress={() => handleNavigate('AddRecordSearch')}
+        onPress={() => router.replace('add-record/search')}
       />
       <ActionItem
         icon={<BinIcon color={colors.blue[500]} />}
         label='Create new bin'
-        onPress={() => handleNavigate('AddBin')}
+        onPress={() => router.replace('add-bin/index')}
       />
     </ActionsModal>
   );
