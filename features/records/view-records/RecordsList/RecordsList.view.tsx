@@ -30,7 +30,7 @@ export default function RecordsList({
         ListFooterComponent={() => (
           <ListFooter
             refreshing={refreshing}
-            hasItems={Boolean(records?.length)}
+            numItems={records?.length || 0}
             Skeleton={RecordsListSkeleton}
           />
         )}

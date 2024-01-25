@@ -1,9 +1,15 @@
+import { ActionButton } from '@components/ActionButton';
 import BinIcon from '@components/Icons/BinIcon';
 import CollectionIcon from '@components/Icons/CollectionIcon';
 import { colors } from '@utils/styles/colors';
 import { Link, Tabs } from 'expo-router';
 import { useEffect } from 'react';
 import { Pressable, StyleSheet } from 'react-native';
+
+// export const unstable_settings = {
+//   // Ensure that reloading on `/modal` keeps a back button present.
+//   initialRouteName: '(tabs)',
+// };
 
 export default function TabLayout() {
   return (
@@ -22,28 +28,44 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name='/add-bin/index'
+        name='actions'
+        /* Pass in a blank component as the base (this never gets shown) */
         options={{
-          href: null,
+          tabBarShowLabel: false,
+          title: '',
+          tabBarIcon: ({ color }) => <ActionButton />,
         }}
-      />
-      <Tabs.Screen
-        name='/add-record/search'
-        options={{
-          href: null,
-        }}
-      />
-      <Tabs.Screen
-        name='/add-record/form'
-        options={{
-          href: null,
-        }}
+        listeners={({ navigation }) => ({
+          tabPress: (e) => {
+            e.preventDefault();
+            console.log('Pressed FAB tab');
+          },
+        })}
       />
       <Tabs.Screen
         name='bins/index'
         options={{
           title: 'Bins',
           tabBarIcon: ({ color }) => <BinIcon color={color} />,
+        }}
+      />
+
+      <Tabs.Screen
+        name='add-bin/index'
+        options={{
+          href: null,
+        }}
+      />
+      <Tabs.Screen
+        name='add-record/search'
+        options={{
+          href: null,
+        }}
+      />
+      <Tabs.Screen
+        name='add-record/form'
+        options={{
+          href: null,
         }}
       />
     </Tabs>

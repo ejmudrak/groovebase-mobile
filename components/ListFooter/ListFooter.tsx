@@ -3,21 +3,21 @@ import Text from '../Text';
 
 export interface ListFooterComponentProps {
   refreshing?: boolean;
-  hasItems: boolean;
+  numItems: number;
   Skeleton: ({ style }: { style: any }) => JSX.Element;
 }
 
 export default function ListFooter({
   refreshing,
-  hasItems,
+  numItems,
   Skeleton,
 }: ListFooterComponentProps) {
   return (
     <View style={styles.container}>
-      {refreshing && hasItems ? (
+      {refreshing && numItems ? (
         <Skeleton style={{ paddingLeft: 0, paddingRight: 0, paddingTop: 0 }} />
       ) : (
-        <Text variant='body4'>{hasItems ? 'End of list' : ''}</Text>
+        <Text variant='body4'>{numItems >= 10 ? 'End of list' : ''}</Text>
       )}
     </View>
   );
@@ -29,5 +29,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     paddingBottom: 24,
+    marginBottom: 50,
   },
 });

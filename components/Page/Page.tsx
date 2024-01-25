@@ -8,22 +8,8 @@ interface PageProps {
   hideNavBar?: boolean;
 }
 
-export default function Page({
-  authenticated,
-  children,
-  hideNavBar,
-}: PageProps) {
-  return (
-    <SafeAreaView style={styles.safeArea}>
-      <View
-        style={[styles.container, !hideNavBar && styles.containerWithNavBar]}
-      >
-        {children}
-      </View>
-
-      {/* {authenticated && !hideNavBar && <NavigationBar />} */}
-    </SafeAreaView>
-  );
+export default function Page({ children }: PageProps) {
+  return <View style={[styles.container]}>{children}</View>;
 }
 
 const styles = StyleSheet.create({

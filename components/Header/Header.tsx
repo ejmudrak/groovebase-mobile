@@ -1,4 +1,4 @@
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, SafeAreaView } from 'react-native';
 import Text from 'components/Text';
 import IconButton from 'components/IconButton';
 import BackIcon from 'components/Icons/BackIcon';
@@ -32,19 +32,21 @@ export default function Header({
   };
 
   return (
-    <View style={[styles.container, style]}>
-      {displayBackButton && (
-        <IconButton onPress={handleGoBack} style={styles.backButton}>
-          <BackIcon />
-        </IconButton>
-      )}
-      <View>
-        <Text variant='h3'>{title}</Text>
-        {subtitle && <Text variant='body3'>{subtitle}</Text>}
-      </View>
+    <SafeAreaView style={styles.safeAreaContainer}>
+      <View style={[styles.container, style]}>
+        {displayBackButton && (
+          <IconButton onPress={handleGoBack} style={styles.backButton}>
+            <BackIcon />
+          </IconButton>
+        )}
+        <View>
+          <Text variant='h3'>{title}</Text>
+          {subtitle && <Text variant='body3'>{subtitle}</Text>}
+        </View>
 
-      <ActionsComponent />
-    </View>
+        <ActionsComponent />
+      </View>
+    </SafeAreaView>
   );
 }
 
@@ -57,6 +59,9 @@ const EmptyActionsComponent = () => (
 );
 
 const styles = StyleSheet.create({
+  safeAreaContainer: {
+    backgroundColor: colors.white[500],
+  },
   container: {
     backgroundColor: colors.white[500],
     borderBottomColor: colors.white[300],
