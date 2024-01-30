@@ -20,7 +20,7 @@ export default function getQuery<ServiceType>(
         });
     },
     {
-      enabled: Boolean(id), // prevents API from being called when there is no ID present
+      enabled: id !== undefined && Boolean(id), // prevents API from being called when there is no ID present
       refetchOnMount: false,
       staleTime: 5 * 60 * 1000, // 5 minutes
       ...options,

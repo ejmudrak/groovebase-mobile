@@ -12,8 +12,12 @@ import { StyleSheet, View } from 'react-native';
 import { useRecordsQuery } from '@features/records/hooks/useRecordsQuery';
 import { Record } from 'types';
 import { router } from 'expo-router';
+import { useQueryClient } from '@tanstack/react-query';
+import { Service } from '@utils/services';
 
 export default function AddRecordSearch() {
+  const queryClient = useQueryClient();
+
   const { searchValue, setSearchValue, items, isLoading } = useSearch({
     useSearchQuery: useRecordsQuery,
     initialValue: undefined,
@@ -21,7 +25,17 @@ export default function AddRecordSearch() {
   });
 
   const handleOnRecordPress = (record: Record) => {
-    router.push('/add-record/form');
+    // Add this temp record to the cache so that we can access it in the next step
+    queryClient.setQueryData(
+      [Service.Records, record.discogsMasterId?.toString()],
+      record,
+    );
+
+    // Navigate to the add record form
+    router.push({
+      pathname: 'add-record/[recordId]',
+      params: { recordId: record.discogsMasterId },
+    });
   };
 
   return (

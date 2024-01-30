@@ -6,26 +6,23 @@
 import Header from '@components/Header';
 import Page from '@components/Page/Page';
 import { ScrollView, StyleSheet } from 'react-native';
-import Card from '@components/Card/Card';
-import RecordContent from '@components/RecordContent/RecordContent';
 import AddRecordForm from '@features/records/add-record/AddRecordForm';
-
-export interface AddRecordFormPageProps {}
+import { useLocalSearchParams } from 'expo-router/src/hooks';
+import { useRecordQuery } from '@features/records/view-record/hooks/useRecordQuery';
+import RecordCard from '@features/records/RecordCard';
 
 export default function AddRecordFormPage() {
-  // TODO: Replace this with real data
-  const record = {} as any;
+  const { recordId } = useLocalSearchParams<{ recordId: string }>();
+  const { data: record } = useRecordQuery(recordId);
 
   return (
     <Page authenticated>
       <Header title='Add Record' displayBackButton />
-      {record !== undefined && (
-        <ScrollView style={styles.pageContent}>
-          <Card elevation={100} style={styles.card}>
-            <RecordContent {...record} />
 
-            <AddRecordForm record={record} />
-          </Card>
+      {record !== undefined && (
+        <ScrollView style={styles.container}>
+          <RecordCard record={record} />
+          <AddRecordForm record={record} />
         </ScrollView>
       )}
     </Page>
@@ -33,16 +30,13 @@ export default function AddRecordFormPage() {
 }
 
 const styles = StyleSheet.create({
-  pageContent: {
-    padding: 16,
-  },
-
-  card: {
-    width: '100%',
-    padding: 16,
+  container: {
+    flex: 1,
     display: 'flex',
     flexDirection: 'column',
-    gap: 12,
-    marginBottom: 32,
+    paddingTop: 8,
+    paddingLeft: 16,
+    paddingRight: 16,
+    gap: 8,
   },
 });

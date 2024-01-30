@@ -9,8 +9,6 @@ import { StyleSheet } from 'react-native';
 import Card from '@components/Card/Card';
 import AddBinForm from '@features/bins/add-bin/AddBinForm';
 
-export interface AddBinPageProps {}
-
 export default function AddBinPage() {
   return (
     <Page authenticated hideNavBar>

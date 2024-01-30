@@ -5,7 +5,6 @@ import { Tabs } from 'expo-router';
 import { StyleSheet } from 'react-native';
 
 export const unstable_settings = {
-  // Ensure that reloading on `/modal` keeps a back button present.
   initialRouteName: '(tabs)/records',
 };
 
@@ -32,12 +31,12 @@ export default function TabLayout() {
         options={{
           tabBarShowLabel: false,
           title: '',
-          tabBarIcon: ({ color }) => <ActionButton />,
+          tabBarIcon: () => <ActionButton />,
         }}
-        listeners={({ navigation }) => ({
+        listeners={() => ({
           tabPress: (e) => {
+            // swallows the tab press event, allowing out action button modal to open
             e.preventDefault();
-            console.log('Pressed FAB tab');
           },
         })}
       />
@@ -48,6 +47,9 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => <BinIcon color={color} />,
         }}
       />
+      <Tabs.Screen name='add-record' options={{ href: null }} />
+      <Tabs.Screen name='add-record/[recordId]' options={{ href: null }} />
+      <Tabs.Screen name='add-bin/index' options={{ href: null }} />
     </Tabs>
   );
 }
@@ -57,6 +59,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 83,
     position: 'absolute',
+    paddingTop: 20,
 
     boxShadow: '0px -2px 24px rgba(0, 0, 0, 0.08)', // for browser only
     shadowColor: 'rgba(0,0,0)',

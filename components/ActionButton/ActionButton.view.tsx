@@ -14,12 +14,12 @@ export default function ActionButton({ router }: ActionButtonProps) {
       <ActionItem
         icon={<CollectionIcon color={colors.blue[500]} />}
         label='Add record to collection'
-        onPress={() => router.replace('add-record/search')}
+        onPress={() => router.replace('add-record')}
       />
       <ActionItem
         icon={<BinIcon color={colors.blue[500]} />}
         label='Create new bin'
-        onPress={() => router.replace('add-bin/index')}
+        onPress={() => router.replace('add-bin')}
       />
     </ActionsModal>
   );

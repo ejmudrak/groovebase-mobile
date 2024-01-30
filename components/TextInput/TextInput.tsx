@@ -84,6 +84,7 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
+    height: '100%',
     fontSize: typography.body3.fontSize,
     fontFamily: typography.body3.fontFamily,
   },

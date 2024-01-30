@@ -20,6 +20,7 @@ import { useCreateRecordBins } from '@features/bins/hooks/useCreateRecordBins';
 import Toast from 'react-native-toast-message';
 import { useEffect } from 'react';
 import { router } from 'expo-router';
+import Card from '@components/Card';
 
 export interface AddRecordFormProps {
   record: Record;
@@ -136,7 +137,7 @@ export default function AddRecordForm({ record }: AddRecordFormProps) {
   }, [isError, createRecordError, createUserRecordError, createRecordBinError]);
 
   return (
-    <View style={styles.container}>
+    <Card elevation={100} style={styles.container}>
       <View style={styles.form}>
         <View style={styles.fields}>
           <Controller
@@ -219,14 +220,16 @@ export default function AddRecordForm({ record }: AddRecordFormProps) {
           disabled={!isDirty || (isDirty && !isValid)}
         />
       </View>
-    </View>
+    </Card>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    padding: 16,
     flex: 1,
-    width: '100%',
+    alignItems: 'stretch',
+    marginBottom: 16,
   },
   form: { display: 'flex', gap: 24, marginBottom: 8 },
   fields: {
