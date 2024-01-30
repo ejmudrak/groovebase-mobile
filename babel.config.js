@@ -8,12 +8,25 @@ module.exports = function(api) {
         {
           root: ['.'],
           alias: {
-            '@src': './src',
+            '@utils': './utils',
+          },
+          alias: {
+            '@app': './app',
+          },
+          alias: {
+            '@components': './components',
+          },
+          alias: {
+            '@features': './features',
+          },
+          alias: {
+            '@assets': './assets',
           },
         },
       ],
       "module:react-native-dotenv",
-      'react-native-reanimated/plugin'
+      'react-native-reanimated/plugin',
+      'expo-router/babel'
     ],
   };
 };

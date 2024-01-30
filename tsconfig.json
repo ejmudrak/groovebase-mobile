@@ -51,7 +51,11 @@
     // Babel Plugin Module Resolver
     "baseUrl": ".",
     "paths": {
-      "@src/*": ["src/*"]
+      "@app/*": ["app/*"],
+      "@utils/*": ["utils/*"],
+      "@components/*": ["components/*"],
+      "@features/*": ["features/*"],
+      "@assets/*": ["assets/*"]
     }
   }
 }
