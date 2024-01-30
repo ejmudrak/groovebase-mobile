@@ -1,5 +1,5 @@
 export interface RemoveBinOptionProps extends PressableProps {
-  binId: number;
+  binId?: string;
   closeModal?: () => void;
   handleRemoveBin: () => void;
   isRemovingBin: boolean;

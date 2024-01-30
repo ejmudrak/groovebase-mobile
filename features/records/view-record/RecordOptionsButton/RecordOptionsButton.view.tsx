@@ -11,16 +11,17 @@ import { shadows } from 'utils/styles/shadows';
 import { StyleSheet } from 'react-native';
 import ActionsModal from 'components/ActionsModal';
 import RemoveRecordOption from '../RemoveRecordOption';
+import { useLocalSearchParams } from 'expo-router';
 
 export default function RecordOptionsButton() {
-  const { params: { record = {} } = {} } = useRoute<any>();
+  const { recordId } = useLocalSearchParams<{ recordId: string }>();
 
   return (
     <ActionsModal
       title={`What would you like to do?`}
       OpenModalComponent={OptionsButton}
     >
-      <RemoveRecordOption recordId={record.id} />
+      <RemoveRecordOption recordId={recordId} />
     </ActionsModal>
   );
 }

@@ -1,5 +1,5 @@
 export interface RemoveRecordOptionProps extends PressableProps {
-  recordId: number;
+  recordId?: string;
   closeModal?: () => void;
   handleRemoveRecord: () => void;
   isRemovingRecord: boolean;

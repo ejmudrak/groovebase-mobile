@@ -11,16 +11,17 @@ import { shadows } from 'utils/styles/shadows';
 import { StyleSheet } from 'react-native';
 import ActionsModal from 'components/ActionsModal';
 import RemoveBinOption from '../RemoveBinOption';
+import { useLocalSearchParams } from 'expo-router/src/hooks';
 
 export default function BinOptionsButton() {
-  const { params: { bin = {} } = {} } = useRoute<any>();
+  const { binId } = useLocalSearchParams<{ binId: string }>();
 
   return (
     <ActionsModal
       title={`What would you like to do?`}
       OpenModalComponent={OptionsButton}
     >
-      <RemoveBinOption binId={bin.id} />
+      <RemoveBinOption binId={binId} />
     </ActionsModal>
   );
 }
