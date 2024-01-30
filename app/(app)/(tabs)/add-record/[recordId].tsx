@@ -10,6 +10,7 @@ import AddRecordForm from '@features/records/add-record/AddRecordForm';
 import { useLocalSearchParams } from 'expo-router/src/hooks';
 import { useRecordQuery } from '@features/records/view-record/hooks/useRecordQuery';
 import RecordCard from '@features/records/RecordCard';
+import { TAB_BAR_HEIGHT } from '@utils/constants';
 
 export default function AddRecordFormPage() {
   const { recordId } = useLocalSearchParams<{ recordId: string }>();
@@ -38,5 +39,6 @@ const styles = StyleSheet.create({
     paddingLeft: 16,
     paddingRight: 16,
     gap: 8,
+    marginBottom: TAB_BAR_HEIGHT,
   },
 });

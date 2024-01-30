@@ -1,6 +1,7 @@
 import ActionButton from '@components/ActionButton';
 import BinIcon from '@components/Icons/BinIcon';
 import CollectionIcon from '@components/Icons/CollectionIcon';
+import { TAB_BAR_HEIGHT } from '@utils/constants';
 import { Tabs } from 'expo-router';
 import { StyleSheet } from 'react-native';
 
@@ -48,8 +49,10 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen name='add-record' options={{ href: null }} />
-      <Tabs.Screen name='add-record/[recordId]' options={{ href: null }} />
-      <Tabs.Screen name='add-bin/index' options={{ href: null }} />
+      {/* <Tabs.Screen name='add-record/index' options={{ href: null }} /> */}
+      {/* <Tabs.Screen name='add-record/[recordId]' options={{ href: null }} /> */}
+      <Tabs.Screen name='add-bin' options={{ href: null }} />
+      {/* <Tabs.Screen name='add-bin/index' options={{ href: null }} /> */}
     </Tabs>
   );
 }
@@ -57,7 +60,7 @@ export default function TabLayout() {
 const styles = StyleSheet.create({
   tabBar: {
     width: '100%',
-    height: 83,
+    height: TAB_BAR_HEIGHT,
     position: 'absolute',
     paddingTop: 20,
 
