@@ -6,13 +6,18 @@ import { Record } from 'types';
 interface RecordCardProps {
   record: Record;
   onPress?: (record: Record) => void;
+  isLoading?: boolean;
 }
 
-export default function RecordCard({ record, onPress }: RecordCardProps) {
+export default function RecordCard({
+  record,
+  onPress,
+  isLoading,
+}: RecordCardProps) {
   return (
     <Pressable onPress={() => onPress && onPress(record)}>
       <Card elevation={100} style={styles.container}>
-        <RecordContent {...record} />
+        <RecordContent {...record} isLoading={isLoading} />
       </Card>
     </Pressable>
   );

@@ -7,7 +7,7 @@ import { useRecordQuery } from '@features/records/view-record/hooks/useRecordQue
 
 export default function RecordPage() {
   const { recordId } = useLocalSearchParams<{ recordId: string }>();
-  const { data: record = {} } = useRecordQuery(recordId);
+  const { data: record = {}, isLoading } = useRecordQuery(recordId);
 
   return (
     <Page authenticated>
@@ -16,7 +16,7 @@ export default function RecordPage() {
         displayBackButton
         ActionsComponent={RecordOptionsButton}
       />
-      <RecordDetails record={record} />
+      <RecordDetails record={record} isLoading={isLoading} />
     </Page>
   );
 }

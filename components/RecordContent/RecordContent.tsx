@@ -2,31 +2,37 @@ import Text from 'components/Text';
 import { StyleSheet, View, Image } from 'react-native';
 import { colors } from 'utils/styles/colors';
 import { Record } from 'types';
+import RecordContentSkeleton from './RecordContent.skeleton';
 
-type RecordContentProps = Pick<
-  Record,
-  'artist' | 'name' | 'year' | 'smallImageUrl'
->;
+interface RecordContentProps
+  extends Pick<Record, 'artist' | 'name' | 'year' | 'smallImageUrl'> {
+  isLoading?: boolean;
+}
 
 export default function RecordContent({
   artist,
+  isLoading,
   name,
-  year,
   smallImageUrl,
+  year,
 }: RecordContentProps) {
   return (
     <View style={styles.container}>
       <Image source={{ uri: smallImageUrl }} style={styles.image} />
 
-      <View style={styles.labelContainer}>
-        <Text variant='body4' color={colors.black[400]}>
-          {artist}
-        </Text>
-        <Text variant='body2Bold'>{name}</Text>
-        <Text variant='body4' color={colors.black[400]}>
-          {year}
-        </Text>
-      </View>
+      {!isLoading ? (
+        <View style={styles.labelContainer}>
+          <Text variant='body4' color={colors.black[400]}>
+            {artist}
+          </Text>
+          <Text variant='body2Bold'>{name}</Text>
+          <Text variant='body4' color={colors.black[400]}>
+            {year}
+          </Text>
+        </View>
+      ) : (
+        <RecordContentSkeleton />
+      )}
     </View>
   );
 }

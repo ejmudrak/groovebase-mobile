@@ -8,10 +8,13 @@ import type { RecordDetailsProps } from './RecordDetails';
 import RecordCard from '../../RecordCard';
 import EditRecordForm from '../EditRecordForm';
 
-export default function RecordDetails({ record }: RecordDetailsProps) {
+export default function RecordDetails({
+  record,
+  isLoading,
+}: RecordDetailsProps) {
   return (
     <ScrollView style={styles.container}>
-      <RecordCard record={record} />
+      <RecordCard record={record} isLoading={isLoading} />
       <EditRecordForm record={record} />
     </ScrollView>
   );
