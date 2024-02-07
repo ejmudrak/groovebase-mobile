@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     height: 56,
     borderRadius: 20,
     marginBottom: 16,
-    ...shadows[500],
+    ...shadows[300],
     shadowColor: colors.blue[500],
   },
   addIcon: {

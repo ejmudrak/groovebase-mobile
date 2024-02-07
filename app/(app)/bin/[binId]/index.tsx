@@ -23,7 +23,7 @@ export default function BinPage() {
     total,
   } = useRecordsInfiniteQuery({
     userId: user?.id || 0,
-    binId: bin?.id,
+    binId,
     $sort: { createdAt: -1 },
   });
 
