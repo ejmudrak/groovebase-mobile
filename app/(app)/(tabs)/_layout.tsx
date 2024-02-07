@@ -63,6 +63,8 @@ const styles = StyleSheet.create({
     height: TAB_BAR_HEIGHT,
     position: 'absolute',
     paddingTop: 20,
+    paddingLeft: 20,
+    paddingRight: 20,
 
     boxShadow: '0px -2px 24px rgba(0, 0, 0, 0.08)', // for browser only
     shadowColor: 'rgba(0,0,0)',

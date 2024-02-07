@@ -3,6 +3,7 @@ import CollectionIcon from '../Icons/CollectionIcon';
 import IconButton from 'components/IconButton';
 import { View, StyleSheet } from 'react-native';
 import { colors } from 'utils/styles/colors';
+import { shadows } from 'utils/styles/shadows';
 import ActionsModal from '../ActionsModal';
 import ActionItem from '../ActionsModal/components/ActionItem';
 import BinIcon from '../Icons/BinIcon';
@@ -37,6 +38,12 @@ const styles = StyleSheet.create({
   addButton: {
     backgroundColor: colors.blue[500],
     transform: [{ rotate: '45deg' }],
+    width: 56,
+    height: 56,
+    borderRadius: 20,
+    marginBottom: 16,
+    ...shadows[500],
+    shadowColor: colors.blue[500],
   },
   addIcon: {
     transform: [{ rotate: '-45deg' }],
