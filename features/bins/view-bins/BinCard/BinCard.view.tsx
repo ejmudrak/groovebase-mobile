@@ -20,7 +20,7 @@ export default function BinCard({
 
         <View style={styles.binContainer}>
           <View style={styles.titleContainer}>
-            <Text variant='h4' color={colors.black[500]}>
+            <Text variant='h4' color={colors.black[500]} numberOfLines={1}>
               {bin.name}
             </Text>
             <Text
@@ -76,6 +76,7 @@ const styles = StyleSheet.create({
   titleContainer: {
     display: 'flex',
     flexDirection: 'column',
+    flex: 1,
   },
   numRecordsLabel: {
     marginStart: 1,

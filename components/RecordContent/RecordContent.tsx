@@ -22,10 +22,17 @@ export default function RecordContent({
 
       {!isLoading ? (
         <View style={styles.labelContainer}>
-          <Text variant='body4' color={colors.black[400]}>
+          <Text
+            variant='body4'
+            color={colors.black[400]}
+            numberOfLines={1}
+            ellipsizeMode='tail'
+          >
             {artist}
           </Text>
-          <Text variant='body2Bold'>{name}</Text>
+          <Text variant='body2Bold' numberOfLines={1} ellipsizeMode='tail'>
+            {name}
+          </Text>
           <Text variant='body4' color={colors.black[400]}>
             {year}
           </Text>
@@ -58,7 +65,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
-    flexShrink: 0,
     gap: 4,
+    flex: 1,
   },
 });
