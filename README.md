@@ -3,6 +3,8 @@ React Native repo for groovebase: a vinyl collection manager and "Goodreads for 
 
 ![Image](https://cdn.dribbble.com/userupload/10358313/file/original-ba4cd54a297771a8b350f165c791ebe7.png?resize=1024x687)
 
+Check out the Groovebase Node API [here](https://github.com/ejmudrak/groovebase-api/tree/main)
+
 Built with:
 - Expo
 - TypeScript
