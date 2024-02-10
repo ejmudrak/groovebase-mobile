@@ -11,6 +11,7 @@ import { useState } from 'react';
 
 export interface TextInputProps extends RNTextInputProps {
   hideOutline?: boolean;
+  containerStyle?: object;
   inputContainerStyle?: object;
   inputRef?: any;
   label?: string;
@@ -27,13 +28,14 @@ export default function TextInput({
   leftIcon,
   rightIcon,
   required,
+  containerStyle,
   style,
   ...restOfProps
 }: TextInputProps) {
   const [isFocused, setIsFocused] = useState(false);
 
   return (
-    <View style={styles.container}>
+    <View style={(styles.container, containerStyle)}>
       {Boolean(label) && (
         <Text variant='body3Bold'>
           {label}
@@ -83,7 +85,7 @@ const styles = StyleSheet.create({
     paddingBottom: 0,
   },
   input: {
-    flex: 1,
+    width: '100%',
     height: '100%',
     fontSize: typography.body3.fontSize,
     fontFamily: typography.body3.fontFamily,

@@ -58,33 +58,38 @@ export default function EditRecordForm({
               )}
             />
 
-            <Controller
-              control={control}
-              name='color'
-              render={({ field: { onChange, onBlur, value } }) => (
-                <TextInput
-                  label='Color'
-                  placeholder='ex. black, cosmic marble purple'
-                  onChangeText={onChange}
-                  onBlur={onBlur}
-                  value={value}
-                />
-              )}
-            />
+            <View style={styles.rowInputs}>
+              <Controller
+                control={control}
+                name='color'
+                render={({ field: { onChange, onBlur, value } }) => (
+                  <TextInput
+                    label='Color'
+                    placeholder='ex. black, cosmic marble purple'
+                    onChangeText={onChange}
+                    onBlur={onBlur}
+                    value={value}
+                    containerStyle={styles.rowInput}
+                  />
+                )}
+              />
 
-            <Controller
-              control={control}
-              name='price'
-              render={({ field: { onChange, onBlur, value } }) => (
-                <TextInput
-                  label='Price'
-                  placeholder='Enter how much you paid'
-                  onChangeText={onChange}
-                  onBlur={onBlur}
-                  value={value}
-                />
-              )}
-            />
+              <Controller
+                control={control}
+                name='price'
+                render={({ field: { onChange, onBlur, value } }) => (
+                  <TextInput
+                    label='Price'
+                    placeholder='Enter amount paid'
+                    onChangeText={onChange}
+                    onBlur={onBlur}
+                    value={value}
+                    containerStyle={styles.rowInput}
+                    inputMode='decimal'
+                  />
+                )}
+              />
+            </View>
 
             <Controller
               control={control}
@@ -134,5 +139,18 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     gap: 8,
+    flex: 1,
+  },
+
+  rowInputs: {
+    display: 'flex',
+    flexDirection: 'row',
+    flex: 1,
+    gap: 12,
+  },
+  rowInput: {
+    flexGrow: 1,
+    flexShrink: 1,
+    flexBasis: 0,
   },
 });

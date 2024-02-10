@@ -124,11 +124,11 @@ export default function useAddRecordFormProps({
   }, [isError, createRecordError, createUserRecordError, createRecordBinError]);
 
   return {
+    addRecordToCollection,
     control,
     handleSubmit,
-    addRecordToCollection,
-    isLoading,
     isDirty,
+    isLoading,
     isValid,
     ...restOfBaseProps,
   };
