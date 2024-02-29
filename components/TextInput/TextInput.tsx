@@ -35,7 +35,7 @@ export default function TextInput({
   const [isFocused, setIsFocused] = useState(false);
 
   return (
-    <View style={(styles.container, containerStyle)}>
+    <View style={[styles.container, containerStyle]}>
       {Boolean(label) && (
         <Text variant='body3Bold'>
           {label}

@@ -84,7 +84,7 @@ export default function useLoginFormProps() {
 
   return {
     promptGoogleAuthRequest: promptAsync,
-    signInWithGoogle,
+    signIn: signInWithGoogle,
     logout,
     error,
     userInfo,

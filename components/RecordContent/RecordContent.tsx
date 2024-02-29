@@ -5,7 +5,7 @@ import { Record } from 'types';
 import RecordContentSkeleton from './RecordContent.skeleton';
 
 interface RecordContentProps
-  extends Pick<Record, 'artist' | 'name' | 'year' | 'smallImageUrl'> {
+  extends Partial<Pick<Record, 'artist' | 'name' | 'year' | 'smallImageUrl'>> {
   isLoading?: boolean;
 }
 

@@ -5,7 +5,6 @@
 
 import { View, StyleSheet } from 'react-native';
 import type { EditRecordFormProps } from './EditRecordForm';
-import Card from 'components/Card';
 import { Controller } from 'react-hook-form';
 import ConditionInput from '@features/records/add-record/ConditionInput';
 import BinsInput from '@features/records/add-record/BinsInput';
@@ -24,7 +23,7 @@ export default function EditRecordForm({
   handleSubmit,
 }: EditRecordFormProps) {
   return (
-    <Card elevation={100} style={styles.container}>
+    <>
       <View style={styles.form}>
         {!isRecordQueryLoading && userRecordId && recordId ? (
           <View style={styles.fields}>
@@ -118,18 +117,11 @@ export default function EditRecordForm({
         isValid={isValid}
         isRecordQueryLoading={isRecordQueryLoading}
       />
-    </Card>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    padding: 16,
-    flex: 1,
-    alignItems: 'stretch',
-    marginBottom: 16,
-  },
-
   form: {
     display: 'flex',
     gap: 24,

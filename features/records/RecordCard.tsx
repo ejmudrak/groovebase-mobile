@@ -4,7 +4,7 @@ import { Pressable, StyleSheet } from 'react-native';
 import { Record } from 'types';
 
 interface RecordCardProps {
-  record: Record;
+  record?: Record;
   onPress?: (record: Record) => void;
   isLoading?: boolean;
 }
@@ -15,7 +15,7 @@ export default function RecordCard({
   isLoading,
 }: RecordCardProps) {
   return (
-    <Pressable onPress={() => onPress && onPress(record)}>
+    <Pressable onPress={() => onPress && record && onPress(record)}>
       <Card elevation={100} style={styles.container}>
         <RecordContent {...record} isLoading={isLoading} />
       </Card>
