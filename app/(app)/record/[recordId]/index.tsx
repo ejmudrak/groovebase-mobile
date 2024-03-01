@@ -8,11 +8,11 @@ import RecordCard from '@features/records/RecordCard';
 import EditRecordForm from '@features/records/view-record/EditRecordForm';
 import Card from '@components/Card';
 import GenreChips from '../components/GenreChips';
+import TrackList from '../components/TrackList/TrackList.view';
 
 export default function RecordPage() {
   const { recordId } = useLocalSearchParams<{ recordId: string }>();
   const { data: record, isLoading } = useRecordQuery(recordId);
-  console.log('record: ', record);
 
   return (
     <Page authenticated>
@@ -26,7 +26,13 @@ export default function RecordPage() {
         <RecordCard record={record} isLoading={isLoading} />
 
         <Card elevation={100} style={styles.card}>
-          <GenreChips genres={record?.genres} />
+          {Boolean(record?.genres?.length) && (
+            <GenreChips genres={record?.genres} />
+          )}
+
+          {Boolean(record?.tracks?.length) && (
+            <TrackList tracks={record?.tracks || []} />
+          )}
           <EditRecordForm record={(record || {}) as any} />
         </Card>
       </ScrollView>

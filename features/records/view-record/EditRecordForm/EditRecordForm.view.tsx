@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
   form: {
     display: 'flex',
     gap: 24,
-    marginBottom: 8,
+    marginBottom: 16,
   },
   fields: {
     display: 'flex',

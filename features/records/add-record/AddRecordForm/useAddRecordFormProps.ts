@@ -16,6 +16,8 @@ export default function useAddRecordFormProps({
 }: BaseAddRecordFormProps) {
   const user = useCurrentUser();
 
+  console.log('record: ', record);
+
   const {
     control,
     handleSubmit,

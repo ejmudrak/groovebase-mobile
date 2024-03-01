@@ -72,6 +72,7 @@ export interface Record extends FeathersRecord {
   largeImageUrl: string;
   discogsMasterId?: number;
   genres: string[];
+  tracks?: Track[];
 }
 
 export interface UserRecord extends FeathersRecord {
@@ -101,4 +102,11 @@ export interface Bin extends FeathersRecord {
 
 interface SvgProps {
   color?: string;
+}
+
+interface Track extends FeathersRecord {
+  name: string;
+  recordId: number;
+  duration: string;
+  position: string;
 }
