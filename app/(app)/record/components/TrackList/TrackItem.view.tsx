@@ -36,9 +36,11 @@ export default function TrackItem({
 
       <View>
         <Text variant='body2'>{name}</Text>
-        <Text variant='body4' color={colors.black[400]}>
-          {duration}
-        </Text>
+        {Boolean(duration) && (
+          <Text variant='body4' color={colors.black[400]}>
+            {duration}
+          </Text>
+        )}
       </View>
     </View>
   );

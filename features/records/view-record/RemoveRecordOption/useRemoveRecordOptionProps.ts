@@ -34,7 +34,7 @@ export default function useRemoveRecordOptionProps(
     closeModal && closeModal();
 
     // Redirects to Collection page
-    setTimeout(() => router.replace('records'), 1000);
+    setTimeout(() => router.push('/records'), 1000);
   };
 
   // Success and error toast messages
@@ -44,6 +44,7 @@ export default function useRemoveRecordOptionProps(
         type: 'success',
         text1: 'Removed record successfully',
         position: 'bottom',
+        visibilityTime: 2000,
       });
 
       handleRecordRemovedSuccess();
