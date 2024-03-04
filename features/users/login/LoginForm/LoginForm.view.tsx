@@ -5,6 +5,7 @@ import { colors } from 'utils/styles/colors';
 import { LoginFormProps } from './LoginForm';
 import LocalLoginForm from '../LocalLoginForm';
 import { GoogleSigninButton } from '@react-native-google-signin/google-signin';
+import LegalMessage from '@components/LegalMessage';
 
 export default function LoginForm({ promptGoogleAuthRequest }: LoginFormProps) {
   return (
@@ -28,6 +29,8 @@ export default function LoginForm({ promptGoogleAuthRequest }: LoginFormProps) {
         fullWidth
         onPress={() => promptGoogleAuthRequest()}
       />
+
+      <LegalMessage />
 
       {/* {userInfo && <Text>{JSON.stringify(userInfo.user)}</Text>} */}
       {/* {userInfo && <Button title='Logout' onPress={logout} />} */}

@@ -22,10 +22,16 @@ export default function ActionsModal({
 }: ActionsModalProps) {
   // Injects `closeModal` as a prop for all children
   const renderChildren = () => {
+    if (!children || React.Children.count(children) === 0) return null;
+
     return React.Children.map(children, (child) => {
-      return React.cloneElement(child, {
-        closeModal,
-      });
+      if (child) {
+        return React.cloneElement(child, {
+          closeModal,
+        });
+      } else {
+        return null;
+      }
     });
   };
 

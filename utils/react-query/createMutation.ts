@@ -29,7 +29,7 @@ export default function createMutation<ServiceType, CreateDataType>(
     {
       onSuccess: () => {
         // removes query's cache
-        queryClient.invalidateQueries([queryKey]);
+        queryClient.invalidateQueries({ queryKey: [queryKey] });
       },
       ...mutationOptions,
     },

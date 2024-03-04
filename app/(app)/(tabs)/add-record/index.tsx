@@ -18,13 +18,20 @@ import { Service } from '@utils/services';
 export default function AddRecordSearch() {
   const queryClient = useQueryClient();
 
-  const { searchValue, setSearchValue, items, isLoading } = useSearch({
+  const {
+    searchValue = '',
+    setSearchValue,
+    items,
+    isLoading,
+  } = useSearch({
     useSearchQuery: useRecordsQuery,
-    initialValue: undefined,
+    initialValue: '',
     queryKey: 'name',
   });
 
   const handleOnRecordPress = (record: Record) => {
+    setSearchValue('');
+
     // Add this temp record to the cache so that we can access it in the next step
     queryClient.setQueryData(
       [Service.Records, record.discogsMasterId?.toString()],

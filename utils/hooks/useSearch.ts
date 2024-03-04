@@ -12,7 +12,7 @@ export default function useSearchInput({
   queryKey,
   useSearchQuery,
 }: SearchInputParams) {
-  const [searchValue, setSearchValue] = useState(initialValue || '');
+  const [searchValue, setSearchValue] = useState(initialValue);
   const [queryValue, setQueryValue] = useState({ [queryKey]: initialValue });
 
   useDebounce(() => {

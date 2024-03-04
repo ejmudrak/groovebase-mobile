@@ -52,6 +52,8 @@ export default function deleteMutation<ServiceType>(
       onSuccess: async () => {
         // removes query key's cache
         await queryClient.invalidateQueries([queryKey]);
+
+        // TODO: remove only this record from the cache
       },
       ...mutationOptions,
     },
