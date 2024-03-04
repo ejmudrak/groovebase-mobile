@@ -5,6 +5,7 @@ import { colors } from '@utils/styles/colors';
 import Page from '@components/Page';
 import LoginForm from '@features/users/login/LoginForm';
 import { useCurrentUser } from '@features/users/useCurrentUser';
+import SpinningVinyl from '@components/SpinningVinyl';
 
 export default function LoginPage() {
   const user = useCurrentUser();
@@ -20,7 +21,7 @@ export default function LoginPage() {
             </Text>
 
             <Text variant='body1Bold' color={colors.black[400]}>
-              The hub for vinyl collectors, crate diggers, and music lovers
+              The vinyl collecting hub
             </Text>
           </View>
         </SafeAreaView>
@@ -29,6 +30,8 @@ export default function LoginPage() {
           <LoginForm />
         </Card>
       </View>
+
+      <SpinningVinyl color='green' style={styles.vinyl} />
     </Page>
   );
 }
@@ -41,18 +44,28 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
     gap: 24,
-    padding: 16,
+    padding: 24,
   },
 
   header: {
     display: 'flex',
     flexDirection: 'column',
-    gap: 16,
+    gap: 8,
+    zIndex: 2,
   },
 
   card: {
     padding: 24,
     flex: 0,
     width: '100%',
+  },
+
+  vinyl: {
+    width: 400,
+    height: 400,
+    position: 'absolute',
+    right: -200,
+    top: 64,
+    zIndex: -1,
   },
 });

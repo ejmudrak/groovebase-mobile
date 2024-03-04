@@ -1,6 +1,5 @@
 import { colors } from 'utils/styles/colors';
-import { StyleSheet, View, SafeAreaView } from 'react-native';
-import NavigationBar from 'components/TabBar';
+import { StyleSheet, View } from 'react-native';
 
 interface PageProps {
   authenticated?: boolean;
