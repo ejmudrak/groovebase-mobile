@@ -20,7 +20,7 @@ export function useLogoutMutation() {
         queryClient.removeQueries({ queryKey: [endpoint], exact: false });
       });
 
-      router.replace('/sign-in');
+      router.replace('/login');
     },
   });
 }

@@ -16,7 +16,7 @@ import { AppStateStatus, Platform } from 'react-native';
 import { toastConfig } from '@utils/toast-config';
 import { useAppState } from '@utils/hooks/useAppState';
 import { useOnlineManager } from '@utils/hooks/useOnlineManager';
-import { Slot, Stack } from 'expo-router';
+import { Slot } from 'expo-router';
 import { useEffect } from 'react';
 export {
   // Catch any errors thrown by the Layout component.

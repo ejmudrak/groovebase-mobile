@@ -10,6 +10,8 @@ import Text from '../Text';
 import { useState } from 'react';
 
 export interface TextInputProps extends RNTextInputProps {
+  error?: any;
+  helperText?: string;
   hideOutline?: boolean;
   containerStyle?: object;
   inputContainerStyle?: object;
@@ -21,6 +23,8 @@ export interface TextInputProps extends RNTextInputProps {
 }
 
 export default function TextInput({
+  error,
+  helperText,
   hideOutline,
   inputContainerStyle,
   inputRef,
@@ -34,6 +38,14 @@ export default function TextInput({
 }: TextInputProps) {
   const [isFocused, setIsFocused] = useState(false);
 
+  // const hasError = errors && Boolean(errors[name]);
+
+  // let errorMessage = hasError ? (errors[name]?.message as string) : '';
+
+  // if (hasError && !errors[name]?.message && errors[name]?.type === 'required') {
+  //   errorMessage = 'Field is required';
+  // }
+
   return (
     <View style={[styles.container, containerStyle]}>
       {Boolean(label) && (
@@ -43,18 +55,26 @@ export default function TextInput({
         </Text>
       )}
 
-      <View style={[styles.inputContainer, inputContainerStyle]}>
-        {Boolean(leftIcon) && leftIcon}
-        <RNTextInput
-          style={[styles.input, style]}
-          placeholderTextColor={colors.black[400]}
-          onBlur={() => setIsFocused(false)}
-          onFocus={() => setIsFocused(true)}
-          underlineColorAndroid='transparent'
-          ref={inputRef}
-          {...restOfProps}
-        />
-        {Boolean(rightIcon) && rightIcon}
+      <View>
+        <View style={[styles.inputContainer, inputContainerStyle]}>
+          {Boolean(leftIcon) && leftIcon}
+          <RNTextInput
+            style={[styles.input, style]}
+            placeholderTextColor={colors.black[400]}
+            onBlur={() => setIsFocused(false)}
+            onFocus={() => setIsFocused(true)}
+            underlineColorAndroid='transparent'
+            ref={inputRef}
+            {...restOfProps}
+          />
+          {Boolean(rightIcon) && rightIcon}
+        </View>
+
+        {Boolean(helperText || error) && (
+          <Text variant='body3' color={error ? colors.red[500] : 'inherit'}>
+            {error ? error : helperText}
+          </Text>
+        )}
       </View>
     </View>
   );

@@ -1,16 +1,11 @@
-import { View, StyleSheet, SafeAreaView } from 'react-native';
-import Text from '@components/Text';
-import Card from '@components/Card/Card';
-import { colors } from '@utils/styles/colors';
 import Page from '@components/Page';
-import LoginForm from '@features/users/login/LoginForm';
-import { useCurrentUser } from '@features/users/useCurrentUser';
 import SpinningVinyl from '@components/SpinningVinyl';
+import Text from '@components/Text';
+import { View, StyleSheet, SafeAreaView } from 'react-native';
+import { colors } from '@utils/styles/colors';
+import { Slot } from 'expo-router';
 
-export default function LoginPage() {
-  const user = useCurrentUser();
-  console.log('sign-in user: ', user);
-
+export default function AuthLayout() {
   return (
     <Page>
       <View style={styles.container}>
@@ -26,9 +21,7 @@ export default function LoginPage() {
           </View>
         </SafeAreaView>
 
-        <Card elevation={200} style={styles.card}>
-          <LoginForm />
-        </Card>
+        <Slot />
       </View>
 
       <SpinningVinyl color='green' style={styles.vinyl} />
@@ -52,12 +45,6 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     gap: 8,
     zIndex: 2,
-  },
-
-  card: {
-    padding: 24,
-    flex: 0,
-    width: '100%',
   },
 
   vinyl: {

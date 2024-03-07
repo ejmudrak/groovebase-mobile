@@ -2,7 +2,7 @@
   File: (app)/_layout.tsx
   Description: 
     Only require authentication within the (app) group's layout as users
-    need to be able to access the sign-in page to sign in again
+    need to be able to access the login page to sign in again
 
     Sets up an auth guard that handles reauthenticating the user with the Groovebase API
 */
@@ -20,7 +20,6 @@ export const unstable_settings = {
 export default function AppLayout() {
   const user = useCurrentUser();
   const pathname = usePathname();
-  console.log('pathname: ', pathname);
 
   useEffect(() => {
     if (user?.id && pathname === '/') {
@@ -73,7 +72,7 @@ export default function AppLayout() {
   if (userNotInLocalStorage || didReauthFail) {
     // On web, static rendering will stop here as the user is not authenticated
     // in the headless Node process that the pages are rendered in.
-    return <Redirect href='/sign-in' />;
+    return <Redirect href='/login' />;
   }
 
   return (

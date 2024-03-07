@@ -1,16 +1,16 @@
-import { StyleSheet, View } from 'react-native';
-import type { LocalLoginFormProps } from './LocalLoginForm';
-import TextInput from '@components/TextInput';
-import { colors } from '@utils/styles/colors';
 import Button from '@components/Button';
+import TextInput from '@components/TextInput';
+import type { LocalLoginFormProps } from './LocalLoginForm';
+import { StyleSheet, View } from 'react-native';
+import { colors } from '@utils/styles/colors';
 
 export default function LocalLoginForm({
   email,
-  onChangeEmail,
-  password,
-  onChangePassword,
-  logIn,
   isLoggingIn,
+  logIn,
+  onChangeEmail,
+  onChangePassword,
+  password,
 }: LocalLoginFormProps) {
   return (
     <>
@@ -22,6 +22,8 @@ export default function LocalLoginForm({
           autoCapitalize='none'
           autoComplete='email'
           label='Email'
+          inputMode='email'
+          textContentType='emailAddress'
           placeholder='Enter your email'
         />
         <TextInput
@@ -31,6 +33,7 @@ export default function LocalLoginForm({
           spellCheck={false}
           autoCapitalize='none'
           label='Password'
+          textContentType='password'
           placeholder='Enter your password'
         />
       </View>
