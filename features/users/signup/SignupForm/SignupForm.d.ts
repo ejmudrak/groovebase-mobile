@@ -2,13 +2,13 @@ import { FieldErrors, UseFormWatch } from 'react-hook-form';
 import { SignupFormSchema } from './SignupForm.schema';
 
 export interface SignupFormProps {
-  // apiError?: any;
+  apiError?: any;
   control: Control<SignupFormSchema, any>;
   formErrors?: FieldErrors<SignupFormSchema>;
   handleSubmit: any;
   isLoading?: boolean;
   isSubmitDisabled: boolean;
-  onSubmit: (params: SignupFormSchema) => void;
+  signUp: (data: Omit<SignupFormSchema, 'confirmPassword'>) => void;
   watch: UseFormWatch<SignupFormSchema>;
 }
 

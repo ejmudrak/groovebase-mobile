@@ -8,8 +8,8 @@
 */
 
 import { Redirect, Stack, router, usePathname } from 'expo-router';
-import { useCurrentUser } from '@features/users/useCurrentUser';
-import { useReauthenticate } from '@features/users/login/useReauthenticate';
+import { useCurrentUser } from '@features/users/hooks/useCurrentUser';
+import { useReauthenticate } from '@features/users/login/hooks/useReauthenticate';
 import { useEffect, useMemo, useState } from 'react';
 
 export const unstable_settings = {

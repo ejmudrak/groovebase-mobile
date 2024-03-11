@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useLogoutMutation } from 'features/users/useLogout';
+import { useLogoutMutation } from '@features/users/hooks/useLogout';
 
 export default function useRecordsListOptionsProps() {
   const { mutate: logOut, isLoading: isLoggingOut } = useLogoutMutation();

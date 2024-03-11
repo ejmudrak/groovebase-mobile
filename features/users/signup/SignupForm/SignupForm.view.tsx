@@ -2,25 +2,21 @@ import Button from 'components/Button';
 import Text from 'components/Text/Text';
 import TextInput from 'components/TextInput';
 import { StyleSheet, View } from 'react-native';
-import { Controller, useForm } from 'react-hook-form';
-import {
-  SignupFormSchema,
-  passwordRules,
-  signupFormSchema,
-} from './SignupForm.schema';
+import { Controller } from 'react-hook-form';
+import { SignupFormSchema, passwordRules } from './SignupForm.schema';
 import { SignupFormProps } from './SignupForm';
 import { Link } from 'expo-router';
 import { colors } from '@utils/styles/colors';
 import { typography } from '@utils/styles/typography';
 
 export default function SignupForm({
-  // apiError,
+  apiError,
   control,
   formErrors,
   handleSubmit,
   isLoading,
   isSubmitDisabled,
-  onSubmit,
+  signUp,
   watch,
 }: SignupFormProps) {
   return (
@@ -140,8 +136,12 @@ export default function SignupForm({
         title='Sign Up'
         size='md'
         fullWidth
-        onPress={handleSubmit(onSubmit)}
+        onPress={handleSubmit(
+          ({ confirmPassword, ...restOfData }: SignupFormSchema) =>
+            signUp(restOfData),
+        )}
         isLoading={isLoading}
+        disabled={isSubmitDisabled}
       />
     </View>
   );

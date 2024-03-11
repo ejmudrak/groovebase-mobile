@@ -1,4 +1,4 @@
-import { useCurrentUser } from 'features/users/useCurrentUser';
+import { useCurrentUser } from '@features/users/hooks/useCurrentUser';
 import { useDeleteUserRecord } from '../hooks/useRemoveUserRecord';
 import type { BaseRemoveRecordOptionProps } from './RemoveRecordOption';
 import { useEffect } from 'react';

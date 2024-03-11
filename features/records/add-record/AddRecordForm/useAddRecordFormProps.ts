@@ -5,7 +5,7 @@ import { router } from 'expo-router';
 import { useCreateRecord } from '../hooks/useCreateRecord';
 import { useCreateRecordBins } from '@features/bins/hooks/useCreateRecordBins';
 import { useCreateUserRecord } from '../hooks/useCreateUserRecord';
-import { useCurrentUser } from '@features/users/useCurrentUser';
+import { useCurrentUser } from '@features/users/hooks/useCurrentUser';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';

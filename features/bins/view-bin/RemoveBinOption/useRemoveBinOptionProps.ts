@@ -1,4 +1,4 @@
-import { useCurrentUser } from 'features/users/useCurrentUser';
+import { useCurrentUser } from '@features/users/hooks/useCurrentUser';
 import type { BaseRemoveBinOptionProps } from './RemoveBinOption';
 import { useEffect } from 'react';
 import Toast from 'react-native-toast-message';

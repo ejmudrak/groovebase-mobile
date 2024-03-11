@@ -4,7 +4,7 @@ import { User } from 'types';
 import {
   getLocalStorageUser,
   removeLocalStorageUser,
-} from './login/userLocalStorage';
+} from '../login/hooks/userLocalStorage';
 
 export function useCurrentUser(): User | undefined | null {
   const queryClient = useQueryClient();

@@ -11,7 +11,7 @@ import { ControllerFieldState, ControllerRenderProps } from 'react-hook-form';
 import Text from '@components/Text/Text';
 import { useBinsQuery } from '@features/bins/hooks/useBinsQuery';
 import { useMemo } from 'react';
-import { useCurrentUser } from '@features/users/useCurrentUser';
+import { useCurrentUser } from '@features/users/hooks/useCurrentUser';
 
 export interface BinsInputProps
   extends ControllerRenderProps,

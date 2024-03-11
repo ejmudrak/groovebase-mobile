@@ -1,4 +1,4 @@
-import { useCurrentUser } from 'features/users/useCurrentUser';
+import { useCurrentUser } from '@features/users/hooks/useCurrentUser';
 import type { BaseAddBinFormProps } from './AddBinForm';
 import { useForm } from 'react-hook-form';
 import { AddBinFormData, addBinFormSchema } from './AddBinForm.schema';

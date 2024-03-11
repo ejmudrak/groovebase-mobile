@@ -1,7 +1,7 @@
 import Header from '@components/Header';
 import Page from '@components/Page/Page';
 import RecordsList from '@features/records/view-records/RecordsList';
-import { useCurrentUser } from '@features/users/useCurrentUser';
+import { useCurrentUser } from '@features/users/hooks/useCurrentUser';
 import { Record } from 'types';
 import useRefresh from '@utils/hooks/useRefresh';
 import RecordsListOptions from '@features/records/view-records/RecordsListOptions';

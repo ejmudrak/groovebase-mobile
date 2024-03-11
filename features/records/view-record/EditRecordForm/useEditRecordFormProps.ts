@@ -12,7 +12,7 @@ import {
   convertMediaConditionToSelectOptions,
 } from '@features/records/view-record/utils/convert-options';
 import useRefresh from 'utils/hooks/useRefresh';
-import { useCurrentUser } from 'features/users/useCurrentUser';
+import { useCurrentUser } from '@features/users/hooks/useCurrentUser';
 import { useUserRecordsQuery } from '../hooks/useUserRecordsQuery';
 
 export default function useEditRecordFormProps({

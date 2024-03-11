@@ -4,7 +4,7 @@ import Page from '@components/Page/Page';
 import useRefresh from '@utils/hooks/useRefresh';
 import { Bin } from 'types';
 import { useBinsInfiniteQuery } from '@features/bins/hooks/useBinsInfiniteQuery';
-import { useCurrentUser } from '@features/users/useCurrentUser';
+import { useCurrentUser } from '@features/users/hooks/useCurrentUser';
 import { router } from 'expo-router';
 
 export default function BinsPage() {

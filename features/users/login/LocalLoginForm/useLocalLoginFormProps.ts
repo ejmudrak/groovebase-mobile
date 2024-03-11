@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { BaseLocalLoginFormProps } from './LocalLoginForm';
-import { useLocalLogin } from '../useLocalLogin';
+import { useLocalLogin } from '../hooks/useLocalLogin';
 
 export default function useLocalLoginFormProps({
   ...restOfBaseProps

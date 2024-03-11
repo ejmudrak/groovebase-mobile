@@ -15,10 +15,16 @@ export const passwordRules = {
 
 export const signupFormSchema = yup
   .object({
-    firstName: yup.string().required(),
-    lastName: yup.string().required(),
-    email: yup.string().email().required(),
-    password: yup.string().required().matches(PASSWORD_REGEX, PASSWORD_MESSAGE),
+    firstName: yup.string().required('First name is required'),
+    lastName: yup.string().required('Last name is required'),
+    email: yup
+      .string()
+      .email('Must be a valid email')
+      .required('Email is required'),
+    password: yup
+      .string()
+      .required('Password is required')
+      .matches(PASSWORD_REGEX, PASSWORD_MESSAGE),
     confirmPassword: yup
       .string()
       .required()

@@ -4,12 +4,18 @@ import feathersClient from '@utils/client';
 import { Service } from '@utils/services';
 import { router } from 'expo-router';
 
+export interface LoginData {
+  email: string;
+  password: string;
+}
+
 export function useLocalLogin() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (data: any) =>
+    mutationFn: ({ email, ...data }: LoginData) =>
       feathersClient.authenticate({
+        email: email.toLowerCase(),
         ...data,
         strategy: 'local',
       }),
