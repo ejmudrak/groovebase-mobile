@@ -82,7 +82,7 @@ export default function TextInput({
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
+    flex: 1,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-start',
@@ -107,8 +107,8 @@ const styles = StyleSheet.create({
   input: {
     width: '100%',
     height: '100%',
-    fontSize: typography.body3.fontSize,
-    fontFamily: typography.body3.fontFamily,
+    fontSize: typography.body2.fontSize,
+    fontFamily: typography.body2.fontFamily,
   },
   requiredText: {
     color: 'red',

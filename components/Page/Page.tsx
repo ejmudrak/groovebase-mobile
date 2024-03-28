@@ -1,5 +1,5 @@
 import { colors } from 'utils/styles/colors';
-import { StyleSheet, View } from 'react-native';
+import { KeyboardAvoidingView, Platform, StyleSheet, View } from 'react-native';
 
 interface PageProps {
   authenticated?: boolean;
@@ -8,7 +8,7 @@ interface PageProps {
 }
 
 export default function Page({ children }: PageProps) {
-  return <View style={[styles.container]}>{children}</View>;
+  return <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={[styles.container]}>{children}</KeyboardAvoidingView>;
 }
 
 const styles = StyleSheet.create({

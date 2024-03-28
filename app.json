@@ -15,7 +15,9 @@
     "experiments": {
       "tsconfigPaths": true
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.erikmudrak.groovebasemobile"
@@ -36,6 +38,14 @@
         "@react-native-google-signin/google-signin",
         {
           "iosUrlScheme": "com.googleusercontent.apps.472031918708-ppnv74j5qtm22uibvmbia8n9pvr0gjnb"
+        }
+      ],
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "useFrameworks": "static"
+          }
         }
       ],
       "expo-router"
