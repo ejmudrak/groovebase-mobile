@@ -93,6 +93,7 @@ export default function AddRecordForm({
                 onChangeText={onChange}
                 onBlur={onBlur}
                 value={value}
+                multiline
               />
             )}
           />

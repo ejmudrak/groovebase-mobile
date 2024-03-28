@@ -100,6 +100,7 @@ export default function EditRecordForm({
                   onChangeText={onChange}
                   onBlur={onBlur}
                   value={value}
+                  multiline
                 />
               )}
             />
