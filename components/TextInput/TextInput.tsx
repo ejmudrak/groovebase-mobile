@@ -59,7 +59,7 @@ export default function TextInput({
         <View style={[styles.inputContainer, inputContainerStyle]}>
           {Boolean(leftIcon) && leftIcon}
           <RNTextInput
-            style={[styles.input, restOfProps?.multiline ? styles.multilineInput : undefined, style]}
+            style={[styles.input, style]}
             placeholderTextColor={colors.black[400]}
             onBlur={() => setIsFocused(false)}
             onFocus={() => setIsFocused(true)}
@@ -83,7 +83,6 @@ export default function TextInput({
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-start',
@@ -91,7 +90,6 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     minHeight: 48,
-    maxHeight: 200,
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'flex-start',
@@ -107,11 +105,10 @@ const styles = StyleSheet.create({
     paddingBottom: 0,
   },
   input: {
+    width: '100%',
+    height: '100%',
     fontSize: typography.body2.fontSize,
     fontFamily: typography.body2.fontFamily,
-  },
-  multilineInput: {
-    marginTop: -4,
   },
   requiredText: {
     color: 'red',

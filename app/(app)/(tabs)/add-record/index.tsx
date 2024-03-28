@@ -8,7 +8,7 @@ import Page from '@components/Page/Page';
 import RecordsList from '@features/records/view-records/RecordsList';
 import SearchInput from '@components/SearchInput';
 import useSearch from '@utils/hooks/useSearch';
-import { StyleSheet, View } from 'react-native';
+import { Keyboard, StyleSheet, View } from 'react-native';
 import { useRecordsQuery } from '@features/records/hooks/useRecordsQuery';
 import { Record } from 'types';
 import { router } from 'expo-router';
@@ -30,6 +30,7 @@ export default function AddRecordSearch() {
   });
 
   const handleOnRecordPress = (record: Record) => {
+    Keyboard.dismiss();
     setSearchValue('');
 
     // Add this temp record to the cache so that we can access it in the next step
