@@ -66,6 +66,7 @@ export default function TextInput({
             underlineColorAndroid='transparent'
             ref={inputRef}
             maxLength={500}
+            autoCorrect={false}
             {...restOfProps}
           />
           {Boolean(rightIcon) && rightIcon}

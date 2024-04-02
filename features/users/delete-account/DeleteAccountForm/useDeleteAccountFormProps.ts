@@ -1,12 +1,16 @@
 import { useCurrentUser } from '@features/users/hooks/useCurrentUser';
 import type { BaseDeleteAccountFormProps } from './DeleteAccountForm';
 import { useForm } from 'react-hook-form';
-import { DeleteAccountFormData, DeleteAccountFormSchema } from './DeleteAccountForm.schema';
+import {
+  DeleteAccountFormData,
+  DeleteAccountFormSchema,
+} from './DeleteAccountForm.schema';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useDeleteUser } from '../../hooks/useDeleteUser';
 import { useEffect } from 'react';
 import Toast from 'react-native-toast-message';
 import { router } from 'expo-router';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function useDeleteAccountFormProps({
   ...restOfBaseProps
@@ -19,7 +23,7 @@ export default function useDeleteAccountFormProps({
     formState: { isValid, isDirty },
   } = useForm<DeleteAccountFormData>({
     defaultValues: {
-      confirm: ''
+      confirm: '',
     },
     resolver: yupResolver(DeleteAccountFormSchema),
   });
@@ -34,15 +38,20 @@ export default function useDeleteAccountFormProps({
 
   const deleteAccount = () => {
     // Adds record to db
-    if(user?.id) {
-      deleteUser({ idsToDelete: [user.id]}, {
-        onSuccess: () => {
-          // Redirects to Login page
-          setTimeout(() => router.replace('/login'), 1000);
-        },
-      });
-    }
+    if (user?.id) {
+      deleteUser(
+        { idsToDelete: [user.id] },
+        {
+          onSuccess: () => {
+            // clears local storage
+            AsyncStorage.removeItem('user');
 
+            // Redirects to Login page
+            setTimeout(() => router.replace('/login'), 1000);
+          },
+        },
+      );
+    }
   };
 
   useEffect(() => {
