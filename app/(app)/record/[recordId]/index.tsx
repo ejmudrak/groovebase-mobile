@@ -7,8 +7,8 @@ import { ScrollView, StyleSheet } from 'react-native';
 import RecordCard from '@features/records/RecordCard';
 import EditRecordForm from '@features/records/view-record/EditRecordForm';
 import Card from '@components/Card';
-import GenreChips from '../components/GenreChips';
-import TrackList from '../components/TrackList/TrackList.view';
+import GenreChips from '@features/records/view-record/GenreChips';
+import TrackList from '@features/records/view-record/TrackList';
 
 export default function RecordPage() {
   const { recordId } = useLocalSearchParams<{ recordId: string }>();

@@ -49,10 +49,7 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen name='add-record' options={{ href: null }} />
-      {/* <Tabs.Screen name='add-record/index' options={{ href: null }} /> */}
-      {/* <Tabs.Screen name='add-record/[recordId]' options={{ href: null }} /> */}
       <Tabs.Screen name='add-bin' options={{ href: null }} />
-      {/* <Tabs.Screen name='add-bin/index' options={{ href: null }} /> */}
     </Tabs>
   );
 }

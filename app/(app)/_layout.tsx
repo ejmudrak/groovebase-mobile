@@ -19,6 +19,7 @@ export const unstable_settings = {
 
 export default function AppLayout() {
   const user = useCurrentUser();
+  console.log('user: ', user);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -34,6 +35,7 @@ export default function AppLayout() {
     isLoading: isReauthenticating,
     isSuccess: isReauthenticated,
     isError: isReauthenticatedError,
+    error: reauthenticatedError
   } = useReauthenticate();
 
   useEffect(() => {
@@ -65,9 +67,14 @@ export default function AppLayout() {
     isReauthenticatedError,
     hasAttemptedReauth,
   ]);
+  
 
   const userNotInLocalStorage = !user && !isLoading;
+  console.log('userNotInLocalStorage: ', userNotInLocalStorage);
   const didReauthFail = hasAttemptedReauth && isReauthenticatedError;
+  console.log('didReauthFail: ', didReauthFail);
+  console.log('reauthenticatedError: ', reauthenticatedError);
+
 
   if (userNotInLocalStorage || didReauthFail) {
     // On web, static rendering will stop here as the user is not authenticated

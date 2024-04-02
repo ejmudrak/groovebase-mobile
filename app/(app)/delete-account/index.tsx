@@ -9,7 +9,7 @@ export default function DeleteAccountPage() {
     <Page authenticated hideNavBar>
       <Header title='Delete Account' displayBackButton />
       <Card elevation={100} style={styles.card}>
-        {/* <DeleteAccountForm /> */}
+        <DeleteAccountForm />
       </Card>
     </Page>
   );

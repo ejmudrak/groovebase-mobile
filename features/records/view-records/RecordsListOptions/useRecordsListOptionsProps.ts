@@ -14,7 +14,7 @@ export default function useRecordsListOptionsProps() {
   };
 
   const handleDeleteAccount = () => {
-    router.replace('delete-account')
+    router.push('delete-account')
   }
 
 
