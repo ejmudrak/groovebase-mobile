@@ -23,6 +23,6 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     gap: 12,
     flex: 0,
-    height: 188,
+    height: 240,
   },
 });

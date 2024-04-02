@@ -38,7 +38,7 @@ export default function useDeleteAccountFormProps({
       deleteUser({ idsToDelete: [user.id]}, {
         onSuccess: () => {
           // Redirects to Login page
-          // setTimeout(() => router.replace('/login'), 1000);
+          setTimeout(() => router.replace('/login'), 1000);
         },
       });
     }

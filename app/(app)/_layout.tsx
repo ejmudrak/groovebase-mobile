@@ -19,7 +19,6 @@ export const unstable_settings = {
 
 export default function AppLayout() {
   const user = useCurrentUser();
-  console.log('user: ', user);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -70,10 +69,7 @@ export default function AppLayout() {
   
 
   const userNotInLocalStorage = !user && !isLoading;
-  console.log('userNotInLocalStorage: ', userNotInLocalStorage);
   const didReauthFail = hasAttemptedReauth && isReauthenticatedError;
-  console.log('didReauthFail: ', didReauthFail);
-  console.log('reauthenticatedError: ', reauthenticatedError);
 
 
   if (userNotInLocalStorage || didReauthFail) {
