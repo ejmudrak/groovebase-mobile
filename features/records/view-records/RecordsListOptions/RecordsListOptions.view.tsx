@@ -12,8 +12,10 @@ import ActionsModal from 'components/ActionsModal';
 import ActionItem from 'components/ActionsModal/components/ActionItem';
 import { RecordsListOptionsProps } from './RecordsListOptions';
 import LogoutIcon from 'components/Icons/LogoutIcon';
+import TrashIcon from '@components/Icons/TrashIcon';
 
 export default function RecordsListOptions({
+  handleDeleteAccount,
   handleLogout,
   isLoggingOut,
 }: RecordsListOptionsProps) {
@@ -27,6 +29,12 @@ export default function RecordsListOptions({
         label='Log Out'
         onPress={handleLogout}
         isLoading={isLoggingOut}
+      />
+      <ActionItem
+        icon={<TrashIcon color={colors.blue[500]} />}
+        label='Delete Account'
+        onPress={handleDeleteAccount}
+        isLoading={false}
       />
     </ActionsModal>
   );

@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLogoutMutation } from '@features/users/hooks/useLogout';
+import { router } from 'expo-router';
 
 export default function useRecordsListOptionsProps() {
   const { mutate: logOut, isLoading: isLoggingOut } = useLogoutMutation();
@@ -12,5 +13,10 @@ export default function useRecordsListOptionsProps() {
     AsyncStorage.removeItem('user');
   };
 
-  return { handleLogout, isLoggingOut };
+  const handleDeleteAccount = () => {
+    router.replace('delete-account')
+  }
+
+
+  return { handleLogout, isLoggingOut, handleDeleteAccount };
 }

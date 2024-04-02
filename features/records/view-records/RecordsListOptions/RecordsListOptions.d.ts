@@ -1,6 +1,7 @@
 export interface RecordsListOptionsProps {
-  isLoggingOut: boolean;
+  handleDeleteAccount: () => void;
   handleLogout: () => void;
+  isLoggingOut: boolean;
 }
 
 export type BaseRecordsListOptionsProps = Pick<RecordsListOptionsProps>;

@@ -14,6 +14,7 @@ export interface ActionItemProps extends PressableProps {
   isLoading?: boolean;
   label: string;
   onPress: any;
+  shouldCloseOnPress?: boolean;
 }
 
 export default function ActionItem({
@@ -22,13 +23,14 @@ export default function ActionItem({
   isLoading,
   label,
   onPress,
+  shouldCloseOnPress = true,
   ...props
 }: ActionItemProps) {
   return (
     <Pressable
       style={[styles.container]}
       onPress={() => {
-        closeModal && closeModal();
+        shouldCloseOnPress && closeModal && closeModal();
         onPress && onPress();
       }}
       {...props}

@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Groovebase",
-    "slug": "Groovebase",
+    "slug": "groovebase-mobile",
     "scheme": "com.erikmudrak.groovebasemobile",
     "version": "1.0.2",
     "orientation": "portrait",
