@@ -18,6 +18,8 @@ export default function ActionsModal({
   isModalOpen,
   closeModal,
   openModal,
+  modalStyle,
+  actionsStyle,
   OpenModalComponent,
 }: ActionsModalProps) {
   // Injects `closeModal` as a prop for all children
@@ -45,8 +47,8 @@ export default function ActionsModal({
         visible={isModalOpen}
         onDismiss={closeModal}
       >
-        <View style={styles.modalContent}>
-          <View style={styles.actionsContent}>
+        <View style={[styles.modalContent, modalStyle]}>
+          <View style={[styles.actionsContent, actionsStyle]}>
             <Text variant='h4' color={colors.white[500]}>
               {title}
             </Text>

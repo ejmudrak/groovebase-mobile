@@ -7,6 +7,8 @@ export interface RecordsListProps {
   refreshing?: boolean;
   searchValue: string;
   setSearchValue: (newSearchValue: string) => void;
+  sortValue: Record<string, 1 | -1>;
+  setSortValue: (newSortValue: Record<string, 1 | -1>) => void;
 }
 
 export type BaseRecordsListProps = RecordsListProps;

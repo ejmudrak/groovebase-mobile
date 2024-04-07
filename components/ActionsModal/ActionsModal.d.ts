@@ -5,9 +5,11 @@ export interface ActionsModalProps {
   title: string;
   OpenModalComponent: React.ComponentType<{ onPress: () => void }>;
   children: React.Element;
+  modalStyle?: any;
+  actionsStyle?: any;
 }
 
 export type BaseActionsModalProps = Pick<
   ActionsModalProps,
-  'title' | 'OpenModalComponent' | 'children'
+  'title' | 'OpenModalComponent' | 'children' | 'modalStyle' | 'actionsStyle'
 >;

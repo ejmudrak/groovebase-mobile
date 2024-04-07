@@ -1,10 +1,10 @@
+import ListFooter from 'components/ListFooter';
 import RecordCard from '../../RecordCard';
 import RecordsListSkeleton from './RecordsList.skeleton';
+import RecordsToolbar from '../RecordsToolbar';
 import Text from 'components/Text';
 import { FlatList, StyleSheet, View } from 'react-native';
 import { RecordsListProps } from './RecordsList';
-import ListFooter from 'components/ListFooter';
-import RecordsSearchInput from '../RecordsSearchInput';
 
 export default function RecordsList({
   fetchNextPage,
@@ -13,6 +13,8 @@ export default function RecordsList({
   refreshing,
   searchValue,
   setSearchValue = () => {},
+  sortValue,
+  setSortValue = () => {},
 }: RecordsListProps) {
   return (
     <>
@@ -29,9 +31,11 @@ export default function RecordsList({
         onEndReached={fetchNextPage}
         onEndReachedThreshold={0.1}
         ListHeaderComponent={
-          <RecordsSearchInput
+          <RecordsToolbar
             searchValue={searchValue}
             setSearchValue={setSearchValue}
+            sortValue={sortValue}
+            setSortValue={setSortValue}
           />
         }
         ListFooterComponent={() => (

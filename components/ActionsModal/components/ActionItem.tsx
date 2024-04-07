@@ -15,6 +15,7 @@ export interface ActionItemProps extends PressableProps {
   label: string;
   onPress: any;
   shouldCloseOnPress?: boolean;
+  iconButtonStyle?: object;
 }
 
 export default function ActionItem({
@@ -24,6 +25,7 @@ export default function ActionItem({
   label,
   onPress,
   shouldCloseOnPress = true,
+  iconButtonStyle,
   ...props
 }: ActionItemProps) {
   return (
@@ -35,7 +37,7 @@ export default function ActionItem({
       }}
       {...props}
     >
-      <IconButton style={styles.iconButton}>
+      <IconButton style={[styles.iconButton, iconButtonStyle]}>
         {isLoading ? <ActivityIndicator color={colors.blue[500]} /> : icon}
       </IconButton>
 

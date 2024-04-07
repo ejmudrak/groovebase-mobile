@@ -1,9 +1,3 @@
-export interface VinylRecord {
-  artist: string;
-  title: string;
-  year: string;
-}
-
 export interface FeathersRecord {
   id: number;
   createdAt: string;
@@ -64,7 +58,7 @@ export interface User {
   discogsId?: number;
 }
 
-export interface Record extends FeathersRecord {
+export interface VinylRecord extends FeathersRecord {
   artist: string;
   name: string;
   year: number | string;
