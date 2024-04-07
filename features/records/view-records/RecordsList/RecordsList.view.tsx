@@ -4,17 +4,18 @@ import Text from 'components/Text';
 import { FlatList, StyleSheet, View } from 'react-native';
 import { RecordsListProps } from './RecordsList';
 import ListFooter from 'components/ListFooter';
+import RecordsSearchInput from '../RecordsSearchInput';
 
 export default function RecordsList({
-  records,
-  onRecordPress,
-  refreshing,
   fetchNextPage,
+  onRecordPress,
+  records,
+  refreshing,
+  searchValue,
+  setSearchValue = () => {},
 }: RecordsListProps) {
   return (
     <>
-      {refreshing && !records?.length && <RecordsListSkeleton />}
-
       <FlatList
         data={records}
         style={styles.listContainer}
@@ -27,6 +28,12 @@ export default function RecordsList({
         refreshing={refreshing}
         onEndReached={fetchNextPage}
         onEndReachedThreshold={0.1}
+        ListHeaderComponent={
+          <RecordsSearchInput
+            searchValue={searchValue}
+            setSearchValue={setSearchValue}
+          />
+        }
         ListFooterComponent={() => (
           <ListFooter
             refreshing={refreshing}
@@ -35,11 +42,13 @@ export default function RecordsList({
           />
         )}
         ListEmptyComponent={
-          !refreshing ? (
+          !refreshing && !records?.length ? (
             <View style={styles.listEmptyContainer}>
               <Text>No records found.</Text>
             </View>
-          ) : null
+          ) : (
+            <RecordsListSkeleton />
+          )
         }
       />
     </>
@@ -56,5 +65,8 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  searchInputContainer: {
+    marginBottom: -8,
   },
 });

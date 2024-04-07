@@ -6,32 +6,35 @@
 import Header from '@components/Header';
 import Page from '@components/Page/Page';
 import RecordsList from '@features/records/view-records/RecordsList';
-import SearchInput from '@components/SearchInput';
-import useSearch from '@utils/hooks/useSearch';
-import { Keyboard, StyleSheet, View } from 'react-native';
-import { useRecordsQuery } from '@features/records/hooks/useRecordsQuery';
+import useDebounce from '@utils/hooks/useDebounce';
+import { Keyboard } from 'react-native';
 import { Record } from 'types';
+import { Service } from '@utils/services';
 import { router } from 'expo-router';
 import { useQueryClient } from '@tanstack/react-query';
-import { Service } from '@utils/services';
+import { useRecordsQuery } from '@features/records/hooks/useRecordsQuery';
+import { useState } from 'react';
 
 export default function AddRecordSearch() {
   const queryClient = useQueryClient();
 
-  const {
-    searchValue = '',
-    setSearchValue,
-    items,
-    isLoading,
-  } = useSearch({
-    useSearchQuery: useRecordsQuery,
-    initialValue: '',
-    queryKey: 'name',
-  });
+  const [inputValue, setInputValue] = useState('');
+  const [searchQueryValue, setSearchQueryValue] = useState<any>({});
+
+  useDebounce(() => {
+    if (inputValue !== '' || (inputValue === '' && searchQueryValue?.name)) {
+      setSearchQueryValue({
+        name: inputValue,
+      });
+    }
+  }, [inputValue, setSearchQueryValue]);
+
+  const { data: { items: records = [] } = {}, isLoading } =
+    useRecordsQuery(searchQueryValue);
 
   const handleOnRecordPress = (record: Record) => {
     Keyboard.dismiss();
-    setSearchValue('');
+    setInputValue('');
 
     // Add this temp record to the cache so that we can access it in the next step
     queryClient.setQueryData(
@@ -50,28 +53,13 @@ export default function AddRecordSearch() {
     <Page authenticated hideNavBar>
       <Header title='Add Record' displayBackButton />
 
-      <View style={styles.searchInputContainer}>
-        <SearchInput
-          searchValue={searchValue}
-          setSearchValue={setSearchValue}
-          placeholder='ex. The Beatles'
-        />
-      </View>
-
       <RecordsList
-        records={items as any}
+        records={records}
         onRecordPress={handleOnRecordPress}
         refreshing={isLoading}
+        searchValue={inputValue}
+        setSearchValue={setInputValue}
       />
     </Page>
   );
 }
-
-const styles = StyleSheet.create({
-  searchInputContainer: {
-    paddingTop: 8,
-    paddingLeft: 16,
-    paddingRight: 16,
-    marginBottom: -8,
-  },
-});

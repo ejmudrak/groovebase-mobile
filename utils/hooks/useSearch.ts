@@ -1,23 +1,23 @@
 import useDebounce from 'utils/hooks/useDebounce';
 import { useState } from 'react';
 
-interface SearchInputParams {
+interface SearchParams {
   initialValue?: string;
-  queryKey: string;
-  useSearchQuery: any;
+  getQueryParams: (searchValue?: string) => Record<string, any>; // query object that we'll use to filter API results
+  useSearchQuery: any; // The query hook from React Query
 }
 
-export default function useSearchInput({
+export default function useSearch({
   initialValue,
-  queryKey,
+  getQueryParams,
   useSearchQuery,
-}: SearchInputParams) {
+}: SearchParams) {
   const [searchValue, setSearchValue] = useState(initialValue);
-  const [queryValue, setQueryValue] = useState({ [queryKey]: initialValue });
+  const [queryValue, setQueryValue] = useState(getQueryParams(initialValue));
 
   useDebounce(() => {
     if (searchValue !== undefined) {
-      setQueryValue({ [queryKey]: searchValue });
+      setQueryValue(getQueryParams(searchValue));
     }
   }, [searchValue]);
 

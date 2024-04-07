@@ -7,8 +7,8 @@ import CloseIcon from 'components/Icons/CloseIcon';
 
 export interface SearchInputProps {
   placeholder?: string;
-  searchValue: string;
-  setSearchValue: (val: string) => void;
+  searchValue?: string;
+  setSearchValue: (newSearchValue: string) => void;
 }
 
 export default function SearchInput({

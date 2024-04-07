@@ -1,10 +1,12 @@
 import { Record } from 'types';
 
 export interface RecordsListProps {
-  records?: Record[];
-  onRecordPress: (record: Record) => void;
-  refreshing?: boolean;
   fetchNextPage?: () => void;
+  onRecordPress: (record: Record) => void;
+  records?: Record[];
+  refreshing?: boolean;
+  searchValue: string;
+  setSearchValue: (newSearchValue: string) => void;
 }
 
 export type BaseRecordsListProps = RecordsListProps;

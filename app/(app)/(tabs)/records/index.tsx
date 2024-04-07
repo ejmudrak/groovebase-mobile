@@ -1,15 +1,38 @@
 import Header from '@components/Header';
 import Page from '@components/Page/Page';
 import RecordsList from '@features/records/view-records/RecordsList';
-import { useCurrentUser } from '@features/users/hooks/useCurrentUser';
-import { Record } from 'types';
-import useRefresh from '@utils/hooks/useRefresh';
 import RecordsListOptions from '@features/records/view-records/RecordsListOptions';
-import { useRecordsInfiniteQuery } from '@features/records/hooks/useRecordsInfiniteQuery';
+import useDebounce from '@utils/hooks/useDebounce';
+import useRefresh from '@utils/hooks/useRefresh';
+import { Record } from 'types';
 import { router } from 'expo-router';
+import { useCurrentUser } from '@features/users/hooks/useCurrentUser';
+import { useRecordsInfiniteQuery } from '@features/records/hooks/useRecordsInfiniteQuery';
+import { useState } from 'react';
 
 export default function RecordsPage() {
   const user = useCurrentUser();
+  const [inputValue, setInputValue] = useState('');
+  const [searchQueryValue, setSearchQueryValue] = useState<any>({});
+
+  useDebounce(() => {
+    if (inputValue !== '' || (inputValue === '' && searchQueryValue?.$or)) {
+      setSearchQueryValue({
+        $or: [
+          {
+            name: {
+              $ilike: `%${inputValue}%`,
+            },
+          },
+          {
+            artist: {
+              $ilike: `%${inputValue}%`,
+            },
+          },
+        ],
+      });
+    }
+  }, [inputValue, setSearchQueryValue]);
 
   const {
     allItems: records = [],
@@ -21,6 +44,7 @@ export default function RecordsPage() {
   } = useRecordsInfiniteQuery({
     userId: user?.id || 0,
     $sort: { createdAt: -1 },
+    ...searchQueryValue,
   });
 
   useRefresh(refetch);
@@ -41,10 +65,12 @@ export default function RecordsPage() {
       />
 
       <RecordsList
-        records={records}
-        onRecordPress={handleOnRecordPress}
-        refreshing={isLoading}
         fetchNextPage={hasNextPage ? fetchNextPage : undefined}
+        onRecordPress={handleOnRecordPress}
+        records={records}
+        refreshing={isLoading}
+        searchValue={inputValue}
+        setSearchValue={setInputValue}
       />
     </Page>
   );

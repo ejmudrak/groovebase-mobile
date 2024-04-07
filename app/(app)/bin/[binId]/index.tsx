@@ -8,11 +8,34 @@ import BinOptionsButton from '@features/bins/view-bin/BinOptionsButton';
 import { useRecordsInfiniteQuery } from '@features/records/hooks/useRecordsInfiniteQuery';
 import { router, useLocalSearchParams } from 'expo-router';
 import { useBinQuery } from '@features/records/view-record/hooks/useBinQuery';
+import { useState } from 'react';
+import useDebounce from '@utils/hooks/useDebounce';
 
 export default function BinPage() {
   const user = useCurrentUser();
   const { binId } = useLocalSearchParams<{ binId: string }>();
   const { data: bin } = useBinQuery(binId);
+  const [inputValue, setInputValue] = useState('');
+  const [searchQueryValue, setSearchQueryValue] = useState<any>({});
+
+  useDebounce(() => {
+    if (inputValue !== '' || (inputValue === '' && searchQueryValue?.$or)) {
+      setSearchQueryValue({
+        $or: [
+          {
+            name: {
+              $ilike: `%${inputValue}%`,
+            },
+          },
+          {
+            artist: {
+              $ilike: `%${inputValue}%`,
+            },
+          },
+        ],
+      });
+    }
+  }, [inputValue, setSearchQueryValue]);
 
   const {
     allItems: records = [],
@@ -25,6 +48,7 @@ export default function BinPage() {
     userId: user?.id || 0,
     binId,
     $sort: { createdAt: -1 },
+    ...searchQueryValue,
   });
 
   useRefresh(refetch);
@@ -50,6 +74,8 @@ export default function BinPage() {
         onRecordPress={handleOnRecordPress}
         refreshing={isLoading}
         fetchNextPage={hasNextPage ? fetchNextPage : undefined}
+        searchValue={inputValue}
+        setSearchValue={setInputValue}
       />
     </Page>
   );
