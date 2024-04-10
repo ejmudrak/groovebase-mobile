@@ -14,7 +14,7 @@ export default function RecordsPage() {
   const user = useCurrentUser();
   const [inputValue, setInputValue] = useState('');
   const [sortValue, setSortValue] = useState<Record<string, 1 | -1>>({
-    createdAt: -1,
+    artist: 1,
   });
   const [searchQueryValue, setSearchQueryValue] = useState<any>({});
 
