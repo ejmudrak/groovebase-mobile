@@ -63,8 +63,8 @@ export default function EditRecordForm({
                 name='color'
                 render={({ field: { onChange, onBlur, value } }) => (
                   <TextInput
-                    label='Color'
-                    placeholder='ex. black, cosmic marble purple'
+                    label='Color/Variant'
+                    placeholder='ex. marbled red'
                     onChangeText={onChange}
                     onBlur={onBlur}
                     value={value}
@@ -79,7 +79,7 @@ export default function EditRecordForm({
                 render={({ field: { onChange, onBlur, value } }) => (
                   <TextInput
                     label='Price'
-                    placeholder='Enter amount paid'
+                    placeholder='$30'
                     onChangeText={onChange}
                     onBlur={onBlur}
                     value={value}
@@ -96,7 +96,7 @@ export default function EditRecordForm({
               render={({ field: { onChange, onBlur, value } }) => (
                 <TextInput
                   label='Liner Notes'
-                  placeholder='Write some additional notes...'
+                  placeholder='Add some additional notes...'
                   onChangeText={onChange}
                   onBlur={onBlur}
                   value={value}
