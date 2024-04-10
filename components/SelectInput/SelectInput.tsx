@@ -18,18 +18,20 @@ export interface Option {
 }
 export interface SelectInputProps
   extends Omit<TextInputProps, 'value' | 'onChange'> {
-  options: Option[];
-  onChange: (newValue: Option[]) => void;
-  value: Option[];
+  modalLabel?: string;
   multiple?: boolean;
+  onChange: (newValue: Option[]) => void;
+  options: Option[];
   required?: boolean;
+  value: Option[];
 }
 
 export default function SelectInput({
   label,
+  modalLabel,
   multiple,
-  options,
   onChange,
+  options,
   value,
   ...restOfProps
 }: SelectInputProps) {
@@ -67,7 +69,9 @@ export default function SelectInput({
       >
         <View style={styles.modalContent}>
           <View style={styles.modalHeader}>
-            <Text variant='h4'>Select {label}</Text>
+            <Text variant='h4'>
+              {modalLabel ? modalLabel : `Select ${label}`}
+            </Text>
 
             <IconButton
               style={styles.confirmButton}

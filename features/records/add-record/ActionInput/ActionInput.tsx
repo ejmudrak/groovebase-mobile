@@ -20,13 +20,15 @@ export default function ActionInput({
   ...restOfProps
 }: ActionInputProps) {
   const { actionOptions } = useActionInput();
+  const label = `How'd you get it?`;
 
   return (
     <>
       <SelectInput
         options={actionOptions}
-        label={`How'd you get it?`}
+        label={label}
         placeholder='Select an option'
+        modalLabel={label}
         {...restOfProps}
       />
       {Boolean(error) && <Text>This field is required</Text>}
