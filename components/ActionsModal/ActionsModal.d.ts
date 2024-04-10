@@ -1,12 +1,13 @@
 export interface ActionsModalProps {
-  isModalOpen: boolean;
-  openModal: () => void;
-  closeModal: () => void;
-  title: string;
   OpenModalComponent: React.ComponentType<{ onPress: () => void }>;
-  children: React.Element;
-  modalStyle?: any;
+  OpenModalComponentProps?: object;
   actionsStyle?: any;
+  children: React.Element;
+  closeModal: () => void;
+  isModalOpen: boolean;
+  modalStyle?: any;
+  openModal: () => void;
+  title: string;
 }
 
 export type BaseActionsModalProps = Pick<

@@ -7,21 +7,60 @@ import ActionItem from '@components/ActionsModal/components/ActionItem';
 import ActionsModal from 'components/ActionsModal';
 import IconButton from 'components/IconButton';
 import SortIcon from '@components/Icons/SortIcon';
+import PlaceholderCircleIcon from '@components/Icons/PlaceholderCircleIcon';
 import { StyleSheet } from 'react-native';
 import { colors } from 'utils/styles/colors';
 import { shadows } from 'utils/styles/shadows';
-import CheckIcon from '@components/Icons/CheckIcon';
+import CheckCircleIcon from '@components/Icons/CheckCircleIcon';
 
 export interface RecordsSortButtonViewProps {
-  sortValue: Record<string, 1 | -1>;
+  sortValue?: Record<string, 1 | -1>;
   setSortValue: (newSortValue: Record<string, 1 | -1>) => void;
 }
 
-const BlueCheckIcon = () => <CheckIcon color={colors.blue[500]} />;
-const BlueSortIcon = () => <SortIcon color={colors.white[500]} />;
+const ASCENDING = 1;
+const DESCENDING = -1;
+
+const sortOptions = [
+  {
+    label: 'Album (A to Z)',
+    sortProperty: 'name',
+    sortDirection: ASCENDING,
+  },
+  {
+    label: 'Album (Z to A)',
+    sortProperty: 'name',
+    sortDirection: DESCENDING,
+  },
+  {
+    label: 'Artist (A to Z)',
+    sortProperty: 'artist',
+    sortDirection: ASCENDING,
+  },
+  {
+    label: 'Artist (Z to A)',
+    sortProperty: 'artist',
+    sortDirection: DESCENDING,
+  },
+  {
+    label: 'Date Added (newest first)',
+    sortProperty: 'createdAt',
+    sortDirection: DESCENDING,
+  },
+  {
+    label: 'Artist (oldest first)',
+    sortProperty: 'createdAt',
+    sortDirection: ASCENDING,
+  },
+] as const;
+
+const BlueCheckIcon = () => <CheckCircleIcon color={colors.blue[500]} />;
+const WhitePlaceholderIcon = () => (
+  <PlaceholderCircleIcon color={colors.white[500]} />
+);
 
 export default function RecordsSortButtonView({
-  sortValue,
+  sortValue = {},
   setSortValue,
 }: RecordsSortButtonViewProps) {
   return (
@@ -30,66 +69,25 @@ export default function RecordsSortButtonView({
       OpenModalComponent={SortButton}
       modalStyle={styles.modalStyle}
     >
-      <ActionItem
-        label='Album (A to Z)'
-        onPress={() => setSortValue({ name: 1 })}
-        icon={sortValue.name === 1 ? <BlueCheckIcon /> : <BlueSortIcon />}
-        iconButtonStyle={
-          sortValue.name === 1
-            ? styles.selectedIconButton
-            : styles.notSelectedIconButton
-        }
-      />
-      <ActionItem
-        label='Album (Z to A)'
-        onPress={() => setSortValue({ name: -1 })}
-        icon={sortValue.name === -1 ? <BlueCheckIcon /> : <BlueSortIcon />}
-        iconButtonStyle={
-          sortValue.name === -1
-            ? styles.selectedIconButton
-            : styles.notSelectedIconButton
-        }
-      />
-      <ActionItem
-        label='Artist (A to Z)'
-        onPress={() => setSortValue({ artist: 1 })}
-        icon={sortValue.artist === 1 ? <BlueCheckIcon /> : <BlueSortIcon />}
-        iconButtonStyle={
-          sortValue.artist === 1
-            ? styles.selectedIconButton
-            : styles.notSelectedIconButton
-        }
-      />
-      <ActionItem
-        label='Artist (Z to A)'
-        onPress={() => setSortValue({ artist: -1 })}
-        icon={sortValue.artist === -1 ? <BlueCheckIcon /> : <BlueSortIcon />}
-        iconButtonStyle={
-          sortValue.artist === -1
-            ? styles.selectedIconButton
-            : styles.notSelectedIconButton
-        }
-      />
-      <ActionItem
-        label='Date Added (Newest first)'
-        onPress={() => setSortValue({ createdAt: -1 })}
-        icon={sortValue.createdAt === -1 ? <BlueCheckIcon /> : <BlueSortIcon />}
-        iconButtonStyle={
-          sortValue.createdAt === -1
-            ? styles.selectedIconButton
-            : styles.notSelectedIconButton
-        }
-      />
-      <ActionItem
-        label='Date Added (Oldest first)'
-        onPress={() => setSortValue({ createdAt: 1 })}
-        icon={sortValue.createdAt === 1 ? <BlueCheckIcon /> : <BlueSortIcon />}
-        iconButtonStyle={
-          sortValue.createdAt === 1
-            ? styles.selectedIconButton
-            : styles.notSelectedIconButton
-        }
-      />
+      {sortOptions.map(({ label, sortProperty, sortDirection }) => (
+        <ActionItem
+          key={label}
+          label={label}
+          onPress={() => setSortValue({ [sortProperty]: sortDirection })}
+          icon={
+            sortValue[sortProperty] === sortDirection ? (
+              <BlueCheckIcon />
+            ) : (
+              <WhitePlaceholderIcon />
+            )
+          }
+          iconButtonStyle={
+            sortValue[sortProperty] === sortDirection
+              ? styles.selectedIconButton
+              : styles.notSelectedIconButton
+          }
+        />
+      ))}
     </ActionsModal>
   );
 }
@@ -116,8 +114,6 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white[500],
   },
   notSelectedIconButton: {
-    backgroundColor: colors.blue[500],
-    borderWidth: 1,
-    borderColor: colors.white[500],
+    backgroundColor: 'transparent',
   },
 });

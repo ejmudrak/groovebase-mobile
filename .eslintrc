@@ -31,13 +31,6 @@
     "react/prop-types": "off",
     "semi": "warn"
   },
-  "overrides": [
-    {
-      "rules": {
-        "import/no-anonymous-default-export": "off"
-      }
-    }
-  ],
   "settings": {
     "react": {
       "version": "detect"

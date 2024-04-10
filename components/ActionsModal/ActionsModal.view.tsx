@@ -21,6 +21,7 @@ export default function ActionsModal({
   modalStyle,
   actionsStyle,
   OpenModalComponent,
+  OpenModalComponentProps,
 }: ActionsModalProps) {
   // Injects `closeModal` as a prop for all children
   const renderChildren = () => {
@@ -39,7 +40,7 @@ export default function ActionsModal({
 
   return (
     <>
-      <OpenModalComponent onPress={openModal} />
+      <OpenModalComponent onPress={openModal} {...OpenModalComponentProps} />
 
       <Modal
         animationType='slide'

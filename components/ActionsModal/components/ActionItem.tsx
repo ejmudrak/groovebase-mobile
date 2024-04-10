@@ -11,33 +11,34 @@ import { colors } from 'utils/styles/colors';
 export interface ActionItemProps extends PressableProps {
   closeModal?: () => void;
   icon: JSX.Element;
+  iconButtonStyle?: object;
   isLoading?: boolean;
   label: string;
   onPress: any;
   shouldCloseOnPress?: boolean;
-  iconButtonStyle?: object;
 }
 
 export default function ActionItem({
   closeModal,
   icon,
+  iconButtonStyle,
   isLoading,
   label,
   onPress,
   shouldCloseOnPress = true,
-  iconButtonStyle,
   ...props
 }: ActionItemProps) {
+  const handlePress = () => {
+    shouldCloseOnPress && closeModal && closeModal();
+    onPress && onPress();
+  };
+
   return (
-    <Pressable
-      style={[styles.container]}
-      onPress={() => {
-        shouldCloseOnPress && closeModal && closeModal();
-        onPress && onPress();
-      }}
-      {...props}
-    >
-      <IconButton style={[styles.iconButton, iconButtonStyle]}>
+    <Pressable style={[styles.container]} onPress={handlePress} {...props}>
+      <IconButton
+        style={[styles.iconButton, iconButtonStyle]}
+        onPress={handlePress}
+      >
         {isLoading ? <ActivityIndicator color={colors.blue[500]} /> : icon}
       </IconButton>
 
