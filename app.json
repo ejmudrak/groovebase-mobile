@@ -3,7 +3,7 @@
     "name": "Groovebase",
     "slug": "groovebase-mobile",
     "scheme": "com.erikmudrak.groovebasemobile",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -15,9 +15,7 @@
     "experiments": {
       "tsconfigPaths": true
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "com.erikmudrak.groovebasemobile"
