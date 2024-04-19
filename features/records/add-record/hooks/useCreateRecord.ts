@@ -1,4 +1,4 @@
-import { Record } from 'types';
+import { VinylRecord } from 'types';
 import createMutation from '@utils/react-query/createMutation';
 import { Service } from '@utils/services';
 
@@ -9,12 +9,12 @@ Adds data for a vinyl record to database
 */
 
 export const useCreateRecord = () => {
-  const getCreateData = ({ year, ...item }: Record) => {
+  const getCreateData = ({ year, ...item }: VinylRecord) => {
     return {
       year: typeof year === 'string' ? parseInt(year) : year,
       ...item,
     };
   };
 
-  return createMutation<Record, any>(Service.Records, getCreateData);
+  return createMutation<VinylRecord, any>(Service.Records, getCreateData);
 };

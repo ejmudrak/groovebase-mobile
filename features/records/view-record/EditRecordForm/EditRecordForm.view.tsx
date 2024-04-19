@@ -40,6 +40,21 @@ export default function EditRecordForm({
 
             <Controller
               control={control}
+              name='source'
+              render={({ field: { onChange, onBlur, value } }) => (
+                <TextInput
+                  label={`Where'd you get it?`}
+                  placeholder='ex. Square Cat Vinyl, online, at concert'
+                  onChangeText={onChange}
+                  onBlur={onBlur}
+                  value={value}
+                  containerStyle={styles.rowInput}
+                />
+              )}
+            />
+
+            <Controller
+              control={control}
               name='mediaCondition'
               render={({ field, fieldState }) => (
                 <ConditionInput {...field} {...fieldState} required />
@@ -78,13 +93,14 @@ export default function EditRecordForm({
                 name='price'
                 render={({ field: { onChange, onBlur, value } }) => (
                   <TextInput
-                    label='Price'
-                    placeholder='$30'
+                    label='Price ($)'
+                    placeholder='30'
                     onChangeText={onChange}
                     onBlur={onBlur}
                     value={value}
                     containerStyle={styles.rowInput}
                     inputMode='decimal'
+                    keyboardType='numeric'
                   />
                 )}
               />

@@ -1,11 +1,13 @@
 import Text from 'components/Text';
 import { StyleSheet, View, Image } from 'react-native';
 import { colors } from 'utils/styles/colors';
-import { Record } from 'types';
+import { VinylRecord } from 'types';
 import RecordContentSkeleton from './RecordContent.skeleton';
 
 interface RecordContentProps
-  extends Partial<Pick<Record, 'artist' | 'name' | 'year' | 'smallImageUrl'>> {
+  extends Partial<
+    Pick<VinylRecord, 'artist' | 'name' | 'year' | 'smallImageUrl'>
+  > {
   isLoading?: boolean;
 }
 

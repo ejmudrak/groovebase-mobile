@@ -25,6 +25,7 @@ export default function useAddRecordFormProps({
       userId: user?.id,
       recordId: undefined,
       action: [],
+      source: '',
       bins: [],
       mediaCondition: [],
       color: '',

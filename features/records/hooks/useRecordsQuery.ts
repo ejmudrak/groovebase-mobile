@@ -1,6 +1,6 @@
 import { Service } from 'utils/services';
 import { findQuery } from 'utils/react-query';
-import { QueryParams, Record } from 'types';
+import { QueryParams, VinylRecord } from 'types';
 
 /*
 Endpoint: /records
@@ -8,8 +8,8 @@ Methods: fetch
 */
 
 export const useRecordsQuery = (
-  params?: QueryParams<Record & { userId: number }>,
+  params?: QueryParams<VinylRecord & { userId: number }>,
 ) =>
-  findQuery<Record>(Service.Records, {
+  findQuery<VinylRecord>(Service.Records, {
     ...params,
   });

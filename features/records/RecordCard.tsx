@@ -1,11 +1,11 @@
 import Card from 'components/Card';
 import RecordContent from 'components/RecordContent';
 import { Pressable, StyleSheet } from 'react-native';
-import { Record } from 'types';
+import { VinylRecord } from 'types';
 
 interface RecordCardProps {
-  record?: Record;
-  onPress?: (record: Record) => void;
+  record?: VinylRecord;
+  onPress?: (record: VinylRecord) => void;
   isLoading?: boolean;
 }
 

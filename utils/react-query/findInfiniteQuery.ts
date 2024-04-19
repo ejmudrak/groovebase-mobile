@@ -1,17 +1,33 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import feathersClient from 'utils/client';
 import { FindResult, QueryParams } from 'types';
+import { Id } from '@feathersjs/feathers';
+
+type FeathersItem = Record<'id', Id>;
 
 // Grabs all items from all pages
 const getAllItems = (pages?: any[]) => {
-  let allItems: any[] = [];
+  let allItems: FeathersItem[] = [];
   if (!pages) return allItems;
 
-  pages.forEach(({ items }: { items: any[] }) => {
+  pages.forEach(({ items }: { items: FeathersItem[] }) => {
     allItems = allItems.concat(items);
   });
 
-  return allItems;
+  const allUniqueItems: FeathersItem[] = [];
+
+  // clear out any duplicates
+  allItems.forEach((item) => {
+    const isDuplicate = allUniqueItems.find(
+      (uniqueItem) => item.id === uniqueItem.id,
+    );
+
+    if (!isDuplicate) {
+      allUniqueItems.push(item);
+    }
+  });
+
+  return allUniqueItems;
 };
 
 // Fetches data from the API, allowing for infinite scroll pagination

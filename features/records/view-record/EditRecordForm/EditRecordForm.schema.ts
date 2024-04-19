@@ -10,6 +10,7 @@ const selectInputOption = yup.array(
 export const editRecordFormSchema = yup
   .object({
     action: selectInputOption,
+    source: yup.string(),
     bins: selectInputOption,
     mediaCondition: selectInputOption.min(1).required(),
     color: yup.string(),

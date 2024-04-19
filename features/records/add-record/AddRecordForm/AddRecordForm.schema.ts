@@ -12,6 +12,7 @@ export const addRecordFormSchema = yup
     userId: yup.number().required(),
     recordId: yup.number(),
     action: selectInputOption,
+    source: yup.string(),
     bins: selectInputOption,
     mediaCondition: selectInputOption.min(1).required(),
     color: yup.string(),

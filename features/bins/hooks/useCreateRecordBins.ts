@@ -1,4 +1,4 @@
-import { Record } from 'types';
+import { VinylRecord } from 'types';
 import createMutation from 'utils/react-query/createMutation';
 import { Service } from 'utils/services';
 
@@ -9,5 +9,5 @@ Adds a record to a bin
 */
 
 export const useCreateRecordBins = () => {
-  return createMutation<Record, any>(Service.RecordBins);
+  return createMutation<VinylRecord, any>(Service.RecordBins);
 };

@@ -32,6 +32,7 @@ export default function useEditRecordFormProps({
   const userRecord = items[0] || {};
   const {
     action,
+    source = '',
     bins,
     mediaCondition,
     color = '',
@@ -42,6 +43,7 @@ export default function useEditRecordFormProps({
   const initialValues = useMemo(
     () => ({
       action: convertActionToSelectOptions(action),
+      source,
       bins: convertBinsToSelectOptions(bins),
       mediaCondition: convertMediaConditionToSelectOptions(mediaCondition),
       color,
@@ -51,6 +53,7 @@ export default function useEditRecordFormProps({
     [
       isUserRecordQuerySuccess,
       action,
+      source,
       bins,
       mediaCondition,
       color,
@@ -68,6 +71,7 @@ export default function useEditRecordFormProps({
   } = useForm<EditRecordFormData>({
     defaultValues: {
       action: [],
+      source: '',
       bins: [],
       mediaCondition: [],
       color: '',

@@ -1,9 +1,9 @@
-import { Record } from 'types';
+import { VinylRecord } from 'types';
 
 export interface RecordsListProps {
   fetchNextPage?: () => void;
-  onRecordPress: (record: Record) => void;
-  records?: Record[];
+  onRecordPress: (record: VinylRecord) => void;
+  records?: VinylRecord[];
   refreshing?: boolean;
   searchValue: string;
   setSearchValue: (newSearchValue: string) => void;

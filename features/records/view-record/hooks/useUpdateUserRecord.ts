@@ -1,4 +1,4 @@
-import { Record } from 'types';
+import { VinylRecord } from 'types';
 import { Service } from 'utils/services';
 import { EditRecordFormData } from '../EditRecordForm/EditRecordForm.schema';
 import { updateMutation } from 'utils/react-query';
@@ -21,12 +21,12 @@ export const useUpdateUserRecord = (id: Id, params?: object) => {
     return {
       action: action?.length ? action[0]?.label : '',
       mediaCondition: mediaCondition[0].label,
-      price: price ? parseInt(price) : undefined,
+      price: price ? parseInt(removeNonNumbers(price)) : undefined,
       ...item,
     };
   };
 
-  return updateMutation<Record, EditRecordFormData>(
+  return updateMutation<VinylRecord, EditRecordFormData>(
     Service.UserRecords,
     id,
     params,
@@ -35,3 +35,5 @@ export const useUpdateUserRecord = (id: Id, params?: object) => {
     },
   );
 };
+
+const removeNonNumbers = (value: string) => value.replace(/[^0-9]/g, '');

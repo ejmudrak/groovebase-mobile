@@ -76,6 +76,7 @@ export interface UserRecord extends FeathersRecord {
   mediaCondition: string;
 
   // optional properties
+  source?: string;
   notes?: string;
   color?: string;
   price?: number;

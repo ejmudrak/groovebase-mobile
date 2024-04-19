@@ -1,9 +1,9 @@
 import { Control, SubmitHandler, UseFormHandleSubmit } from 'react-hook-form';
 import { EditRecordFormData } from './EditRecordForm.schema';
-import { Record } from 'types';
+import { VinylRecord } from 'types';
 
 export interface EditRecordFormProps {
-  record: Record;
+  record: VinylRecord;
   recordId: number;
   userRecordId: number;
   control: Control<EditRecordFormData, any>;
