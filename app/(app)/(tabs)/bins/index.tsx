@@ -36,6 +36,7 @@ export default function BinsPage() {
         onBinPress={handleBinPress}
         refreshing={isLoading}
         fetchNextPage={hasNextPage ? fetchNextPage : undefined}
+        refetch={refetch}
       />
     </Page>
   );

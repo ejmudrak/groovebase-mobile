@@ -27,9 +27,9 @@ export default function createMutation<ServiceType, CreateDataType>(
         .then((data: ServiceType) => data);
     },
     {
-      onSuccess: () => {
+      onSuccess: async () => {
         // removes query's cache
-        queryClient.invalidateQueries({ queryKey: [queryKey] });
+        await queryClient.invalidateQueries({ queryKey: [queryKey] });
       },
       ...mutationOptions,
     },

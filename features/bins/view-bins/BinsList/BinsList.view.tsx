@@ -2,7 +2,7 @@ import BinCard from '../BinCard';
 import BinsListSkeleton from './BinsList.skeleton';
 import Text from 'components/Text';
 import { BinsListProps } from './BinsList';
-import { FlatList, StyleSheet, View } from 'react-native';
+import { FlatList, RefreshControl, StyleSheet, View } from 'react-native';
 import ListFooter from 'components/ListFooter';
 
 export default function BinsListView({
@@ -10,6 +10,7 @@ export default function BinsListView({
   fetchNextPage,
   onBinPress,
   refreshing,
+  refetch,
 }: BinsListProps) {
   return (
     <>
@@ -23,10 +24,16 @@ export default function BinsListView({
         onEndReached={fetchNextPage}
         onEndReachedThreshold={0.1}
         style={styles.container}
+        refreshControl={
+          <RefreshControl
+            refreshing={Boolean(refreshing)}
+            onRefresh={refetch}
+          />
+        }
         ListFooterComponent={() => (
           <ListFooter
             refreshing={refreshing}
-            hasItems={Boolean(bins?.length)}
+            numItems={bins?.length || 0}
             Skeleton={BinsListSkeleton}
           />
         )}

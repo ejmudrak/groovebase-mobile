@@ -12,6 +12,7 @@ import Text from '@components/Text/Text';
 import { useBinsQuery } from '@features/bins/hooks/useBinsQuery';
 import { useMemo } from 'react';
 import { useCurrentUser } from '@features/users/hooks/useCurrentUser';
+import useRefresh from '@utils/hooks/useRefresh';
 
 export interface BinsInputProps
   extends ControllerRenderProps,
@@ -26,11 +27,13 @@ export default function BinsInput({
   ...restOfProps
 }: BinsInputProps) {
   const user = useCurrentUser();
-  const { data: { items: bins = [] } = {} } = useBinsQuery({
+  const { data: { items: bins = [] } = {}, refetch } = useBinsQuery({
     userId: user?.id || 0,
     $sort: { name: 1 },
     $limit: 100,
   });
+
+  useRefresh(refetch);
 
   const options = useMemo(
     () =>

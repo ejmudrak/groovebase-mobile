@@ -3,7 +3,7 @@ import RecordCard from '../../RecordCard';
 import RecordsListSkeleton from './RecordsList.skeleton';
 import RecordsToolbar from '../RecordsToolbar';
 import Text from 'components/Text';
-import { FlatList, StyleSheet, View } from 'react-native';
+import { FlatList, RefreshControl, StyleSheet, View } from 'react-native';
 import { RecordsListProps } from './RecordsList';
 
 export default function RecordsList({
@@ -11,6 +11,7 @@ export default function RecordsList({
   hideSortButton,
   onRecordPress,
   records,
+  refetch = () => {},
   refreshing,
   searchValue,
   setSearchValue = () => {},
@@ -32,6 +33,12 @@ export default function RecordsList({
         onEndReached={fetchNextPage}
         onEndReachedThreshold={0.1}
         keyboardShouldPersistTaps='handled'
+        refreshControl={
+          <RefreshControl
+            refreshing={Boolean(refreshing)}
+            onRefresh={refetch}
+          />
+        }
         ListHeaderComponent={
           <RecordsToolbar
             searchValue={searchValue}

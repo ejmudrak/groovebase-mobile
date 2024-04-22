@@ -5,6 +5,7 @@ export interface RecordsListProps {
   hideSortButton?: boolean;
   onRecordPress: (record: VinylRecord) => void;
   records?: VinylRecord[];
+  refetch?: () => void;
   refreshing?: boolean;
   searchValue: string;
   setSearchValue: (newSearchValue: string) => void;

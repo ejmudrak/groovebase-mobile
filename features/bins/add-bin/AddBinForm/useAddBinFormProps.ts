@@ -41,8 +41,8 @@ export default function useAddBinFormProps({
   const addBin = (data: AddBinFormData) => {
     // Adds record to db
     createBin(data, {
-      onSuccess: () => {
-        queryClient.invalidateQueries({ queryKey: [Service.Bins] });
+      onSuccess: async () => {
+        await queryClient.invalidateQueries({ queryKey: [Service.Bins] });
 
         // Redirects to Bins page
         setTimeout(() => router.replace('/bins'), 1000);
