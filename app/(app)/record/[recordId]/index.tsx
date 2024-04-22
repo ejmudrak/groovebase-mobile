@@ -9,10 +9,13 @@ import EditRecordForm from '@features/records/view-record/EditRecordForm';
 import Card from '@components/Card';
 import GenreChips from '@features/records/view-record/GenreChips';
 import TrackList from '@features/records/view-record/TrackList';
+import useRefresh from '@utils/hooks/useRefresh';
 
 export default function RecordPage() {
   const { recordId } = useLocalSearchParams<{ recordId: string }>();
-  const { data: record, isLoading } = useRecordQuery(recordId);
+  const { data: record, isLoading, refetch } = useRecordQuery(recordId);
+
+  useRefresh(refetch);
 
   return (
     <Page authenticated>

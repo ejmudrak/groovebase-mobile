@@ -48,7 +48,7 @@ const sortOptions = [
     sortDirection: DESCENDING,
   },
   {
-    label: 'Artist (oldest first)',
+    label: 'Date Added (oldest first)',
     sortProperty: 'createdAt',
     sortDirection: ASCENDING,
   },

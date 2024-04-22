@@ -1,9 +1,8 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import feathersClient from 'utils/client';
 import { FindResult, QueryParams } from 'types';
-import { Id } from '@feathersjs/feathers';
 
-type FeathersItem = Record<'id', Id>;
+type FeathersItem = any;
 
 // Grabs all items from all pages
 const getAllItems = (pages?: any[]) => {

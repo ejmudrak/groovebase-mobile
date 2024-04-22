@@ -26,7 +26,11 @@ export default function TrackList({ tracks }: TrackListProps) {
             key={track.id}
             {...track}
             variant={
-              FILLED_SIDES.some((side) => track.position?.includes(side))
+              FILLED_SIDES.some(
+                (side) =>
+                  typeof track.position === 'string' &&
+                  track?.position?.includes(side),
+              )
                 ? 'filled'
                 : 'outlined'
             }

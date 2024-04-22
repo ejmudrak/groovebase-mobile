@@ -7,11 +7,15 @@ import { useCreateBin } from '../../hooks/useCreateBin';
 import { useEffect } from 'react';
 import Toast from 'react-native-toast-message';
 import { router } from 'expo-router';
+import { useQueryClient } from '@tanstack/react-query';
+import { Bin } from 'types';
+import { Service } from '@utils/services';
 
 export default function useAddBinFormProps({
   ...restOfBaseProps
 }: BaseAddBinFormProps) {
   const user = useCurrentUser();
+  const queryClient = useQueryClient();
 
   const {
     control,
@@ -38,6 +42,8 @@ export default function useAddBinFormProps({
     // Adds record to db
     createBin(data, {
       onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: [Service.Bins] });
+
         // Redirects to Bins page
         setTimeout(() => router.replace('/bins'), 1000);
         resetForm();
