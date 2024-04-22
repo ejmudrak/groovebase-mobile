@@ -61,6 +61,7 @@ export default function AddRecordSearch() {
         setSearchValue={setInputValue}
         sortValue={{}}
         setSortValue={() => {}}
+        hideSortButton
       />
     </Page>
   );

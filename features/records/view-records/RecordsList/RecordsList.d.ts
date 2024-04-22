@@ -2,6 +2,7 @@ import { VinylRecord } from 'types';
 
 export interface RecordsListProps {
   fetchNextPage?: () => void;
+  hideSortButton?: boolean;
   onRecordPress: (record: VinylRecord) => void;
   records?: VinylRecord[];
   refreshing?: boolean;

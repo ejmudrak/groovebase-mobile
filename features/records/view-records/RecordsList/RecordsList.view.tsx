@@ -8,6 +8,7 @@ import { RecordsListProps } from './RecordsList';
 
 export default function RecordsList({
   fetchNextPage,
+  hideSortButton,
   onRecordPress,
   records,
   refreshing,
@@ -30,12 +31,14 @@ export default function RecordsList({
         refreshing={refreshing}
         onEndReached={fetchNextPage}
         onEndReachedThreshold={0.1}
+        keyboardShouldPersistTaps='handled'
         ListHeaderComponent={
           <RecordsToolbar
             searchValue={searchValue}
             setSearchValue={setSearchValue}
             sortValue={sortValue}
             setSortValue={setSortValue}
+            hideSortButton={hideSortButton}
           />
         }
         ListFooterComponent={() => (

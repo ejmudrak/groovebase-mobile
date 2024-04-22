@@ -7,6 +7,7 @@ export interface RecordsToolbarProps {
   setSearchValue: (newSearchValue: string) => void;
   sortValue: Record<string, 1 | -1>;
   setSortValue: (newSortValue: Record<string, 1 | -1>) => void;
+  hideSortButton?: boolean;
 }
 
 export default function RecordsToolbarView({
@@ -14,6 +15,7 @@ export default function RecordsToolbarView({
   setSearchValue,
   sortValue,
   setSortValue,
+  hideSortButton,
 }: RecordsToolbarProps) {
   return (
     <View style={styles.container}>
@@ -23,7 +25,9 @@ export default function RecordsToolbarView({
         placeholder='Search by album or artist'
       />
 
-      <RecordsSortButton sortValue={sortValue} setSortValue={setSortValue} />
+      {!hideSortButton && (
+        <RecordsSortButton sortValue={sortValue} setSortValue={setSortValue} />
+      )}
     </View>
   );
 }
