@@ -36,4 +36,4 @@ export const useUpdateUserRecord = (id: Id, params?: object) => {
   );
 };
 
-const removeNonNumbers = (value: string) => value.replace(/[^0-9]/g, '');
+const removeNonNumbers = (value: string) => value.replace(/[^0-9.]/g, '');
