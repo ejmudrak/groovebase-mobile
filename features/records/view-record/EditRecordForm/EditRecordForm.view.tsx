@@ -99,7 +99,6 @@ export default function EditRecordForm({
                     onBlur={onBlur}
                     value={value}
                     containerStyle={styles.rowInput}
-                    inputMode='decimal'
                     keyboardType='numeric'
                   />
                 )}

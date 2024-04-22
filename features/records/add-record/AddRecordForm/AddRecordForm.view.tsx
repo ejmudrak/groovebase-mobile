@@ -93,7 +93,6 @@ export default function AddRecordForm({
                 onChangeText={onChange}
                 onBlur={onBlur}
                 value={value}
-                inputMode='decimal'
                 keyboardType='numeric'
               />
             )}
