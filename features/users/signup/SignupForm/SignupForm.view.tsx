@@ -100,6 +100,7 @@ export default function SignupForm({
               onBlur={onBlur}
               value={value}
               error={formErrors?.[name]?.message}
+              helperText='Password must contain 8 characters, one uppercase, one lowercase, and one number'
             />
           )}
         />

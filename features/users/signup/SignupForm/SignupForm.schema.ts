@@ -27,7 +27,7 @@ export const signupFormSchema = yup
       .matches(PASSWORD_REGEX, PASSWORD_MESSAGE),
     confirmPassword: yup
       .string()
-      .required()
+      .required('Confirm password is required')
       .matches(PASSWORD_REGEX, PASSWORD_MESSAGE)
       .oneOf([yup.ref('password')], 'Passwords must match'),
   })

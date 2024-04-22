@@ -1,7 +1,7 @@
 import Page from '@components/Page';
 import SpinningVinyl from '@components/SpinningVinyl';
 import Text from '@components/Text';
-import { View, StyleSheet, SafeAreaView } from 'react-native';
+import { View, StyleSheet, SafeAreaView, ScrollView } from 'react-native';
 import { colors } from '@utils/styles/colors';
 import { Slot } from 'expo-router';
 
@@ -21,7 +21,9 @@ export default function AuthLayout() {
           </View>
         </SafeAreaView>
 
-        <Slot />
+        <ScrollView directionalLockEnabled>
+          <Slot />
+        </ScrollView>
       </View>
 
       <SpinningVinyl color='green' style={styles.vinyl} />

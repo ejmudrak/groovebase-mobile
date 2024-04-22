@@ -73,7 +73,11 @@ export default function TextInput({
         </View>
 
         {Boolean(helperText || error) && (
-          <Text variant='body3' color={error ? colors.red[500] : 'inherit'}>
+          <Text
+            style={styles.helperText}
+            variant='body3'
+            color={error ? colors.red[500] : 'inherit'}
+          >
             {error ? error : helperText}
           </Text>
         )}
@@ -113,5 +117,9 @@ const styles = StyleSheet.create({
   },
   requiredText: {
     color: 'red',
+  },
+  helperText: {
+    marginTop: 2,
+    paddingLeft: 4,
   },
 });
